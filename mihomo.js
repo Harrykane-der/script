@@ -74,8 +74,10 @@ function main(newConfig = {}) {
   };
 
   // ==================== 2. DNS 配置 (移除多余变量提升内存利用率) ====================
+  const dns_default = ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"]; 
   const dns_direct = [`https://pz.fyi/dns-query${dnsParams}`, `https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://doh.pub/dns-query${dnsParams}`, "system"];
   const dns_proxy = [`https://unfiltered.adguard-dns.com/dns-query${dnsParams}&h3=true&proxy_dns`, `https://pz.fyi/dns-query${dnsParams}`, `https://dns.google/dns-query${dnsParams}&h3=true&proxy_dns`];
+  const dns_proxy_server = [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`, "system"];
   const dns_fakeip = ["rcode://name_error"];
   const dns_adguard = ["rcode://success"];
   const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
@@ -120,7 +122,7 @@ function main(newConfig = {}) {
       "rule-set:cn_domain": dns_direct,
       "+.*": dns_fakeip
     },
-    "proxy-server-nameserver": [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`],
+    "proxy-server-nameserver": dns_proxy_server,
     "direct-nameserver-follow-policy": true,
     "direct-nameserver": dns_direct,
     "proxy-server-nameserver-policy": {
