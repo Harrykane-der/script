@@ -89,7 +89,7 @@ function main(newConfig = {}) {
 
   Object.assign((newConfig.dns ??= {}), {
     "enable": true,
-    "ipv6": false,
+    "ipv6": true,
     "ipv6-timeout": 300,
     "cache-algorithm": "arc",
     "use-hosts": true,
