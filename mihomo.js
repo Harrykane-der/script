@@ -137,21 +137,21 @@ function main(newConfig = {}) {
       "+.api-huacloud.dev": dns_flower
     },
     "fallback-filter": {
-      "geoip": true,
-      "geoip-code": "CN",
-      "geosite": "gfw",
-      "ipcidr": [
-        "240.0.0.0/4",
-        "0.0.0.0/32",
-        "127.0.0.1/32",
-        "100.64.0.0/10"
-      ],
-      "domain": [
-        "+.google.com",
-        "+.facebook.com",
-        "+.youtube.com"
-      ]
-    }
+    "geoip": true,
+    "geoip-code": "CN",
+    "geosite": "gfw",
+    "ipcidr": [
+      "240.0.0.0/4",
+      "0.0.0.0/32",
+      "127.0.0.1/32",
+      "100.64.0.0/10"
+    ],
+    "domain": [
+      "+.google.com",
+      "+.facebook.com",
+      "+.youtube.com"
+    ]
+  }
   });
 
   // ==================== 3. 注入直连/DNS节点 ====================
