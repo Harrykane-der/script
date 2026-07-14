@@ -121,6 +121,25 @@ function main(newConfig = {}) {
       "+.623ccd.rjsqsn.xyz,+.6aad4e.fomlrq.xyz": dns_creamdata,
       "+.a6f7e5e493.8c5ecp7fb.sbs,+.af81085c6d.h5dhwpd92.sbs": dns_nexitally,
       "+.aws-agent.com,+.api-huacloud.dev": dns_flower
+    },
+    ,
+    "fallback-lazy-query": true,
+    "fallback": dns_proxy,
+    "fallback-filter": {
+    "geoip": true,
+    "geoip-code": "CN",
+    "geosite": "gfw",
+    "ipcidr": [
+      "240.0.0.0/4",
+      "0.0.0.0/32",
+      "127.0.0.1/32",
+      "100.64.0.0/10"
+    ],
+    "domain": [
+      "+.google.com",
+      "+.facebook.com",
+      "+.youtube.com"
+    ]
     }
   });
 
