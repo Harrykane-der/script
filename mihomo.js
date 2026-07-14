@@ -102,10 +102,17 @@ function main(newConfig = {}) {
     "fake-ip-range6": "fc00::/64",
     "fake-ip-ttl": 1,
     "fake-ip-filter-mode": "rule",
-    "fake-ip-filter": ["RULE-SET,game_domain,fake-ip", "RULE-SET,direct_emby_domain,real-ip", "RULE-SET,proxy_emby_domain,real-ip", "RULE-SET,fakeip-filter_domain,real-ip", "MATCH,fake-ip"],
+    "fake-ip-filter": [
+      "RULE-SET,game_domain,fake-ip",
+      "RULE-SET,direct_emby_domain,real-ip",
+      "RULE-SET,proxy_emby_domain,real-ip",
+      "RULE-SET,fakeip-filter_domain,real-ip",
+      "MATCH,fake-ip"
+    ],
     "default-nameserver": dns_default,
     "nameserver": dns_proxy,
-    // 【已修复】拆分了原本用逗号合并的 rule-set 键名
+    "fallback-lazy-query": true,
+    "fallback": dns_proxy,
     "nameserver-policy": {
       "rule-set:game_domain": dns_fakeip,
       "rule-set:proxy_emby_domain": dns_proxy,
@@ -129,7 +136,6 @@ function main(newConfig = {}) {
       "+.aws-agent.com": dns_flower,
       "+.api-huacloud.dev": dns_flower
     },
-    "fallback": dns_proxy,
     "fallback-filter": {
       "geoip": true,
       "geoip-code": "CN",
@@ -145,8 +151,7 @@ function main(newConfig = {}) {
         "+.facebook.com",
         "+.youtube.com"
       ]
-    },
-    "fallback-lazy-query": true
+    }
   });
 
   // ==================== 3. 注入直连/DNS节点 ====================
