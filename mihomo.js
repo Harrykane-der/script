@@ -1,9 +1,9 @@
 function main(newConfig = {}) {
   const iconBase = "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color";
   const dnsParams = "#disable-qtype-12&disable-qtype-64&disable-qtype-65&ecs=223.160.168.99/24&ecs-override=true";
-  const testUrl = "https://www.apple.com/library/test/success.html"; // 提取常量，减少 QuickJS 内存分配
+  const testUrl = "https://www.apple.com/library/test/success.html";
 
-  // ==================== 1. 基础与扩展配置 ====================
+  // ==================== 1. 基础配置 (直接覆写/追加属性) ====================
   Object.assign(newConfig, {
     "allow-lan": true,
     "ipv6": true,
@@ -19,13 +19,13 @@ function main(newConfig = {}) {
     "external-ui": "ui"
   });
 
-  // 使用 Object.assign 替代扩展运算符，防止原对象属性为 undefined 时抛出 TypeError
-  newConfig.profile = Object.assign(newConfig.profile || {}, {
+  // ==================== 2. 核心模块 (强制绝对覆盖) ====================
+  newConfig.profile = {
     "store-selected": true,
     "store-fake-ip": true
-  });
+  };
 
-  newConfig.tun = Object.assign(newConfig.tun || {}, {
+  newConfig.tun = {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
@@ -36,9 +36,9 @@ function main(newConfig = {}) {
     "disable-icmp-forwarding": true,
     "dns-hijack": ["any:53", "tcp://any:53"],
     "udp-timeout": 600
-  });
+  };
 
-  newConfig.hosts = Object.assign(newConfig.hosts || {}, {
+  newConfig.hosts = {
     "pz.fyi": ["106.54.11.55"],
     "doh.pub": ["120.53.53.53", "1.12.12.12", "2402:4e00::"],
     "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
@@ -59,9 +59,9 @@ function main(newConfig = {}) {
     "alt8-mtalk.google.com": ["172.253.132.188"],
     "dl.google.com": ["180.163.151.161"],
     "dl.l.google.com": ["180.163.150.33"]
-  });
+  };
 
-  newConfig.sniffer = Object.assign(newConfig.sniffer || {}, {
+  newConfig.sniffer = {
     "enable": true,
     "force-dns-mapping": true,
     "parse-pure-ip": true,
@@ -74,20 +74,20 @@ function main(newConfig = {}) {
     "skip-domain": ["rule-set:telegram_domain"],
     "skip-dst-address": ["rule-set:telegram_ip"],
     "skip-src-address": ["rule-set:telegram_ip"]
-  });
+  };
 
-  // ==================== 2. DNS 配置 ====================
   const dns_default = ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"];
-  const dns_domain_server = ["https://dns.alidns.com/dns-query" + dnsParams + "&h3=true", "https://pz.fyi/dns-query" + dnsParams, "https://doh.pub/dns-query" + dnsParams];
-  const dns_direct = ["https://pz.fyi/dns-query" + dnsParams, "https://dns.alidns.com/dns-query" + dnsParams + "&h3=true", "https://doh.pub/dns-query" + dnsParams, "system"];
-  const dns_proxy = ["https://unfiltered.adguard-dns.com/dns-query" + dnsParams + "&h3=true&proxy_dns", "https://pz.fyi/dns-query" + dnsParams, "https://dns.google/dns-query" + dnsParams + "&h3=true&proxy_dns"];
+  const dns_domain_server = [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`];
+  const dns_direct = [`https://pz.fyi/dns-query${dnsParams}`, `https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://doh.pub/dns-query${dnsParams}`, "system"];
+  const dns_proxy = [`https://unfiltered.adguard-dns.com/dns-query${dnsParams}&h3=true&proxy_dns`, `https://pz.fyi/dns-query${dnsParams}`, `https://dns.google/dns-query${dnsParams}&h3=true&proxy_dns`];
   const dns_nexitally = ["https://prolonged3729.com:443/dns-query/8203f7dc-afa4-40cf-9b4b-190497da7b85"];
   const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
   const dns_flower = ["system"];
   const dns_fakeip = ["rcode://name_error"];
   const dns_adguard = ["rcode://success"];
 
-  newConfig.dns = Object.assign(newConfig.dns || {}, {
+  newConfig.dns = {
+    ...newConfig.dns,
     "enable": true,
     "ipv6": false,
     "ipv6-timeout": 300,
@@ -122,23 +122,20 @@ function main(newConfig = {}) {
       "+.a6f7e5e493.8c5ecp7fb.sbs,+.af81085c6d.h5dhwpd92.sbs": dns_nexitally,
       "+.aws-agent.com,+.api-huacloud.dev": dns_flower
     }
-  });
+  };
 
-  // ==================== 3. 注入直连/DNS节点 ====================
-  newConfig.proxies = newConfig.proxies || []; // 移除 ||= ES2021 语法，确保老引擎兼容
-  newConfig.proxies.push(
-    { "name": "直连 | 双栈", "type": "direct", "udp": true, "icon": iconBase + "/CN.png" },
-    { "name": "直连 | IPv4优先", "type": "direct", "udp": true, "ip-version": "ipv4-prefer", "icon": iconBase + "/CN.png" },
-    { "name": "直连 | IPv6优先", "type": "direct", "udp": true, "ip-version": "ipv6-prefer", "icon": iconBase + "/CN.png" },
-    { "name": "dns_hijack", "type": "dns" }
+  // ==================== 3. 注入直连/DNS节点 (追加) ====================
+  // 必须保留原有代理节点，因此使用 push 注入
+  (newConfig.proxies ??= []).push(
+    { name: "直连 | 双栈", type: "direct", udp: true, icon: `${iconBase}/CN.png` },
+    { name: "直连 | IPv4优先", type: "direct", udp: true, "ip-version": "ipv4-prefer", icon: `${iconBase}/CN.png` },
+    { name: "直连 | IPv6优先", type: "direct", udp: true, "ip-version": "ipv6-prefer", icon: `${iconBase}/CN.png` },
+    { name: "dns_hijack", type: "dns" }
   );
 
-  // ==================== 4. 策略组模板与数据驱动生成 ====================
-  const proxyGroups = []; // 避免创建大量中间数组，直接推入一个数组中降低 GC 开销
+  // ==================== 4. 策略组 (强制绝对覆盖) ====================
   const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "Direct"];
-
-  // 4.1 主业务分流组
-  const mainGroupsData = [
+  const mainGroups = [
     { name: "Final", selected: "HK", icon: "Final.png" },
     { name: "Game", selected: "Gamer", icon: "Game.png" },
     { name: "Telegram", selected: "SG", icon: "Telegram.png" },
@@ -151,23 +148,15 @@ function main(newConfig = {}) {
     { name: "FCM", selected: "Direct", icon: "iCloud.png" },
     { name: "Github", selected: "HK", icon: "GitHub.png" },
     { name: "Media", selected: "HK", icon: "ForeignMedia.png" }
-  ];
+  ].map(item => ({
+    name: item.name,
+    type: "select",
+    "default-selected": item.selected,
+    proxies: regionProxies,
+    icon: `${iconBase}/${item.icon}`
+  }));
 
-  for (let i = 0; i < mainGroupsData.length; i++) {
-    proxyGroups.push({
-      "name": mainGroupsData[i].name,
-      "type": "select",
-      "default-selected": mainGroupsData[i].selected,
-      "proxies": regionProxies,
-      "icon": iconBase + "/" + mainGroupsData[i].icon
-    });
-  }
-
-  // 插入 BANAD
-  proxyGroups.push({ "name": "BANAD", "type": "select", "default-selected": "REJECT", "proxies": ["REJECT", "REJECT-DROP", "PASS"], "icon": iconBase + "/Reject.png" });
-
-  // 4.2 区域子策略组
-  const regionsData = [
+  const regionalGroups = [
     { name: "Gamer", icon: "Game.png", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|🇯🇵|日本|\\bJP\\b|\\bjapan\\b" },
     { name: "HK", icon: "HK.png", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b" },
     { name: "JP", icon: "JP.png", filter: "(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b" },
@@ -175,37 +164,26 @@ function main(newConfig = {}) {
     { name: "US", icon: "US.png", filter: "(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b" },
     { name: "DE", icon: "DE.png", filter: "(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b" },
     { name: "OT", icon: "UN.png", filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇸🇬|🇺🇸|🇩🇪|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|日本|\\bJP\\b|\\bjapan\\b|新加坡|狮城|\\bSG\\b|\\bsingapore\\b|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b|德国|\\bDE\\b|\\bgermany\\b|ADGUARD|dns|直连)).*" }
+  ].flatMap(region => {
+    const currentIcon = `${iconBase}/${region.icon}`;
+    return [
+      { type: "url-test", url: testUrl, interval: 180, lazy: true, name: region.name, proxies: [`${region.name}_Pick`, `${region.name}_Auto`], icon: currentIcon },
+      { type: "select", "include-all": true, url: testUrl, name: `${region.name}_Pick`, filter: region.filter, icon: currentIcon },
+      { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: `${region.name}_Auto`, filter: region.filter, icon: currentIcon }
+    ];
+  });
+
+  newConfig["proxy-groups"] = [
+    ...mainGroups,
+    { name: "BANAD", type: "select", "default-selected": "REJECT", proxies: ["REJECT", "REJECT-DROP", "PASS"], icon: `${iconBase}/Reject.png` },
+    ...regionalGroups,
+    { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: "proxy_dns", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b", icon: `${iconBase}/SSID.png` },
+    { name: "Direct", type: "select", "default-selected": "直连 | 双栈", proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"], icon: `${iconBase}/CN.png` }
   ];
 
-  for (let i = 0; i < regionsData.length; i++) {
-    const region = regionsData[i];
-    const currentIcon = iconBase + "/" + region.icon;
-    const namePick = region.name + "_Pick";
-    const nameAuto = region.name + "_Auto";
-
-    proxyGroups.push({ "type": "url-test", "url": testUrl, "interval": 180, "lazy": true, "name": region.name, "proxies": [namePick, nameAuto], "icon": currentIcon });
-    proxyGroups.push({ "type": "select", "include-all": true, "url": testUrl, "name": namePick, "filter": region.filter, "icon": currentIcon });
-    proxyGroups.push({ "type": "url-test", "url": testUrl, "interval": 360, "lazy": false, "hidden": true, "include-all": true, "name": nameAuto, "filter": region.filter, "icon": currentIcon });
-  }
-
-  // 插入 proxy_dns 和 Direct
-  proxyGroups.push({ "type": "url-test", "url": testUrl, "interval": 360, "lazy": false, "hidden": true, "include-all": true, "name": "proxy_dns", "filter": "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b", "icon": iconBase + "/SSID.png" });
-  proxyGroups.push({ "name": "Direct", "type": "select", "default-selected": "直连 | 双栈", "proxies": ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"], "icon": iconBase + "/CN.png" });
-
-  newConfig["proxy-groups"] = proxyGroups;
-
-  // ==================== 5. Rule Providers ====================
+  // ==================== 5. Rule Providers (强制绝对覆盖) ====================
   const gitProxy = "https://ghfast.top/";
-  
-  // 统一创建一个提供器工厂函数，避免内存冗余
-  const createProvider = (type, behavior, format, urlPath) => ({
-    "type": type,
-    "interval": 10800,
-    "behavior": behavior,
-    "format": format,
-    "proxy": "Direct",
-    "url": gitProxy + urlPath
-  });
+  const createProvider = (type, behavior, format, url) => ({ type, interval: 10800, behavior, format, proxy: "Direct", url: `${gitProxy}${url}` });
 
   newConfig["rule-providers"] = {
     "game_domain": createProvider("http", "domain", "mrs", "https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/game.mrs"),
@@ -230,7 +208,7 @@ function main(newConfig = {}) {
     "fakeip-filter_domain": createProvider("http", "domain", "mrs", "https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/fakeip-filter.mrs")
   };
 
-  // ==================== 6. Rules ====================
+  // ==================== 6. Rules (强制绝对覆盖) ====================
   newConfig.rules = [
     "DST-PORT,53,dns_hijack",
     "PROCESS-NAME,jp.konami.pesam,Game",
