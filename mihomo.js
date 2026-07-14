@@ -3,7 +3,7 @@ function main(newConfig = {}) {
   const dnsParams = "#disable-qtype-12&disable-qtype-64&disable-qtype-65&ecs=223.160.168.99/24&ecs-override=true";
   const testUrl = "https://www.apple.com/library/test/success.html";
 
-  // ==================== 1. 基础与扩展配置 (使用 ??= 和 Object.assign 安全且高效地合并) ====================
+  // ==================== 1. 基础与扩展配置 (直接覆盖) ====================
   Object.assign(newConfig, {
     "allow-lan": true,
     "ipv6": true,
@@ -19,13 +19,13 @@ function main(newConfig = {}) {
     "external-ui": "ui"
   });
 
-  // 使用 ??= 确保对象存在，并用 Object.assign 原地修改，避免产生多余的中间对象（极大优化GC）
-  Object.assign((newConfig.profile ??= {}), {
+  // 确保二级对象存在并直接原地修改
+  Object.assign((newConfig.profile = {}), {
     "store-selected": true,
     "store-fake-ip": true
   });
 
-  Object.assign((newConfig.tun ??= {}), {
+  Object.assign((newConfig.tun = {}), {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
@@ -38,7 +38,7 @@ function main(newConfig = {}) {
     "udp-timeout": 600
   });
 
-  Object.assign((newConfig.hosts ??= {}), {
+  Object.assign((newConfig.hosts = {}), {
     "pz.fyi": ["106.54.11.55"],
     "doh.pub": ["120.53.53.53", "1.12.12.12", "2402:4e00::"],
     "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
@@ -61,7 +61,7 @@ function main(newConfig = {}) {
     "dl.l.google.com": ["180.163.150.33"]
   });
 
-  Object.assign((newConfig.sniffer ??= {}), {
+  Object.assign((newConfig.sniffer = {}), {
     "enable": true,
     "force-dns-mapping": true,
     "parse-pure-ip": true,
@@ -76,7 +76,7 @@ function main(newConfig = {}) {
     "skip-src-address": ["rule-set:telegram_ip"]
   });
 
-  // ==================== 2. DNS 配置 ====================
+  // ==================== 2. DNS 配置 (直接覆盖) ====================
   const dns_default = ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"];
   const dns_domain_server = [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`];
   const dns_direct = [`https://pz.fyi/dns-query${dnsParams}`, `https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://doh.pub/dns-query${dnsParams}`, "system"];
@@ -87,7 +87,7 @@ function main(newConfig = {}) {
   const dns_fakeip = ["rcode://name_error"];
   const dns_adguard = ["rcode://success"];
 
-  Object.assign((newConfig.dns ??= {}), {
+  Object.assign((newConfig.dns = {}), {
     "enable": true,
     "ipv6": true,
     "ipv6-timeout": 300,
@@ -137,32 +137,32 @@ function main(newConfig = {}) {
       "+.api-huacloud.dev": dns_flower
     },
     "fallback-filter": {
-    "geoip": true,
-    "geoip-code": "CN",
-    "geosite": "gfw",
-    "ipcidr": [
-      "240.0.0.0/4",
-      "0.0.0.0/32",
-      "127.0.0.1/32",
-      "100.64.0.0/10"
-    ],
-    "domain": [
-      "+.google.com",
-      "+.facebook.com",
-      "+.youtube.com"
-    ]
-  }
+      "geoip": true,
+      "geoip-code": "CN",
+      "geosite": "gfw",
+      "ipcidr": [
+        "240.0.0.0/4",
+        "0.0.0.0/32",
+        "127.0.0.1/32",
+        "100.64.0.0/10"
+      ],
+      "domain": [
+        "+.google.com",
+        "+.facebook.com",
+        "+.youtube.com"
+      ]
+    }
   });
 
-  // ==================== 3. 注入直连/DNS节点 ====================
-  (newConfig.proxies ??= []).push(
+  // ==================== 3. 注入基础直连/DNS代理节点 ====================
+  newConfig.proxies = [
     { name: "直连 | 双栈", type: "direct", udp: true, icon: `${iconBase}/CN.png` },
     { name: "直连 | IPv4优先", type: "direct", udp: true, "ip-version": "ipv4-prefer", icon: `${iconBase}/CN.png` },
     { name: "直连 | IPv6优先", type: "direct", udp: true, "ip-version": "ipv6-prefer", icon: `${iconBase}/CN.png` },
     { name: "dns_hijack", type: "dns" }
-  );
+  ];
 
-  // ==================== 4. 策略组模板与数据驱动生成 ====================
+  // ==================== 4. 策略组矩阵数据驱动生成 ====================
   const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "Direct"];
 
   const mainGroups = [
@@ -213,13 +213,13 @@ function main(newConfig = {}) {
     { name: "Direct", type: "select", "default-selected": "直连 | 双栈", proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"], icon: `${iconBase}/CN.png` }
   ];
 
-  // ==================== 5. Rule Providers ====================
+  // ==================== 5. 规则集订阅 (Rule Providers, 直接覆盖) ====================
   const gitProxy = "https://ghfast.top/";
   const createMRSDomain = url => ({ type: "http", interval: 10800, behavior: "domain", format: "mrs", proxy: "Direct", url: `${gitProxy}${url}` });
   const createMRSIP = url => ({ type: "http", interval: 10800, behavior: "ipcidr", format: "mrs", proxy: "Direct", url: `${gitProxy}${url}` });
   const createClassical = url => ({ type: "http", interval: 10800, behavior: "classical", format: "yaml", proxy: "Direct", url: `${gitProxy}${url}` });
 
-  newConfig["rule-providers"] = Object.assign(newConfig["rule-providers"] ?? {}, {
+  newConfig["rule-providers"] = {
     "game_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/game.mrs"),
     "telegram_ip": createMRSIP("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs"),
     "telegram_domain": createMRSDomain("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs"),
@@ -240,9 +240,9 @@ function main(newConfig = {}) {
     "cn_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn.mrs"),
     "cn_ip": createMRSIP("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn_ip.mrs"),
     "fakeip-filter_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/fakeip-filter.mrs")
-  });
+  };
 
-  // ==================== 6. Rules ====================
+  // ==================== 6. 路由规则分流 (Rules, 直接覆盖) ====================
   newConfig.rules = [
     "DST-PORT,53,dns_hijack",
     "PROCESS-NAME,jp.konami.pesam,Game",
