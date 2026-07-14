@@ -86,7 +86,7 @@ function main(newConfig = {}) {
 
   newConfig.dns = {
     "enable": true,
-    "ipv6": true,
+    "ipv6": false ,
     "ipv6-timeout": 300,
     "cache-algorithm": "arc",
     "use-hosts": true,
@@ -106,7 +106,7 @@ function main(newConfig = {}) {
       "RULE-SET,fakeip-filter_domain,real-ip",
       "MATCH,fake-ip"
     ],
-    "default-nameserver": ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"],
+    "default-nameserver": dns_default,
     "nameserver": dns_proxy,
     "fallback-lazy-query": true,
     "fallback": dns_proxy,
