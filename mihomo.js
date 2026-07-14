@@ -3,29 +3,26 @@ function main(newConfig = {}) {
   const dnsParams = "#disable-qtype-12&disable-qtype-64&disable-qtype-65&ecs=223.160.168.99/24&ecs-override=true";
   const testUrl = "https://www.apple.com/library/test/success.html";
 
-  // ==================== 1. 基础与扩展配置 (直接覆盖) ====================
-  Object.assign(newConfig, {
-    "allow-lan": true,
-    "ipv6": true,
-    "bind-address": "*",
-    "unified-delay": true,
-    "tcp-concurrent": true,
-    "keep-alive-idle": 600,
-    "keep-alive-interval": 60,
-    "disable-keep-alive": false,
-    "find-process-mode": "always",
-    "external-controller": "127.0.0.1:9090",
-    "external-ui-url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-    "external-ui": "ui"
-  });
+  // ==================== 1. 基础与扩展配置 (原生对象赋值, 性能最优) ====================
+  newConfig["allow-lan"] = true;
+  newConfig["ipv6"] = true;
+  newConfig["bind-address"] = "*";
+  newConfig["unified-delay"] = true;
+  newConfig["tcp-concurrent"] = true;
+  newConfig["keep-alive-idle"] = 600;
+  newConfig["keep-alive-interval"] = 60;
+  newConfig["disable-keep-alive"] = false;
+  newConfig["find-process-mode"] = "always";
+  newConfig["external-controller"] = "127.0.0.1:9090";
+  newConfig["external-ui-url"] = "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip";
+  newConfig["external-ui"] = "ui";
 
-  // 确保二级对象存在并直接原地修改
-  Object.assign((newConfig.profile = {}), {
+  newConfig.profile = {
     "store-selected": true,
     "store-fake-ip": true
-  });
+  };
 
-  Object.assign((newConfig.tun = {}), {
+  newConfig.tun = {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
@@ -36,9 +33,9 @@ function main(newConfig = {}) {
     "disable-icmp-forwarding": true,
     "dns-hijack": ["any:53", "tcp://any:53"],
     "udp-timeout": 600
-  });
+  };
 
-  Object.assign((newConfig.hosts = {}), {
+  newConfig.hosts = {
     "pz.fyi": ["106.54.11.55"],
     "doh.pub": ["120.53.53.53", "1.12.12.12", "2402:4e00::"],
     "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
@@ -59,9 +56,9 @@ function main(newConfig = {}) {
     "alt8-mtalk.google.com": ["172.253.132.188"],
     "dl.google.com": ["180.163.151.161"],
     "dl.l.google.com": ["180.163.150.33"]
-  });
+  };
 
-  Object.assign((newConfig.sniffer = {}), {
+  newConfig.sniffer = {
     "enable": true,
     "force-dns-mapping": true,
     "parse-pure-ip": true,
@@ -74,20 +71,18 @@ function main(newConfig = {}) {
     "skip-domain": ["rule-set:telegram_domain"],
     "skip-dst-address": ["rule-set:telegram_ip"],
     "skip-src-address": ["rule-set:telegram_ip"]
-  });
+  };
 
-  // ==================== 2. DNS 配置 (直接覆盖) ====================
-  const dns_default = ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"];
-  const dns_domain_server = [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`];
+  // ==================== 2. DNS 配置 (移除多余变量提升内存利用率) ====================
   const dns_direct = [`https://pz.fyi/dns-query${dnsParams}`, `https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://doh.pub/dns-query${dnsParams}`, "system"];
   const dns_proxy = [`https://unfiltered.adguard-dns.com/dns-query${dnsParams}&h3=true&proxy_dns`, `https://pz.fyi/dns-query${dnsParams}`, `https://dns.google/dns-query${dnsParams}&h3=true&proxy_dns`];
-  const dns_nexitally = ["https://prolonged3729.com:443/dns-query/8203f7dc-afa4-40cf-9b4b-190497da7b85"];
-  const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
-  const dns_flower = ["system"];
   const dns_fakeip = ["rcode://name_error"];
   const dns_adguard = ["rcode://success"];
+  const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
+  const dns_nexitally = ["https://prolonged3729.com:443/dns-query/8203f7dc-afa4-40cf-9b4b-190497da7b85"];
+  const dns_flower = ["system"];
 
-  Object.assign((newConfig.dns = {}), {
+  newConfig.dns = {
     "enable": true,
     "ipv6": true,
     "ipv6-timeout": 300,
@@ -109,7 +104,7 @@ function main(newConfig = {}) {
       "RULE-SET,fakeip-filter_domain,real-ip",
       "MATCH,fake-ip"
     ],
-    "default-nameserver": dns_default,
+    "default-nameserver": ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"],
     "nameserver": dns_proxy,
     "fallback-lazy-query": true,
     "fallback": dns_proxy,
@@ -125,7 +120,7 @@ function main(newConfig = {}) {
       "rule-set:cn_domain": dns_direct,
       "+.*": dns_fakeip
     },
-    "proxy-server-nameserver": dns_domain_server,
+    "proxy-server-nameserver": [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`],
     "direct-nameserver-follow-policy": true,
     "direct-nameserver": dns_direct,
     "proxy-server-nameserver-policy": {
@@ -140,21 +135,12 @@ function main(newConfig = {}) {
       "geoip": true,
       "geoip-code": "CN",
       "geosite": "gfw",
-      "ipcidr": [
-        "240.0.0.0/4",
-        "0.0.0.0/32",
-        "127.0.0.1/32",
-        "100.64.0.0/10"
-      ],
-      "domain": [
-        "+.google.com",
-        "+.facebook.com",
-        "+.youtube.com"
-      ]
+      "ipcidr": ["240.0.0.0/4", "0.0.0.0/32", "127.0.0.1/32", "100.64.0.0/10"],
+      "domain": ["+.google.com", "+.facebook.com", "+.youtube.com"]
     }
-  });
+  };
 
-  // ==================== 3. 注入基础直连/DNS代理节点 ====================
+  // ==================== 3. 注入基础节点 ====================
   newConfig.proxies = [
     { name: "直连 | 双栈", type: "direct", udp: true, icon: `${iconBase}/CN.png` },
     { name: "直连 | IPv4优先", type: "direct", udp: true, "ip-version": "ipv4-prefer", icon: `${iconBase}/CN.png` },
@@ -162,87 +148,96 @@ function main(newConfig = {}) {
     { name: "dns_hijack", type: "dns" }
   ];
 
-  // ==================== 4. 策略组矩阵数据驱动生成 ====================
+  // ==================== 4. 策略组矩阵数据驱动 (用 for 循环代替 map/flatMap, 避免中间数组分配) ====================
   const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "Direct"];
+  const proxyGroups = []; // 预定义空数组，避免引擎多次重分配
 
-  const mainGroups = [
-    { name: "Final", selected: "HK", icon: "Final.png" },
-    { name: "Game", selected: "Gamer", icon: "Game.png" },
-    { name: "Telegram", selected: "SG", icon: "Telegram.png" },
-    { name: "Google", selected: "HK", icon: "Google_Search.png" },
-    { name: "BiliBili", selected: "HK", icon: "bilibili_3.png" },
-    { name: "AI", selected: "JP", icon: "ChatGPT.png" },
-    { name: "Pixiv", selected: "JP", icon: "Pornhub_2.png" },
-    { name: "TikTok", selected: "DE", icon: "TikTok.png" },
-    { name: "Twitter", selected: "DE", icon: "Twitter.png" },
-    { name: "FCM", selected: "Direct", icon: "iCloud.png" },
-    { name: "Github", selected: "HK", icon: "GitHub.png" },
-    { name: "Media", selected: "HK", icon: "ForeignMedia.png" }
-  ].map(item => ({
-    name: item.name,
-    type: "select",
-    "default-selected": item.selected,
-    proxies: regionProxies,
-    icon: `${iconBase}/${item.icon}`
-  }));
-
-  const regionalGroups = [
-    { name: "Gamer", icon: "Game.png", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|🇯🇵|日本|\\bJP\\b|\\bjapan\\b" },
-    { name: "HK", icon: "HK.png", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b" },
-    { name: "JP", icon: "JP.png", filter: "(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b" },
-    { name: "SG", icon: "SG.png", filter: "(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b" },
-    { name: "US", icon: "US.png", filter: "(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b" },
-    { name: "DE", icon: "DE.png", filter: "(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b" },
-    { name: "OT", icon: "UN.png", filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇸🇬|🇺🇸|🇩🇪|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|日本|\\bJP\\b|\\bjapan\\b|新加坡|狮城|\\bSG\\b|\\bsingapore\\b|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b|德国|\\bDE\\b|\\bgermany\\b|ADGUARD|dns|直连)).*" }
-  ].flatMap(region => {
-    const currentIcon = `${iconBase}/${region.icon}`;
-    const namePick = `${region.name}_Pick`;
-    const nameAuto = `${region.name}_Auto`;
-    return [
-      { type: "url-test", url: testUrl, interval: 180, lazy: true, name: region.name, proxies: [namePick, nameAuto], icon: currentIcon },
-      { type: "select", "include-all": true, url: testUrl, name: namePick, filter: region.filter, icon: currentIcon },
-      { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: nameAuto, filter: region.filter, icon: currentIcon }
-    ];
-  });
-
-  newConfig["proxy-groups"] = [
-    ...mainGroups,
-    { name: "BANAD", type: "select", "default-selected": "REJECT", proxies: ["REJECT", "REJECT-DROP", "PASS"], icon: `${iconBase}/Reject.png` },
-    ...regionalGroups,
-    { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: "proxy_dns", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b", icon: `${iconBase}/SSID.png` },
-    { name: "Direct", type: "select", "default-selected": "直连 | 双栈", proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"], icon: `${iconBase}/CN.png` }
+  // [Name, Selected, Icon]
+  const mainGroupsRaw = [
+    ["Final", "HK", "Final.png"], ["Game", "Gamer", "Game.png"], ["Telegram", "SG", "Telegram.png"],
+    ["Google", "HK", "Google_Search.png"], ["BiliBili", "HK", "bilibili_3.png"], ["AI", "JP", "ChatGPT.png"],
+    ["Pixiv", "JP", "Pornhub_2.png"], ["TikTok", "DE", "TikTok.png"], ["Twitter", "DE", "Twitter.png"],
+    ["FCM", "Direct", "iCloud.png"], ["Github", "HK", "GitHub.png"], ["Media", "HK", "ForeignMedia.png"]
   ];
 
-  // ==================== 5. 规则集订阅 (Rule Providers, 直接覆盖) ====================
-  const gitProxy = "https://ghfast.top/";
-  const createMRSDomain = url => ({ type: "http", interval: 10800, behavior: "domain", format: "mrs", proxy: "Direct", url: `${gitProxy}${url}` });
-  const createMRSIP = url => ({ type: "http", interval: 10800, behavior: "ipcidr", format: "mrs", proxy: "Direct", url: `${gitProxy}${url}` });
-  const createClassical = url => ({ type: "http", interval: 10800, behavior: "classical", format: "yaml", proxy: "Direct", url: `${gitProxy}${url}` });
+  for (let i = 0; i < mainGroupsRaw.length; i++) {
+    const item = mainGroupsRaw[i];
+    proxyGroups.push({
+      name: item[0],
+      type: "select",
+      "default-selected": item[1],
+      proxies: regionProxies,
+      icon: `${iconBase}/${item[2]}`
+    });
+  }
+
+  proxyGroups.push({
+    name: "BANAD", type: "select", "default-selected": "REJECT", 
+    proxies: ["REJECT", "REJECT-DROP", "PASS"], icon: `${iconBase}/Reject.png` 
+  });
+
+  // [Name, Icon, Filter]
+  const regionalGroupsRaw = [
+    ["Gamer", "Game.png", "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|🇯🇵|日本|\\bJP\\b|\\bjapan\\b"],
+    ["HK", "HK.png", "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b"],
+    ["JP", "JP.png", "(?i)🇯🇵|日本|\\bJP\\b|\\bjapan\\b"],
+    ["SG", "SG.png", "(?i)🇸🇬|新加坡|狮城|\\bSG\\b|\\bsingapore\\b"],
+    ["US", "US.png", "(?i)🇺🇸|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b"],
+    ["DE", "DE.png", "(?i)🇩🇪|德国|\\bDE\\b|\\bgermany\\b"],
+    ["OT", "UN.png", "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇸🇬|🇺🇸|🇩🇪|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b|日本|\\bJP\\b|\\bjapan\\b|新加坡|狮城|\\bSG\\b|\\bsingapore\\b|美国|\\bUS\\b|\\bunitedstates\\b|\\bunited\\s?states\\b|德国|\\bDE\\b|\\bgermany\\b|ADGUARD|dns|直连)).*"]
+  ];
+
+  for (let i = 0; i < regionalGroupsRaw.length; i++) {
+    const rg = regionalGroupsRaw[i];
+    const rName = rg[0];
+    const rIcon = `${iconBase}/${rg[1]}`;
+    const namePick = `${rName}_Pick`;
+    const nameAuto = `${rName}_Auto`;
+
+    // 扁平化 push 代替 flatMap()，降低 GC 峰值
+    proxyGroups.push(
+      { type: "url-test", url: testUrl, interval: 180, lazy: true, name: rName, proxies: [namePick, nameAuto], icon: rIcon },
+      { type: "select", "include-all": true, url: testUrl, name: namePick, filter: rg[2], icon: rIcon },
+      { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: nameAuto, filter: rg[2], icon: rIcon }
+    );
+  }
+
+  proxyGroups.push(
+    { type: "url-test", url: testUrl, interval: 360, lazy: false, hidden: true, "include-all": true, name: "proxy_dns", filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b", icon: `${iconBase}/SSID.png` },
+    { name: "Direct", type: "select", "default-selected": "直连 | 双栈", proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"], icon: `${iconBase}/CN.png` }
+  );
+
+  newConfig["proxy-groups"] = proxyGroups;
+
+  // ==================== 5. 规则集订阅 (统一工厂函数) ====================
+  const buildRule = (url, behavior, format = "mrs") => ({
+    type: "http", interval: 10800, behavior, format, proxy: "Direct", url: `https://ghfast.top/${url}`
+  });
 
   newConfig["rule-providers"] = {
-    "game_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/game.mrs"),
-    "telegram_ip": createMRSIP("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs"),
-    "telegram_domain": createMRSDomain("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs"),
-    "ablock_domain": createClassical("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ablock.yaml"),
-    "adblock_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/adblock.mrs"),
-    "media_domain": createMRSDomain("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs"),
-    "ai_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ai.mrs"),
-    "google_domain": createMRSDomain("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/google.mrs"),
-    "google_fcm_domain": createMRSDomain("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/googlefcm.mrs"),
-    "google_cn_domain": createMRSDomain("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.mrs"),
-    "twitter_domain": createMRSDomain("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/twitter.mrs"),
-    "github_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/github.mrs"),
-    "pixiv_domain": createMRSDomain("https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/pixiv.mrs"),
-    "bytedance_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/bytedance.mrs"),
-    "proxy_emby_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/proxy_emby.mrs"),
-    "direct_emby_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/direct_emby.mrs"),
-    "bilibili_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/bilibili.mrs"),
-    "cn_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn.mrs"),
-    "cn_ip": createMRSIP("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn_ip.mrs"),
-    "fakeip-filter_domain": createMRSDomain("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/fakeip-filter.mrs")
+    "game_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/game.mrs", "domain"),
+    "telegram_ip": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs", "ipcidr"),
+    "telegram_domain": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs", "domain"),
+    "ablock_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ablock.yaml", "classical", "yaml"),
+    "adblock_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/adblock.mrs", "domain"),
+    "media_domain": buildRule("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs", "domain"),
+    "ai_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ai.mrs", "domain"),
+    "google_domain": buildRule("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/google.mrs", "domain"),
+    "google_fcm_domain": buildRule("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/googlefcm.mrs", "domain"),
+    "google_cn_domain": buildRule("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/google-cn.mrs", "domain"),
+    "twitter_domain": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/twitter.mrs", "domain"),
+    "github_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/github.mrs", "domain"),
+    "pixiv_domain": buildRule("https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/pixiv.mrs", "domain"),
+    "bytedance_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/bytedance.mrs", "domain"),
+    "proxy_emby_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/proxy_emby.mrs", "domain"),
+    "direct_emby_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/direct_emby.mrs", "domain"),
+    "bilibili_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/bilibili.mrs", "domain"),
+    "cn_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn.mrs", "domain"),
+    "cn_ip": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/cn_ip.mrs", "ipcidr"),
+    "fakeip-filter_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/fakeip-filter.mrs", "domain")
   };
 
-  // ==================== 6. 路由规则分流 (Rules, 直接覆盖) ====================
+  // ==================== 6. 路由规则分流 ====================
   newConfig.rules = [
     "DST-PORT,53,dns_hijack",
     "PROCESS-NAME,jp.konami.pesam,Game",
