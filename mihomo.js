@@ -105,12 +105,16 @@ function main(newConfig = {}) {
     "fake-ip-filter": ["RULE-SET,game_domain,fake-ip", "RULE-SET,direct_emby_domain,real-ip", "RULE-SET,proxy_emby_domain,real-ip", "RULE-SET,fakeip-filter_domain,real-ip", "MATCH,fake-ip"],
     "default-nameserver": dns_default,
     "nameserver": dns_proxy,
+    // 【已修复】拆分了原本用逗号合并的 rule-set 键名
     "nameserver-policy": {
       "rule-set:game_domain": dns_fakeip,
       "rule-set:proxy_emby_domain": dns_proxy,
-      "rule-set:direct_emby_domain,fakeip-filter_domain": dns_direct,
-      "rule-set:ablock_domain,adblock_domain": dns_adguard,
-      "rule-set:bytedance_domain,bilibili_domain": dns_fakeip,
+      "rule-set:direct_emby_domain": dns_direct,
+      "rule-set:fakeip-filter_domain": dns_direct,
+      "rule-set:ablock_domain": dns_adguard,
+      "rule-set:adblock_domain": dns_adguard,
+      "rule-set:bytedance_domain": dns_fakeip,
+      "rule-set:bilibili_domain": dns_fakeip,
       "rule-set:cn_domain": dns_direct,
       "+.*": dns_fakeip
     },
@@ -118,11 +122,13 @@ function main(newConfig = {}) {
     "direct-nameserver-follow-policy": true,
     "direct-nameserver": dns_direct,
     "proxy-server-nameserver-policy": {
-      "+.623ccd.rjsqsn.xyz,+.6aad4e.fomlrq.xyz": dns_creamdata,
-      "+.a6f7e5e493.8c5ecp7fb.sbs,+.af81085c6d.h5dhwpd92.sbs": dns_nexitally,
-      "+.aws-agent.com,+.api-huacloud.dev": dns_flower
+      "+.623ccd.rjsqsn.xyz": dns_creamdata,
+      "+.6aad4e.fomlrq.xyz": dns_creamdata,
+      "+.a6f7e5e493.8c5ecp7fb.sbs": dns_nexitally,
+      "+.af81085c6d.h5dhwpd92.sbs": dns_nexitally,
+      "+.aws-agent.com": dns_flower,
+      "+.api-huacloud.dev": dns_flower
     },
-    "fallback-lazy-query": true,
     "fallback": dns_proxy,
     "fallback-filter": {
       "geoip": true,
@@ -139,7 +145,8 @@ function main(newConfig = {}) {
         "+.facebook.com",
         "+.youtube.com"
       ]
-    }
+    },
+    "fallback-lazy-query": true
   });
 
   // ==================== 3. 注入直连/DNS节点 ====================
