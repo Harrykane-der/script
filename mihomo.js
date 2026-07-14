@@ -127,8 +127,7 @@ function main(newConfig = {}) {
       "+.623ccd.rjsqsn.xyz": dns_creamdata,
       "+.6aad4e.fomlrq.xyz": dns_creamdata,
       "+.a6f7e5e493.8c5ecp7fb.sbs": dns_nexitally,
-      "+.af81085c6d.h5dhwpd92.sbs": dns_nexitally,
-      "+.aws-agent.com": dns_flower
+      "+.af81085c6d.h5dhwpd92.sbs": dns_nexitally
     },
     "fallback-filter": {
       "geoip": true,
