@@ -82,7 +82,6 @@ function main(newConfig = {}) {
   const dns_adguard = ["rcode://success"];
   const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
   const dns_nexitally = ["https://prolonged3729.com:443/dns-query/8203f7dc-afa4-40cf-9b4b-190497da7b85"];
-  const dns_flower = ["system"];
 
   newConfig.dns = {
     "enable": true,
@@ -110,19 +109,18 @@ function main(newConfig = {}) {
     "nameserver": dns_proxy,
     "nameserver-policy": {
       "rule-set:game_domain": dns_fakeip,
+      "rule-set:adblock_domain": dns_adguard,
       "rule-set:proxy_emby_domain": dns_proxy,
       "rule-set:direct_emby_domain": dns_direct,
       "rule-set:fakeip-filter_domain": dns_direct,
-      "rule-set:ablock_domain": dns_adguard,
-      "rule-set:adblock_domain": dns_adguard,
       "rule-set:bytedance_domain": dns_fakeip,
       "rule-set:bilibili_domain": dns_fakeip,
       "rule-set:cn_domain": dns_direct,
       "+.*": dns_fakeip
     },
-    "proxy-server-nameserver": dns_proxy_server,
     "direct-nameserver-follow-policy": true,
     "direct-nameserver": dns_direct,
+    "proxy-server-nameserver": dns_proxy_server,
     "proxy-server-nameserver-policy": {
       "+.623ccd.rjsqsn.xyz": dns_creamdata,
       "+.6aad4e.fomlrq.xyz": dns_creamdata,
@@ -209,7 +207,6 @@ function main(newConfig = {}) {
     "game_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/game.mrs", "domain"),
     "telegram_ip": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs", "ipcidr"),
     "telegram_domain": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs", "domain"),
-    "ablock_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ablock.yaml", "classical", "yaml"),
     "adblock_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/adblock.mrs", "domain"),
     "media_domain": buildRule("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs", "domain"),
     "ai_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ai.mrs", "domain"),
@@ -237,7 +234,6 @@ function main(newConfig = {}) {
     "RULE-SET,google_fcm_domain,FCM",
     "RULE-SET,telegram_ip,Telegram,no-resolve",
     "RULE-SET,adblock_domain,BANAD",
-    "RULE-SET,ablock_domain,BANAD",
     "RULE-SET,bilibili_domain,BiliBili",
     "RULE-SET,bytedance_domain,TikTok",
     "RULE-SET,ai_domain,AI",
