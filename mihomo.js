@@ -26,6 +26,8 @@ function main(newConfig = {}) {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
+    "auto-route": false,
+    "auto-detect-interface": false,
     "strict-route": true,
     "stack": "gvisor",
     "disable-icmp-forwarding": true,
