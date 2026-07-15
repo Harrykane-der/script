@@ -231,6 +231,7 @@ function main(newConfig = {}) {
     "PROCESS-NAME,jp.konami.pesam,Game",
     "RULE-SET,game_domain,Game",
     "AND,((NETWORK,UDP),(DST-PORT,443)),BANAD",
+    "DST-PORT,3478-3481/5349/10000/19302-19309,BANAD",
     "RULE-SET,google_fcm_domain,FCM",
     "RULE-SET,telegram_ip,Telegram,no-resolve",
     "RULE-SET,adblock_domain,BANAD",
