@@ -26,8 +26,6 @@ function main(newConfig = {}) {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
-    "auto-route": true,
-    "auto-detect-interface": true,
     "strict-route": true,
     "stack": "gvisor",
     "disable-icmp-forwarding": true,
@@ -108,8 +106,6 @@ function main(newConfig = {}) {
     ],
     "default-nameserver": dns_default,
     "nameserver": dns_proxy,
-    "fallback-lazy-query": true,
-    "fallback": dns_proxy,
     "nameserver-policy": {
       "rule-set:game_domain": dns_fakeip,
       "rule-set:proxy_emby_domain": dns_proxy,
@@ -130,13 +126,6 @@ function main(newConfig = {}) {
       "+.6aad4e.fomlrq.xyz": dns_creamdata,
       "+.a6f7e5e493.8c5ecp7fb.sbs": dns_nexitally,
       "+.af81085c6d.h5dhwpd92.sbs": dns_nexitally
-    },
-    "fallback-filter": {
-      "geoip": true,
-      "geoip-code": "CN",
-      "geosite": "gfw",
-      "ipcidr": ["240.0.0.0/4", "0.0.0.0/32", "127.0.0.1/32", "100.64.0.0/10"],
-      "domain": ["+.google.com", "+.facebook.com", "+.youtube.com"]
     }
   };
 
