@@ -233,6 +233,7 @@ function main(newConfig = {}) {
     "AND,((NETWORK,UDP),(DST-PORT,443)),BANAD",
     "DST-PORT,3478-3481/5349/10000/19302-19309,BANAD",
     "RULE-SET,google_fcm_domain,FCM",
+    "RULE-SET,telegram_domain,Telegram",
     "RULE-SET,telegram_ip,Telegram,no-resolve",
     "RULE-SET,adblock_domain,BANAD",
     "RULE-SET,bilibili_domain,BiliBili",
