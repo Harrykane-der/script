@@ -26,13 +26,11 @@ function main(newConfig = {}) {
     "enable": true,
     "device": "Bettbox",
     "mtu": 65535,
-    "auto-route": false,
-    "auto-detect-interface": false,
+    "auto-route": true,
+    "auto-detect-interface": true,
     "strict-route": true,
-    "stack": "gvisor",
-    "disable-icmp-forwarding": true,
-    "dns-hijack": ["any:53", "tcp://any:53"],
-    "udp-timeout": 600
+    "stack": "mixed",
+    "dns-hijack": ["any:53", "tcp://any:53"]
   };
 
   newConfig.hosts = {
