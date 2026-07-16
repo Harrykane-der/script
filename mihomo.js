@@ -153,9 +153,9 @@ function main(newConfig = {}) {
   }
 
   proxyGroups.push({
-    name: BANAD,
-    type: select,
-    default-selected: REJECT, 
+    name: "BANAD",
+    type: "select",
+    "default-selected": "REJECT", 
     proxies: ["REJECT", "REJECT-DROP", "PASS"],
     icon: `${iconBase}/Reject.png` 
   });
@@ -173,11 +173,11 @@ function main(newConfig = {}) {
   for (const [name, icon, filter] of regionalGroupsRaw) {
     proxyGroups.push({
       name,
-      type: url-test,
+      type: "url-test",
       url: testUrl,
-      interval: 180,
+      interval: 360,
       lazy: true,
-      include-all: true,
+      "include-all": true,
       filter,
       icon: `${iconBase}/${icon}`
     });
@@ -190,15 +190,15 @@ function main(newConfig = {}) {
       interval: 360,
       lazy: false,
       hidden: true,
-      include-all: true,
+      "include-all": true,
       name: "proxy_dns",
       filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b",
       icon: `${iconBase}/SSID.png`
     },
     {
-      name: Direct,
-      type: select,
-      default-selected: 直连 | 双栈,
+      name: "Direct",
+      type: "select",
+      "default-selected": "直连 | 双栈",
       proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"],
       icon: `${iconBase}/CN.png`
     }
@@ -208,11 +208,11 @@ function main(newConfig = {}) {
 
   // ==================== 5. 规则集订阅 (统一工厂函数 + 前缀复用) ====================
   const buildRule = (url, behavior, format = "mrs") => ({
-    type: http,
+    type: "http",
     interval: 10800,
     behavior,
     format,
-    proxy: Direct,
+    proxy: "Direct",
     url: `${ghfastBase}${url}`
   });
 
