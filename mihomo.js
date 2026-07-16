@@ -206,7 +206,7 @@ function main(newConfig = {}) {
     "telegram_ip": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs", "ipcidr"),
     "telegram_domain": buildRule("https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs", "domain"),
     "adblock_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/adblock.mrs", "domain"),
-    "media_domain": buildRule("https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/media.mrs", "domain"),
+    "media_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/media.mrs", "domain"),
     "ai_domain": buildRule("https://github.com/Harrykane-der/rule-conversion/raw/refs/heads/release/ai.mrs", "domain"),
     "google_domain": buildRule("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/google.mrs", "domain"),
     "google_fcm_domain": buildRule("https://github.com/QuixoticHeart/rule-set/raw/refs/heads/ruleset/meta/domain/googlefcm.mrs", "domain"),
