@@ -24,13 +24,21 @@ function main(newConfig = {}) {
     },
     tun: {
       "enable": true,
+      "stack": "mixed",
+      "auto-route": true,
+      "auto-redirect": true,
+      "auto-detect-interface": true,
+      "dns-hijack": ["any:53", "tcp://any:53"],
       "device": "Bettbox",
       "mtu": 65535,
-      "auto-route": true,
-      "auto-detect-interface": true,
       "strict-route": true,
-      "stack": "mixed",
-      "dns-hijack": ["any:53", "tcp://any:53"]
+      "gso": true,
+      "gso-max-size": 65536,
+      "inet6-address": ["fdfe:dcba:9876::1/126"],
+      "udp-timeout": 300,
+      "iproute2-table-index": 2022,
+      "iproute2-rule-index": 9000,
+      "endpoint-independent-nat": true
     },
     hosts: {
       "pz.fyi": ["106.54.11.55"],
@@ -71,10 +79,13 @@ function main(newConfig = {}) {
   });
 
   // ==================== 2. DNS 配置 (精简单次使用变量，降低内存分配开销) ====================
+  const dns_default = ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"];
   const dns_direct = [`https://pz.fyi/dns-query${dnsParams}`, `https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://doh.pub/dns-query${dnsParams}`, "system"];
   const dns_proxy = [`https://unfiltered.adguard-dns.com/dns-query${dnsParams}&h3=true&proxy_dns`, `https://pz.fyi/dns-query${dnsParams}`, `https://dns.google/dns-query${dnsParams}&h3=true&proxy_dns`];
+  const dns_proxy_server = [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`, "system"];
   const dns_creamdata = ["https://prolonged3729.com:443/dns-query/f77b88da-2cd8-4f69-92b1-d171a41f294d"];
   const dns_nexitally = ["https://prolonged3729.com:443/dns-query/8203f7dc-afa4-40cf-9b4b-190497da7b85"];
+  const dns_adgurad = ["rcode://success"];
   const dns_fakeip = ["rcode://name_error"];
 
   newConfig.dns = {
@@ -99,11 +110,11 @@ function main(newConfig = {}) {
       "RULE-SET,fakeip-filter_domain,real-ip",
       "MATCH,fake-ip"
     ],
-    "default-nameserver": ["quic://106.54.11.55:853", "tls://120.53.53.53:853", "quic://223.5.5.5:853", "quic://94.140.14.140:853", "tls://8.8.8.8:853"],
+    "default-nameserver": dns_default,
     "nameserver": dns_proxy,
     "nameserver-policy": {
       "rule-set:game_domain": dns_fakeip,
-      "rule-set:adblock_domain": ["rcode://success"],
+      "rule-set:adblock_domain": dns_adgurad,
       "rule-set:proxy_emby_domain": dns_proxy,
       "rule-set:direct_emby_domain": dns_direct,
       "rule-set:fakeip-filter_domain": dns_direct,
@@ -114,7 +125,7 @@ function main(newConfig = {}) {
     },
     "direct-nameserver-follow-policy": true,
     "direct-nameserver": dns_direct,
-    "proxy-server-nameserver": [`https://dns.alidns.com/dns-query${dnsParams}&h3=true`, `https://pz.fyi/dns-query${dnsParams}`, `https://doh.pub/dns-query${dnsParams}`, "system"],
+    "proxy-server-nameserver": dns_proxy_server,
     "proxy-server-nameserver-policy": {
       "+.623ccd.rjsqsn.xyz": dns_creamdata,
       "+.6aad4e.fomlrq.xyz": dns_creamdata,
@@ -125,21 +136,18 @@ function main(newConfig = {}) {
 
   // ==================== 3. 注入基础节点 ====================
   newConfig.proxies = [
-    { name: "直连 | 双栈", type: "direct", udp: true, icon: `${iconBase}/CN.png` },
-    { name: "直连 | IPv4优先", type: "direct", udp: true, "ip-version": "ipv4-prefer", icon: `${iconBase}/CN.png` },
-    { name: "直连 | IPv6优先", type: "direct", udp: true, "ip-version": "ipv6-prefer", icon: `${iconBase}/CN.png` },
     { name: "dns_hijack", type: "dns" }
   ];
 
   // ==================== 4. 策略组矩阵数据驱动 (ES6+ 数组解构 + for-of 循环，高性能与可读性完美契合) ====================
-  const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "Direct"];
+  const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "DIRECT"];
   const proxyGroups = [];
 
   const mainGroupsRaw = [
     ["Final", "HK", "Final.png"], ["Game", "Gamer", "Game.png"], ["Telegram", "SG", "Telegram.png"],
     ["Google", "HK", "Google_Search.png"], ["BiliBili", "HK", "bilibili_3.png"], ["AI", "JP", "ChatGPT.png"],
     ["Pixiv", "JP", "Pornhub_2.png"], ["TikTok", "DE", "TikTok.png"], ["Twitter", "DE", "Twitter.png"],
-    ["FCM", "Direct", "iCloud.png"], ["Github", "HK", "GitHub.png"], ["Media", "HK", "ForeignMedia.png"]
+    ["FCM", "DIRECT", "iCloud.png"], ["Github", "HK", "GitHub.png"], ["Media", "HK", "ForeignMedia.png"]
   ];
 
   for (const [name, defaultSelected, icon] of mainGroupsRaw) {
@@ -175,9 +183,9 @@ function main(newConfig = {}) {
       name,
       type: "url-test",
       url: testUrl,
-      interval: 360,
-      lazy: true,
+      interval: 180,
       "include-all": true,
+      lazy: true,
       filter,
       icon: `${iconBase}/${icon}`
     });
@@ -187,20 +195,13 @@ function main(newConfig = {}) {
     {      
       type: "url-test",
       url: testUrl,
-      interval: 360,
+      interval: 180,
+      "include-all": true,
       lazy: false,
       hidden: true,
-      "include-all": true,
       name: "proxy_dns",
       filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b",
       icon: `${iconBase}/SSID.png`
-    },
-    {
-      name: "Direct",
-      type: "select",
-      "default-selected": "直连 | 双栈",
-      proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"],
-      icon: `${iconBase}/CN.png`
     }
   );
 
@@ -212,7 +213,7 @@ function main(newConfig = {}) {
     interval: 10800,
     behavior,
     format,
-    proxy: "Direct",
+    proxy: "DIRECT",
     url: `${ghfastBase}${url}`
   });
 
@@ -256,12 +257,12 @@ function main(newConfig = {}) {
     "RULE-SET,media_domain,Media",
     "RULE-SET,proxy_emby_domain,Media",
     "RULE-SET,github_domain,Github",
-    "RULE-SET,direct_emby_domain,Direct",
+    "RULE-SET,direct_emby_domain,DIRECT",
     "RULE-SET,google_domain,Google",
     "RULE-SET,google_cn_domain,Google",
     "RULE-SET,twitter_domain,Twitter",
-    "RULE-SET,cn_ip,Direct",
-    "RULE-SET,cn_domain,Direct",
+    "RULE-SET,cn_ip,DIRECT",
+    "RULE-SET,cn_domain,DIRECT",
     "MATCH,Final"
   ];
 
