@@ -136,18 +136,21 @@ function main(newConfig = {}) {
 
   // ==================== 3. 注入基础节点 ====================
   newConfig.proxies = [
+    { name: "直连 | 双栈", type: "direct", udp: true, icon: `${iconBase}/CN.png` },
+    { name: "直连 | IPv4优先", type: "direct", udp: true, "ip-version": "ipv4-prefer", icon: `${iconBase}/CN.png` },
+    { name: "直连 | IPv6优先", type: "direct", udp: true, "ip-version": "ipv6-prefer", icon: `${iconBase}/CN.png` },
     { name: "dns_hijack", type: "dns" }
   ];
 
   // ==================== 4. 策略组矩阵数据驱动 (ES6+ 数组解构 + for-of 循环，高性能与可读性完美契合) ====================
-  const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "DIRECT"];
+  const regionProxies = ["HK", "JP", "SG", "US", "DE", "OT", "Gamer", "Direct"];
   const proxyGroups = [];
 
   const mainGroupsRaw = [
     ["Final", "HK", "Final.png"], ["Game", "Gamer", "Game.png"], ["Telegram", "SG", "Telegram.png"],
     ["Google", "HK", "Google_Search.png"], ["BiliBili", "HK", "bilibili_3.png"], ["AI", "JP", "ChatGPT.png"],
     ["Pixiv", "JP", "Pornhub_2.png"], ["TikTok", "DE", "TikTok.png"], ["Twitter", "DE", "Twitter.png"],
-    ["FCM", "DIRECT", "iCloud.png"], ["Github", "HK", "GitHub.png"], ["Media", "HK", "ForeignMedia.png"]
+    ["FCM", "Direct", "iCloud.png"], ["Github", "HK", "GitHub.png"], ["Media", "HK", "ForeignMedia.png"]
   ];
 
   for (const [name, defaultSelected, icon] of mainGroupsRaw) {
@@ -202,6 +205,13 @@ function main(newConfig = {}) {
       name: "proxy_dns",
       filter: "(?i)🇭🇰|香港|\\bHK\\b|\\bhongkong\\b|\\bhong\\s?kong\\b",
       icon: `${iconBase}/SSID.png`
+    },
+    {
+      name: "Direct",
+      type: "select",
+      "default-selected": "直连 | 双栈",
+      proxies: ["直连 | 双栈", "直连 | IPv4优先", "直连 | IPv6优先"],
+      icon: `${iconBase}/CN.png`
     }
   );
 
@@ -213,7 +223,7 @@ function main(newConfig = {}) {
     interval: 10800,
     behavior,
     format,
-    proxy: "DIRECT",
+    proxy: "Direct",
     url: `${ghfastBase}${url}`
   });
 
@@ -257,12 +267,12 @@ function main(newConfig = {}) {
     "RULE-SET,media_domain,Media",
     "RULE-SET,proxy_emby_domain,Media",
     "RULE-SET,github_domain,Github",
-    "RULE-SET,direct_emby_domain,DIRECT",
+    "RULE-SET,direct_emby_domain,Direct",
     "RULE-SET,google_domain,Google",
     "RULE-SET,google_cn_domain,Google",
     "RULE-SET,twitter_domain,Twitter",
-    "RULE-SET,cn_ip,DIRECT",
-    "RULE-SET,cn_domain,DIRECT",
+    "RULE-SET,cn_domain,Direct",
+    "RULE-SET,cn_ip,Direct",
     "MATCH,Final"
   ];
 
