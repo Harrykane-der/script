@@ -259,6 +259,7 @@ function main(newConfig = {}) {
     "RULE-SET,google_fcm_domain,FCM",
     "RULE-SET,telegram_domain,Telegram",
     "RULE-SET,telegram_ip,Telegram,no-resolve",
+    "PROCESS-NAME,ani.baka,Media",
     "RULE-SET,adblock_domain,BANAD",
     "RULE-SET,bilibili_domain,BiliBili",
     "RULE-SET,bytedance_domain,TikTok",
