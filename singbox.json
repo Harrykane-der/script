@@ -1,0 +1,520 @@
+{
+  "log": {
+    "disabled": true,
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns_hosts",
+        "type": "hosts",
+        "predefined": {
+          "mtalk.google.com": ["34.92.115.250", "173.194.206.188", "2607:f8b0:4023:1004::bc", "2404:6800:4008:c07::bc"],
+          "alt1-mtalk.google.com": ["2607:f8b0:4023:1c05::bc", "74.125.200.188"],
+          "alt2-mtalk.google.com": ["192.178.220.188"],
+          "alt3-mtalk.google.com": ["2607:f8b0:4023:2009::bc", "74.125.131.188"],
+          "alt4-mtalk.google.com": ["209.85.144.188"],
+          "alt5-mtalk.google.com": ["2607:f8b0:4003:c0a::bc", "74.125.126.188"],
+          "alt6-mtalk.google.com": ["142.250.115.188"],
+          "alt7-mtalk.google.com": ["2607:f8b0:4024:c0d::bc", "192.178.131.188"],
+          "alt8-mtalk.google.com": ["172.253.132.188"],
+          "dl.google.com": ["180.163.151.161"],
+          "dl.l.google.com": ["180.163.150.33"]
+        }
+      },
+      {
+        "tag": "dns_domain_resolver",
+        "type": "local"
+      },
+      {
+        "tag": "dns_direct",
+        "type": "udp",
+        "server": "223.5.5.5",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_proxy",
+        "type": "https",
+        "server": "pz.fyi",
+        "server_port": 443,
+        "domain_resolver": "dns_domain_resolver"
+      },
+      {
+        "type": "fakeip",
+        "tag": "dns_fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "2001:2::1/48"
+      }
+    ],
+    "rules": [
+      { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
+      { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
+      { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
+      { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain"] }
+        ],
+        "action": "route",
+        "server": "dns_direct",
+        "client_subnet": "39.144.162.180"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "rule_set": ["ablock_domain", "adblock_domain"] },
+          { "rule_set": ["whitelist_domain"], "invert": true }
+        ],
+        "action": "predefined",
+        "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::"],
+        "rcode": "NOERROR"
+      },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct", "client_subnet": "39.144.162.180" },
+      { "action": "evaluate", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["bilibili_ip", "bytedance_ip", "cn_ip"], "action": "route", "server": "dns_direct", "match_response": true, "client_subnet": "39.144.162.180" },
+      { "rule_set": ["google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": true, "client_subnet": "39.144.162.180" },
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
+    ],
+    "optimistic": { "enabled": true, "timeout": "3d" },
+    "cache_capacity": 16192,
+    "strategy": "prefer_ipv4",
+    "final": "dns_proxy",
+    "timeout": "5s"
+  },
+  "inbounds": [
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "::",
+      "listen_port": 9999
+    },
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "singbox",
+      "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
+      "auto_route":true,
+      "strict_route": true,
+      "stack": "mixed",
+      "mtu": 9000,
+      "dns_mode": "hijack",
+      "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
+      "endpoint_independent_nat": true,
+      "udp_timeout": "5m",
+      "udp_mapping": "address_dependent",
+      "udp_filtering": "endpoint_independent"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "♻️ Final",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇭🇰 HK"
+    },
+    {
+      "type": "selector",
+      "tag": "🎮 Game",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🎮 Games"
+    },
+    {
+      "type": "selector",
+      "tag": "📺 BiliBili",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇭🇰 HK"
+    },
+    {
+      "type": "selector",
+      "tag": "🤖 AI",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇯🇵 JP"
+    },
+    {
+      "type": "selector",
+      "tag": "📨 FCM",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇺🇸 US"
+    },
+    {
+      "type": "selector",
+      "tag": "⏳ Github",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇭🇰 HK"
+    },
+    {
+      "type": "selector",
+      "tag": "🔞 Pixiv",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇯🇵 JP"
+    },
+    {
+      "type": "selector",
+      "tag": "🔍 Google",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇺🇸 US"
+    },
+    {
+      "type": "selector",
+      "tag": "📽️ Media",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇭🇰 HK"
+    },
+    {
+      "type": "selector",
+      "tag": "🐦 Twitter",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇪🇺 EU"
+    },
+    {
+      "type": "selector",
+      "tag": "✉️ Telegram",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇸🇬 SG"
+    },
+    {
+      "type": "selector",
+      "tag": "🎵 TikTok",
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP",
+        "🇸🇬 SG",
+        "🇺🇸 US",
+        "🇪🇺 EU",
+        "🎮 Games",
+        "🇨🇳 Direct"
+      ],
+      "default": "🇪🇺 EU"
+    },
+    {
+      "tag": "🔗 proxy_dns",
+      "type": "selector",
+      "outbounds": ["🇭🇰 HK", "🇯🇵 JP"]
+    },
+    {
+      "type": "direct",
+      "tag": "🇨🇳 Direct"
+    },
+    {
+      "type": "urltest",
+      "tag": "🎮 Games",
+      "outbounds": [ "🎮 Games_Pick", "🎮 Games_Auto" ],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇭🇰 HK",
+      "outbounds": [ "🇭🇰 HK_Pick", "🇭🇰 HK_Auto" ], 
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇯🇵 JP",
+      "outbounds": [ "🇯🇵 JP_Pick", "🇯🇵 JP_Auto" ],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇸🇬 SG",
+      "outbounds": [ "🇸🇬 SG_Pick", "🇸🇬 SG_Auto" ],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇺🇸 US",
+      "outbounds": [ "🇺🇸 US_Pick", "🇺🇸 US_Auto" ],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇪🇺 EU",
+      "outbounds": [ "🇪🇺 EU_Pick", "🇪🇺 EU_Auto" ],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "3m",
+      "tolerance": 5000,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "selector",
+      "tag": "🎮 Games_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇭🇰 HK_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇯🇵 JP_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇸🇬 SG_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇺🇸 US_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "selector",
+      "tag": "🇪🇺 EU_Pick",
+      "outbounds": []
+    },
+    {
+      "type": "urltest",
+      "tag": "🎮 Games_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇭🇰 HK_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇯🇵 JP_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇸🇬 SG_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇺🇸 US_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    },
+    {
+      "type": "urltest",
+      "tag": "🇪🇺 EU_Auto",
+      "outbounds": [],
+      "url": "https://www.apple.com/library/test/success.html",
+      "interval": "6m",
+      "tolerance": 25,
+      "interrupt_exist_connections": true
+    }
+  ],
+  "services": [
+    {
+      "type": "api",
+      "tag": "sing-box-api",
+      "listen": "0.0.0.0",
+      "listen_port": 8888,
+      "access_control_allow_private_network": true
+    }
+  ],
+  "http_clients": [
+    { "tag": "download_remote", "version": 2, "domain_resolver": "dns_direct" }
+  ],
+  "route": {
+    "default_http_client": "download_remote",
+    "default_domain_resolver": "dns_domain_resolver",
+    "rules": [
+      { "ip_cidr": ["172.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "ip_version": 6 },
+          { "default_interface_address": ["2000::/3"], "invert": true }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
+      { "ip_cidr": ["192.0.2.1", "fc00::"], "action": "reject", "method": "default", "no_drop": true },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
+      { "clash_mode": "Global", "action": "route", "outbound": "♻️ Final" },
+      { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain"] }
+        ],
+        "action": "route",
+        "outbound": "🎮 Game"
+      },
+      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "rule_set": ["ablock_domain", "adblock_domain"] },
+          { "rule_set": ["whitelist_domain"], "invert": true }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
+      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
+      { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📨 FCM" },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✉️ Telegram" },
+      { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
+      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "🎵 TikTok" },
+      { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
+      { "rule_set": ["github_domain"], "action": "route", "outbound": "⏳ Github" },
+      { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
+      { "rule_set": ["media_domain", "media_ip", "proxy_emby_domain"], "action": "route", "outbound": "📽️ Media" },
+      { "rule_set": ["twitter_domain", "twitter_ip"], "action": "route", "outbound": "󠁴🐦 Twitter" },
+      { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🔍 Google" },
+      { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
+    ],
+    "rule_set": [
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "bytedance_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["bilibili_ip", "bytedance_ip", "cn_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
+    ],
+    "auto_detect_interface": true,
+    "final": "♻️ Final"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "store_fakeip": true,
+      "store_dns": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "default_mode": "Rule"
+    }
+  }
+}
