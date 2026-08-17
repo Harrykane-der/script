@@ -458,10 +458,6 @@
         "no_drop": true
       },
       { "ip_cidr": ["192.0.2.1", "fc00::"], "action": "reject", "method": "default", "no_drop": true },
-      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["udp"], "port": ["53", "443", "853"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["tcp"], "port": ["53"], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "clash_mode": "Global", "action": "route", "outbound": "♻️ Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
@@ -486,6 +482,10 @@
         "method": "default",
         "no_drop": true
       },
+      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["udp"], "port": [53, 443, 853], "port_range": ["3478:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["tcp"], "port": [53, 853], "port_range": ["3478:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📨 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✉️ Telegram" },
