@@ -201,7 +201,6 @@
     }
   ],
   "http_clients": [
-    { "tag": "download_provider", "version": 2, "headers" : { "User-Agent": "clash-verge/v2.5.2" }, "domain_resolver": "dns_alldns" },
     { "tag": "download_remote", "version": 2, "domain_resolver": "dns_alldns" }
   ],
   "route": {
