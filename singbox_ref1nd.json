@@ -285,7 +285,7 @@
       "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     },
-    {
+    "connection_history": {
       "enabled": true,
       "path": "history.db",
       "external_ui": "ui",
