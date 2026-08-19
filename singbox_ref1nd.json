@@ -105,8 +105,7 @@
           { "rule_set": ["game_domain"] }
         ],
         "action": "route",
-        "server": "dns_alldns",
-        "client_subnet": "39.144.162.180"
+        "server": "dns_alldns"
       },
       {
         "type": "logical",
@@ -119,8 +118,8 @@
         "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::"],
         "rcode": "NOERROR"
       },
-      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
+      { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_alldns" },
       { "rule_set": ["bilibili_domain", "bytedance_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
       { "rule_set": ["bilibili_ip", "bytedance_ip", "cn_ip"], "action": "route", "server": "dns_direct", "match_response": true, "client_subnet": "39.144.162.180" },
