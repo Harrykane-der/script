@@ -116,6 +116,8 @@
     {
       "type": "selector",
       "tag": "♻️ Final",
+      "default": "🇭🇰 HK",
+      "interrupt_exist_connections": true,
       "outbounds": [
         "🇭🇰 HK",
         "🇯🇵 JP",
@@ -124,13 +126,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇭🇰 HK"
+      ]
     },
     {
       "type": "selector",
       "tag": "🎮 Game",
+      "default": "🎮 Games",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -138,13 +142,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🎮 Games"
+      ]
     },
     {
       "type": "selector",
       "tag": "📺 BiliBili",
+      "default": "🇭🇰 HK",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -152,13 +158,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇭🇰 HK"
+      ]
     },
     {
       "type": "selector",
       "tag": "🤖 AI",
+      "default": "🇯🇵 JP",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -166,13 +174,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇯🇵 JP"
+      ]
     },
     {
       "type": "selector",
       "tag": "📨 FCM",
+      "default": "🇺🇸 US",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -180,13 +190,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇺🇸 US"
+      ]
     },
     {
       "type": "selector",
       "tag": "⏳ Github",
+      "default": "🇭🇰 HK",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -194,13 +206,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇭🇰 HK"
+      ]
     },
     {
       "type": "selector",
       "tag": "🔞 Pixiv",
+      "default": "🇯🇵 JP",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -208,13 +222,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇯🇵 JP"
+      ]
     },
     {
       "type": "selector",
       "tag": "🔍 Google",
+      "default": "🇺🇸 US",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -222,13 +238,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇺🇸 US"
+      ]
     },
     {
       "type": "selector",
       "tag": "📽️ Media",
+      "default": "🇭🇰 HK",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -236,13 +254,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇭🇰 HK"
+      ]
     },
     {
       "type": "selector",
       "tag": "🐦 Twitter",
+      "default": "🇪🇺 EU",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -250,13 +270,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇪🇺 EU"
+      ]
     },
     {
       "type": "selector",
       "tag": "✉️ Telegram",
+      "default": "🇸🇬 SG",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -264,13 +286,15 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇸🇬 SG"
+      ]
     },
     {
       "type": "selector",
       "tag": "🎵 TikTok",
+      "default": "🇪🇺 EU",
+      "interrupt_exist_connections": true,
       "outbounds": [
+        "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
@@ -278,13 +302,16 @@
         "🇪🇺 EU",
         "🎮 Games",
         "🇨🇳 Direct"
-      ],
-      "default": "🇪🇺 EU"
+      ]
     },
     {
-      "tag": "🔗 proxy_dns",
       "type": "selector",
-      "outbounds": ["🇭🇰 HK", "🇯🇵 JP"]
+      "tag": "🔗 proxy_dns",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP"
+      ]
     },
     {
       "type": "direct",
@@ -293,56 +320,80 @@
     {
       "type": "urltest",
       "tag": "🎮 Games",
-      "outbounds": [ "🎮 Games_Pick", "🎮 Games_Auto" ],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🎮 Games_Pick",
+        "🎮 Games_Auto"
+      ]
     },
     {
       "type": "urltest",
       "tag": "🇭🇰 HK",
-      "outbounds": [ "🇭🇰 HK_Pick", "🇭🇰 HK_Auto" ], 
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🇭🇰 HK_Pick",
+        "🇭🇰 HK_Auto"
+      ]
     },
     {
       "type": "urltest",
       "tag": "🇯🇵 JP",
-      "outbounds": [ "🇯🇵 JP_Pick", "🇯🇵 JP_Auto" ],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🇯🇵 JP_Pick",
+        "🇯🇵 JP_Auto"
+      ]
     },
     {
       "type": "urltest",
       "tag": "🇸🇬 SG",
-      "outbounds": [ "🇸🇬 SG_Pick", "🇸🇬 SG_Auto" ],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🇸🇬 SG_Pick",
+        "🇸🇬 SG_Auto"
+      ]
     },
     {
       "type": "urltest",
       "tag": "🇺🇸 US",
-      "outbounds": [ "🇺🇸 US_Pick", "🇺🇸 US_Auto" ],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🇺🇸 US_Pick",
+        "🇺🇸 US_Auto"
+      ]
     },
     {
       "type": "urltest",
       "tag": "🇪🇺 EU",
-      "outbounds": [ "🇪🇺 EU_Pick", "🇪🇺 EU_Auto" ],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "3m",
       "tolerance": 5000,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": [
+        "🇪🇺 EU_Pick",
+        "🇪🇺 EU_Auto"
+      ]
     },
     {
       "type": "selector",
@@ -377,56 +428,56 @@
     {
       "type": "urltest",
       "tag": "🎮 Games_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     },
     {
       "type": "urltest",
       "tag": "🇭🇰 HK_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     },
     {
       "type": "urltest",
       "tag": "🇯🇵 JP_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     },
     {
       "type": "urltest",
       "tag": "🇸🇬 SG_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     },
     {
       "type": "urltest",
       "tag": "🇺🇸 US_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     },
     {
       "type": "urltest",
       "tag": "🇪🇺 EU_Auto",
-      "outbounds": [],
-      "url": "https://www.apple.com/library/test/success.html",
       "interval": "6m",
-      "tolerance": 25,
-      "interrupt_exist_connections": true
+      "idle_timeout": "3h",
+      "interrupt_exist_connections": true,
+      "url": "https://www.apple.com/library/test/success.html",
+      "outbounds": []
     }
   ],
   "services": [
