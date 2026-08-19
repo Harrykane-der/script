@@ -134,13 +134,13 @@
       "default": "🎮 Games",
       "interrupt_exist_connections": true,
       "outbounds": [
+        "🎮 Games",
         "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
         "🇺🇸 US",
         "🇪🇺 EU",
-        "🎮 Games",
         "🇨🇳 Direct"
       ]
     },
