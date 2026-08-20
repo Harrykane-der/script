@@ -25,25 +25,29 @@
       },
       {
         "tag": "dns_local",
-        "type": "local"
+        "type": "local",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_alidns",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_dnspod",
         "type": "udp",
         "server": "129.29.29.29",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_114dns",
         "type": "udp",
         "server": "114.114.114.114",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_pz",
@@ -51,25 +55,29 @@
         "server": "pz.fyi",
         "server_port": 443,
         "path": "/dns-query",
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_opendns",
         "type": "udp",
         "server": "208.67.220.220",
-        "server_port": 443
+        "server_port": 443,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_nextdns",
         "type": "udp",
         "server": "45.90.28.0",
-        "server_port": 5353
+        "server_port": 5353,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_quad9",
         "type": "udp",
         "server": "149.112.112.112",
-        "server_port": 9953
+        "server_port": 9953,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_google",
@@ -189,12 +197,12 @@
     { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JP", "interrupt_exist_connections": true, "outbounds": ["♻️ Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "⏳ Github", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["♻️ Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📨 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["♻️ Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🎮 Games", "🇨🇳 Direct"] },
-    { "type": "urltest", "tag": "🎮 Games", "outbounds": ["🎮 Games_Pick", "🎮 Games_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
-    { "type": "urltest", "tag": "🇭🇰 HK", "outbounds": ["🇭🇰 HK_Pick", "🇭🇰 HK_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
-    { "type": "urltest", "tag": "🇯🇵 JP", "outbounds": ["🇯🇵 JP_Pick", "🇯🇵 JP_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
-    { "type": "urltest", "tag": "🇸🇬 SG", "outbounds": ["🇸🇬 SG_Pick", "🇸🇬 SG_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
-    { "type": "urltest", "tag": "🇺🇸 US", "outbounds": ["🇺🇸 US_Pick", "🇺🇸 US_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
-    { "type": "urltest", "tag": "🇪🇺 EU", "outbounds": ["🇪🇺 EU_Pick", "🇪🇺 EU_Auto"], "fallback": { "enabled": true, "max_delay": "5000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🎮 Games", "outbounds": ["🎮 Games_Pick", "🎮 Games_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🇭🇰 HK", "outbounds": ["🇭🇰 HK_Pick", "🇭🇰 HK_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🇯🇵 JP", "outbounds": ["🇯🇵 JP_Pick", "🇯🇵 JP_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🇸🇬 SG", "outbounds": ["🇸🇬 SG_Pick", "🇸🇬 SG_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🇺🇸 US", "outbounds": ["🇺🇸 US_Pick", "🇺🇸 US_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
+    { "type": "urltest", "tag": "🇪🇺 EU", "outbounds": ["🇪🇺 EU_Pick", "🇪🇺 EU_Auto"], "fallback": { "enabled": true, "max_delay": "50000ms" }, "url": "https://g.cn/generate_204", "interval": "3m" },
     { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HK_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇯🇵 JP_Pick", "outbounds": [] },
@@ -208,7 +216,7 @@
     { "type": "urltest", "tag": "🇺🇸 US_Auto", "outbounds": [], "url": "https://g.cn/generate_204", "interval": "6m" },
     { "type": "urltest", "tag": "🇪🇺 EU_Auto", "outbounds": [], "url": "https://g.cn/generate_204", "interval": "6m" },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HK", "🇯🇵 JP"] },
-    { "tag": "🇨🇳 Direct", "type": "direct" }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
   ],
   "services": [
     {
