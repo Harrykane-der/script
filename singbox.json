@@ -134,13 +134,13 @@
       "default": "🎮 Games",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "🎮 Games",
         "♻️ Final",
         "🇭🇰 HK",
         "🇯🇵 JP",
         "🇸🇬 SG",
         "🇺🇸 US",
         "🇪🇺 EU",
+        "🎮 Games",
         "🇨🇳 Direct"
       ]
     },
@@ -324,7 +324,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🎮 Games_Pick",
         "🎮 Games_Auto"
@@ -337,7 +337,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🇭🇰 HK_Pick",
         "🇭🇰 HK_Auto"
@@ -350,7 +350,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🇯🇵 JP_Pick",
         "🇯🇵 JP_Auto"
@@ -363,7 +363,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🇸🇬 SG_Pick",
         "🇸🇬 SG_Auto"
@@ -376,7 +376,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🇺🇸 US_Pick",
         "🇺🇸 US_Auto"
@@ -389,7 +389,7 @@
       "tolerance": 5000,
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": [
         "🇪🇺 EU_Pick",
         "🇪🇺 EU_Auto"
@@ -431,7 +431,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     },
     {
@@ -440,7 +440,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     },
     {
@@ -449,7 +449,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     },
     {
@@ -458,7 +458,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     },
     {
@@ -467,7 +467,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     },
     {
@@ -476,7 +476,7 @@
       "interval": "6m",
       "idle_timeout": "3h",
       "interrupt_exist_connections": true,
-      "url": "https://www.apple.com/library/test/success.html",
+      "url": "https://g.cn/generate_204",
       "outbounds": []
     }
   ],
@@ -571,4 +571,4 @@
       "default_mode": "Rule"
     }
   }
-}
+    }
