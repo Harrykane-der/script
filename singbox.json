@@ -528,8 +528,8 @@
       },
       { "clash_mode": "Global", "action": "route", "outbound": "♻️ Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
-      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "ip_cidr": ["192.0.2.1", "fc00::"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
         "type": "logical",
