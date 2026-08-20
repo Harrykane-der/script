@@ -32,15 +32,17 @@
         "tag": "dns_direct",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_proxy",
         "type": "https",
-        "server": "pz.fyi",
+        "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🔗 proxy_dns"
       },
       {
         "type": "fakeip",
@@ -323,19 +325,6 @@
       ]
     },
     {
-      "type": "selector",
-      "tag": "🔗 proxy_dns",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "🇭🇰 HK",
-        "🇯🇵 JP"
-      ]
-    },
-    {
-      "type": "direct",
-      "tag": "🇨🇳 Direct"
-    },
-    {
       "type": "urltest",
       "tag": "🎮 Games",
       "interval": "3m",
@@ -496,7 +485,21 @@
       "interrupt_exist_connections": true,
       "url": "https://g.cn/generate_204",
       "outbounds": []
-    }
+    },
+    {
+      "type": "selector",
+      "tag": "🔗 proxy_dns",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🇭🇰 HK",
+        "🇯🇵 JP"
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "🇨🇳 Direct",
+      "domain_resolver": "dns_direct"
+    },
   ],
   "services": [
     {
