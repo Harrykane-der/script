@@ -309,12 +309,6 @@
       "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
-    },
-    "connection_history": {
-      "enabled": true,
-      "path": "history.db",
-      "external_ui": "ui",
-      "retention": "30d"
     }
   }
 }
