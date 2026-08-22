@@ -133,373 +133,41 @@
     }
   ],
   "outbounds": [
-    {
-      "type": "selector",
-      "tag": "♻️ Final",
-      "default": "🇭🇰 HK",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🎮 Game",
-      "default": "🎮 Games",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "📺 BiliBili",
-      "default": "🇭🇰 HK",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🤖 AI",
-      "default": "🇯🇵 JP",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "📨 FCM",
-      "default": "🇺🇸 US",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "⏳ Github",
-      "default": "🇭🇰 HK",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🔞 Pixiv",
-      "default": "🇯🇵 JP",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🔍 Google",
-      "default": "🇺🇸 US",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "📽️ Media",
-      "default": "🇭🇰 HK",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🐦 Twitter",
-      "default": "🇪🇺 EU",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "✉️ Telegram",
-      "default": "🇸🇬 SG",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🎵 TikTok",
-      "default": "🇪🇺 EU",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "♻️ Final",
-        "🇭🇰 HK",
-        "🇯🇵 JP",
-        "🇸🇬 SG",
-        "🇺🇸 US",
-        "🇪🇺 EU",
-        "🎮 Games",
-        "🇨🇳 Direct"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🎮 Games",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🎮 Games_Pick",
-        "🎮 Games_Auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🇭🇰 HK",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🇭🇰 HK_Pick",
-        "🇭🇰 HK_Auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🇯🇵 JP",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🇯🇵 JP_Pick",
-        "🇯🇵 JP_Auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🇸🇬 SG",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🇸🇬 SG_Pick",
-        "🇸🇬 SG_Auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🇺🇸 US",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🇺🇸 US_Pick",
-        "🇺🇸 US_Auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "🇪🇺 EU",
-      "interval": "3m",
-      "tolerance": 5000,
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": [
-        "🇪🇺 EU_Pick",
-        "🇪🇺 EU_Auto"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "🎮 Games_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🇭🇰 HK_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🇯🇵 JP_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🇸🇬 SG_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🇺🇸 US_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🇪🇺 EU_Pick",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🎮 Games_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🇭🇰 HK_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🇯🇵 JP_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🇸🇬 SG_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🇺🇸 US_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "urltest",
-      "tag": "🇪🇺 EU_Auto",
-      "interval": "6m",
-      "idle_timeout": "3h",
-      "interrupt_exist_connections": true,
-      "url": "https://g.cn/generate_204",
-      "outbounds": []
-    },
-    {
-      "type": "selector",
-      "tag": "🔗 proxy_dns",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "🇭🇰 HK",
-        "🇯🇵 JP"
-      ]
-    },
-    {
-      "type": "direct",
-      "tag": "🇨🇳 Direct",
-      "domain_resolver": "dns_direct"
-    },
+    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🎮 Game", "default": "🎮 Games", "interrupt_exist_connections": true, "outbounds": ["🎮 Games", "🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JP", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📽️ Media", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🐦 Twitter", "default": "🇪🇺 EU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "✈️ Telegram", "default": "🇸🇬 SG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "♫ TikTok", "default": "🇪🇺 EU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JP", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📦 Github", "default": "🇭🇰 HK", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📨 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HK", "🇯🇵 JP", "🇸🇬 SG", "🇺🇸 US", "🇪🇺 EU", "🌏 OT", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "urltest", "tag": "🎮 Games", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🎮 Games_Pick", "🎮 Games_Auto"] },
+    { "type": "urltest", "tag": "🇭🇰 HK", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🇭🇰 HK_Pick", "🇭🇰 HK_Auto"] },
+    { "type": "urltest", "tag": "🇯🇵 JP", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🇯🇵 JP_Pick", "🇯🇵 JP_Auto"] },
+    { "type": "urltest", "tag": "🇸🇬 SG", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🇸🇬 SG_Pick", "🇸🇬 SG_Auto"] },
+    { "type": "urltest", "tag": "🇺🇸 US", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🇺🇸 US_Pick", "🇺🇸 US_Auto"] },
+    { "type": "urltest", "tag": "🇪🇺 EU", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🇪🇺 EU_Pick", "🇪🇺 EU_Auto"] },
+    { "type": "urltest", "tag": "🌏 OT", "interval": "3m", "tolerance": 50000, "idle_timeout": "3h", "interrupt_exist_connections": true, "url": "https://g.cn/generate_204", "outbounds": ["🌏 OT_Pick", "🌏 OT_Auto"] },
+    { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🇭🇰 HK_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🇯🇵 JP_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🇸🇬 SG_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🇺🇸 US_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🇪🇺 EU_Pick", "outbounds": [] },
+    { "type": "selector", "tag": "🌏 OT_Pick", "outbounds": [] },
+    { "type": "urltest", "tag": "🎮 Games_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🇭🇰 HK_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🇯🇵 JP_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🇸🇬 SG_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🇺🇸 US_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🇪🇺 EU_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "urltest", "tag": "🌏 OT_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
+    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HK", "🇯🇵 JP"] },
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
   ],
   "services": [
     {
@@ -529,7 +197,7 @@
         "method": "default",
         "no_drop": true
       },
-      { "clash_mode": "Global", "action": "route", "outbound": "♻️ Final" },
+      { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
         "type": "logical",
@@ -560,15 +228,15 @@
         "no_drop": true
       },
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📨 FCM" },
-      { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✉️ Telegram" },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
-      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "🎵 TikTok" },
+      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
-      { "rule_set": ["github_domain"], "action": "route", "outbound": "⏳ Github" },
+      { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
       { "rule_set": ["media_domain", "media_ip", "proxy_emby_domain"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["twitter_domain", "twitter_ip"], "action": "route", "outbound": "󠁴🐦 Twitter" },
-      { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🔍 Google" },
+      { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
