@@ -51,7 +51,7 @@
       },
       {
         "tag": "dns_pz",
-        "type": "tls",
+        "type": "quic",
         "server": "pz.fyi",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
@@ -88,7 +88,7 @@
       },
       {
         "tag": "dns_adguard",
-        "type": "tls",
+        "type": "quic",
         "server": "unfiltered.adguard-dns.com",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
