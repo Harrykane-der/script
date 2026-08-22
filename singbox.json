@@ -37,10 +37,9 @@
       },
       {
         "tag": "dns_proxy",
-        "type": "https",
+        "type": "tls",
         "server": "dns.google",
-        "server_port": 443,
-        "path": "/dns-query",
+        "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🔗 proxy_dns"
       },
@@ -93,13 +92,12 @@
         "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::"],
         "rcode": "NOERROR"
       },
-      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
-      { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct" },
-      { "rule_set": ["bilibili_domain", "bytedance_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
+      { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
+      { "rule_set": ["bilibili_domain", "bytedance_domain", "proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "action": "evaluate", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["bilibili_ip", "bytedance_ip", "cn_ip"], "action": "route", "server": "dns_direct", "match_response": true, "client_subnet": "39.144.162.180" },
-      { "rule_set": ["google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": true, "client_subnet": "39.144.162.180" },
-      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
+      { "rule_set": ["bilibili_ip", "bytedance_ip", "cn_ip"], "action": "route", "server": "dns_direct", "match_response": true},
+      { "rule_set": ["google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": true },
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
@@ -240,7 +238,7 @@
       { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "bytedance_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "bytedance_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
       { "type": "remote", "tag": ["bilibili_ip", "bytedance_ip", "cn_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "auto_detect_interface": true,
