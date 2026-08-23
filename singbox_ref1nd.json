@@ -46,8 +46,7 @@
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query"
+        "domain_resolver": "dns_domain_resolver"
       },      
       {
         "tag": "dns_kuromi",
