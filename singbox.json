@@ -93,10 +93,10 @@
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
-      { "rule_set": ["bilibili_domain", "bytedance_domain", "proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "action": "evaluate", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["bilibili_ip", "bytedance_ip", "cn_ip"], "action": "route", "server": "dns_direct", "match_response": true},
-      { "rule_set": ["google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": true },
+      { "rule_set": ["cn_ip"], "invert": true, "action": "route", "server": "dns_proxy", "match_response": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": true },
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
@@ -125,7 +125,7 @@
       "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
-      "udp_mapping": "address_dependent",
+      "udp_mapping": "endpoint_independent",
       "udp_filtering": "endpoint_independent",
       "udp_nat_max": 16384
     }
