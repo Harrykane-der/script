@@ -28,20 +28,20 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "domain_resolver"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_2",
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "domain_resolver"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query"
       },      
       {
