@@ -129,7 +129,7 @@
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "address_and_port_dependent",
-      "udp_filtering": "address_and_port_dependent",
+      "udp_filtering": "endpoint_independent",
       "udp_nat_max": 16384
     }
   ],
