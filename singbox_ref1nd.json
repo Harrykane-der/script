@@ -331,8 +331,8 @@
       { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
       { "rule_set": ["twitter_domain", "twitter_ip"], "action": "route", "outbound": "󠁴🐦 Twitter" },
-      { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["media_domain", "media_ip", "proxy_emby_domain"], "action": "route", "outbound": "📽️ Media" },
+      { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
