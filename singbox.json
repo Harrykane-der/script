@@ -167,7 +167,7 @@
     { "type": "urltest", "tag": "🇺🇸 USA_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
     { "type": "urltest", "tag": "🇪🇺 EUN_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
     { "type": "urltest", "tag": "🌏 OTN_Auto", "url": "https://g.cn/generate_204", "interval": "6m", "idle_timeout": "3h", "outbounds": [] },
-    { "type": "selector", "tag": "🔗 all", "outbounds": [] },
+    { "type": "selector", "tag": "🔗 all", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
   ],
