@@ -1,7 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
+  "$schema": "https://sing-box.sagernet.org/schema.json",
   "log": {
-    "level": "error",
+    "disabled": true,
+    "level": "warn",
     "timestamp": true
   },
   "dns": {
@@ -10,11 +11,6 @@
         "tag": "dns_hosts",
         "type": "hosts",
         "predefined": {
-          "ac3603ba-a1f1-41e5-abea-a7b6bc910ce1.x6qbh8i1nn.sbs": "f1555c46-0afc-421b-8cf3-37a766d497c7.uvvztzfbir.sbs",
-          "070999e3-5898-4c6f-a3b0-4e6d196f1d06.5idqe1rnlw.sbs": "deb274f7-1bba-433d-bd4a-eef7b00c8c39.1pti3lzfn1.sbs",
-          "2ad30bj6-fc51.aws-agent.com": "59415bj8-09x2.apt-agent.dev",
-          "6ed68gz8-2ad3.aws-agent.com": "50196gz8-f6k7.apt-agent.dev",
-          "fc513sh2-6ed6.aws-agent.com": "21492sh1-b2d1.apt-agent.dev",
           "mtalk.google.com": ["34.92.115.250", "2404:6800:4008:c07::bc"],
           "alt1-mtalk.google.com": ["2607:f8b0:4023:1c05::bc", "74.125.200.188"],
           "alt2-mtalk.google.com": ["192.178.220.188"],
@@ -29,102 +25,18 @@
         }
       },
       {
-        "tag": "dns_bbxy_1",
-        "type": "udp",
-        "server": "dn-hk.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "tag": "dns_domain_resolver",
+        "type": "local"
       },
       {
-        "tag": "dns_bbxy_2",
-        "type": "udp",
-        "server": "dn-jp.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_bbxy_3",
-        "type": "https",
-        "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_domain_resolver",
-        "tls": {
-          "enabled": true,
-          "insecure": true
-        },
-        "detour": "🇨🇳 Direct"
-      },      
-      {
-        "tag": "dns_kuromi",
-        "type": "https",
-        "server": "hydrogen1693.com",
-        "server_port": 44443,
-        "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "tls": {
-          "enabled": true,
-          "insecure": true
-        },
-        "detour": "🇨🇳 Direct"
-      },      
-      {
-        "tag": "dns_local",
-        "type": "local",
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_alidns",
+        "tag": "dns_direct",
         "type": "udp",
         "server": "223.5.5.5",
         "server_port": 53,
         "detour": "🇨🇳 Direct"
       },
       {
-        "tag": "dns_dnspod",
-        "type": "udp",
-        "server": "129.29.29.29",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_114dns",
-        "type": "udp",
-        "server": "114.114.114.114",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_pz",
-        "type": "tls",
-        "server": "pz.fyi",
-        "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_opendns",
-        "type": "udp",
-        "server": "208.67.220.220",
-        "server_port": 443,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_nextdns",
-        "type": "udp",
-        "server": "45.90.28.0",
-        "server_port": 5353,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_quad9",
-        "type": "udp",
-        "server": "149.112.112.112",
-        "server_port": 9953,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_google",
+        "tag": "dns_proxy",
         "type": "tls",
         "server": "dns.google",
         "server_port": 853,
@@ -132,19 +44,11 @@
         "detour": "🔗 proxy_dns"
       },
       {
-        "tag": "dns_adguard",
-        "type": "tls",
-        "server": "unfiltered.adguard-dns.com",
-        "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🔗 proxy_dns"
-      },
-      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },  
-      { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
-      { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },      
-      { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
-      { "tag": "dns_proxy", "type": "group", "servers": ["dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::1/48" }
+        "type": "fakeip",
+        "tag": "dns_fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "2001:2::1/48"
+      }
     ],
     "rules": [
       {
@@ -162,7 +66,7 @@
         "action": "reject",
         "method": "default",
         "no_drop": true
-      },    
+      },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
@@ -175,7 +79,7 @@
           { "rule_set": ["game_domain"] }
         ],
         "action": "route",
-        "server": "dns_alldns"
+        "server": "dns_direct"
       },
       {
         "type": "logical",
@@ -189,11 +93,14 @@
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
-      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
-      { "action": "evaluate", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "invert": true, "action": "route", "server": "dns_proxy", "match_response": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": true },
-      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },          
+      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "speculative": true, "client_subnet": "39.144.162.180" },
+      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "speculative": true, "client_subnet": "39.144.162.180" },
+      { "rule_set": ["cn_ip"], "invert": true, "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_proxy", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_proxy", "race": true },
+      { "rule_set": ["cn_ip"], "invert": true, "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_direct", "race": true },
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
@@ -275,7 +182,7 @@
     }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": "dns_alldns" }
+    { "tag": "download_remote", "version": 2, "domain_resolver": "dns_direct" }
   ],
   "route": {
     "default_http_client": "download_remote",
@@ -339,12 +246,10 @@
       { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "bytedance_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
       { "type": "remote", "tag": ["bilibili_ip", "bytedance_ip", "cn_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
-    "default_domain_match_strategy": "prefer_fqdn",
     "auto_detect_interface": true,
     "final": "🚀 Final"
   },
   "experimental": {
-    "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
       "path": "cache.db",
@@ -354,8 +259,7 @@
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "ui",
-      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/download/v3.22.0/dist-no-fonts.zip",
-      "external_ui_http_client": "download_remote",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/download/v3.22.0/dist-no-fonts.zip",
       "default_mode": "Rule"
     }
   }
