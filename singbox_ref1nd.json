@@ -279,7 +279,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": "dns_domain_resolver",
+    "default_domain_resolver": { "server": "dns_domain_resolver", "strategy": "prefer_ipv4" },
     "rules": [
       { "ip_cidr": ["172.18.0.2", "fd00::2"], "action": "hijack-dns" },
       {
