@@ -66,58 +66,50 @@
       },      
       {
         "tag": "dns_local",
-        "type": "local",
-        "detour": "🇨🇳 Direct"
+        "type": "local"
       },
       {
         "tag": "dns_alidns",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_dnspod",
         "type": "udp",
         "server": "129.29.29.29",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_114dns",
         "type": "udp",
         "server": "114.114.114.114",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_pz",
         "type": "tls",
         "server": "pz.fyi",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_opendns",
         "type": "udp",
         "server": "208.67.220.220",
-        "server_port": 443,
-        "detour": "🇨🇳 Direct"
+        "server_port": 443
       },
       {
         "tag": "dns_nextdns",
         "type": "udp",
         "server": "45.90.28.0",
-        "server_port": 5353,
-        "detour": "🇨🇳 Direct"
+        "server_port": 5353
       },
       {
         "tag": "dns_quad9",
         "type": "udp",
         "server": "149.112.112.112",
-        "server_port": 9953,
-        "detour": "🇨🇳 Direct"
+        "server_port": 9953
       },
       {
         "tag": "dns_google",
@@ -247,7 +239,7 @@
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
+    { "tag": "🇨🇳 Direct", "type": "direct" }
   ],
   "services": [
     {
