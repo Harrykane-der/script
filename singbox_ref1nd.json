@@ -147,22 +147,6 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::1/48" }
     ],
     "rules": [
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "query_type": "AAAA"
-          },
-          {
-            "default_interface_address": "2000::/3",
-            "invert": true
-          }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },    
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
@@ -287,17 +271,6 @@
     "default_domain_resolver": "dns_domain_resolver",
     "rules": [
       { "ip_cidr": ["172.18.0.2"], "action": "hijack-dns" },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "ip_version": 6 },
-          { "default_interface_address": ["2000::/3"], "invert": true }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
