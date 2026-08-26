@@ -169,7 +169,7 @@
           { "rule_set": ["whitelist_domain"], "invert": true }
         ],
         "action": "predefined",
-        "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fdfe:dcba:9876::1"],
+        "answer": ["*. 1 IN A 192.0.2.1"],
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
@@ -196,13 +196,13 @@
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["172.18.0.1/30", "fd00::1/126"],
+      "address": ["172.18.0.1/30"],
       "auto_route":true,
       "strict_route": true,
       "stack": "gvisor",
       "mtu": 9000,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2", "fd00::2"],
+      "dns_address": ["172.18.0.2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "address_and_port_dependent",
@@ -270,7 +270,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_domain_resolver",
     "rules": [
-      { "ip_cidr": ["172.18.0.2", "fd00::2"], "action": "hijack-dns" },
+      { "ip_cidr": ["172.18.0.2"], "action": "hijack-dns" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
@@ -287,7 +287,7 @@
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["tcp"], "port": [53, 853], "port_range": ["3478:3479", "5349:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_cidr": ["192.0.2.1", "fdfe:dcba:9876::1"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_cidr": ["192.0.2.1"], "action": "reject", "method": "default", "no_drop": true },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
