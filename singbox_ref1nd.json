@@ -33,16 +33,14 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_2",
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_3",
@@ -52,8 +50,7 @@
         "tls": {
           "enabled": true,
           "insecure": true
-        },
-        "detour": "🇨🇳 Direct"
+        }
       },      
       {
         "tag": "dns_kuromi",
@@ -65,8 +62,7 @@
         "tls": {
           "enabled": true,
           "insecure": true
-        },
-        "detour": "🇨🇳 Direct"
+        }
       },      
       {
         "tag": "dns_local",
