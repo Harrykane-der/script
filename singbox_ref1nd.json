@@ -33,14 +33,16 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_bbxy_2",
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_bbxy_3",
@@ -50,7 +52,8 @@
         "tls": {
           "enabled": true,
           "insecure": true
-        }
+        },
+        "detour": "🇨🇳 Direct"
       },      
       {
         "tag": "dns_kuromi",
@@ -62,54 +65,63 @@
         "tls": {
           "enabled": true,
           "insecure": true
-        }
+        },
+        "detour": "🇨🇳 Direct"
       },      
       {
         "tag": "dns_local",
-        "type": "local"
+        "type": "local",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_alidns",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_dnspod",
         "type": "udp",
         "server": "129.29.29.29",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_114dns",
         "type": "udp",
         "server": "114.114.114.114",
-        "server_port": 53
+        "server_port": 53,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_pz",
         "type": "tls",
         "server": "pz.fyi",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_opendns",
         "type": "udp",
         "server": "208.67.220.220",
-        "server_port": 443
+        "server_port": 443,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_nextdns",
         "type": "udp",
         "server": "45.90.28.0",
-        "server_port": 5353
+        "server_port": 5353,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_quad9",
         "type": "udp",
         "server": "149.112.112.112",
-        "server_port": 9953
+        "server_port": 9953,
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_google",
@@ -157,7 +169,7 @@
           { "rule_set": ["whitelist_domain"], "invert": true }
         ],
         "action": "predefined",
-        "answer": ["*. 1 IN A 192.0.2.1"],
+        "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fdfe:dcba:9876::1"],
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
@@ -169,6 +181,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
+    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -183,13 +196,13 @@
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["172.18.0.1/30"],
+      "address": ["172.18.0.1/30", "fd00::1/126"],
       "auto_route":true,
       "strict_route": true,
       "stack": "gvisor",
       "mtu": 9000,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2"],
+      "dns_address": ["172.18.0.2", "fd00::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "address_and_port_dependent",
@@ -217,7 +230,7 @@
     { "type": "urltest", "tag": "🇺🇸 USA", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🇺🇸 USA_Pick", "🇺🇸 USA_Auto"] },
     { "type": "urltest", "tag": "🇩🇪 DEU", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🇩🇪 DEU_Node", "🇩🇪 DEU_Pick", "🇩🇪 DEU_Auto"] },
     { "type": "urltest", "tag": "🌏 OTN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Auto"] },
-    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": [] },
+    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": ["🇭🇰 HKG_Node", "🇯🇵 JPN_Node"] },
     { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },    
     { "type": "selector", "tag": "🇭🇰 HKG_Pick", "outbounds": [] },
@@ -239,7 +252,7 @@
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct" }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
   ],
   "services": [
     {
@@ -257,7 +270,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_domain_resolver",
     "rules": [
-      { "ip_cidr": ["172.18.0.2"], "action": "hijack-dns" },
+      { "ip_cidr": ["172.18.0.2", "fd00::2"], "action": "hijack-dns" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
@@ -274,7 +287,7 @@
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["tcp"], "port": [53, 853], "port_range": ["3478:3479", "5349:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_cidr": ["192.0.2.1"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_cidr": ["192.0.2.1", "fdfe:dcba:9876::1"], "action": "reject", "method": "default", "no_drop": true },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
