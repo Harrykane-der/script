@@ -169,7 +169,7 @@
           { "rule_set": ["whitelist_domain"], "invert": true }
         ],
         "action": "predefined",
-        "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fdfe:dcba:9876::1"],
+        "answer": ["*. 1 IN A 192.0.2.1"],
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
@@ -229,7 +229,7 @@
     { "type": "urltest", "tag": "🇺🇸 USA", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🇺🇸 USA_Pick", "🇺🇸 USA_Auto"] },
     { "type": "urltest", "tag": "🇩🇪 DEU", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🇩🇪 DEU_Node", "🇩🇪 DEU_Pick", "🇩🇪 DEU_Auto"] },
     { "type": "urltest", "tag": "🌏 OTN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "30m", "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Auto"] },
-    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": ["🇭🇰 HKG_Node", "🇯🇵 JPN_Node"] },
+    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": [] },
     { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },    
     { "type": "selector", "tag": "🇭🇰 HKG_Pick", "outbounds": [] },
@@ -286,7 +286,7 @@
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["tcp"], "port": [53, 853], "port_range": ["3478:3479", "5349:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_cidr": ["192.0.2.1", "fdfe:dcba:9876::1"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_cidr": ["192.0.2.1"], "action": "reject", "method": "default", "no_drop": true },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
