@@ -54,7 +54,7 @@
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
-      { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
+      { "query_type": ["A"], "invert": true, "action": "reject", "rcode": "NOERROR" },
       {
         "type": "logical",
         "mode": "or",
@@ -73,7 +73,7 @@
           { "rule_set": ["whitelist_domain"], "invert": true }
         ],
         "action": "predefined",
-        "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::"],
+        "answer": ["*. 1 IN A 192.0.2.1"],
         "rcode": "NOERROR"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
@@ -88,7 +88,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -137,7 +137,7 @@
     { "type": "urltest", "tag": "🇺🇸 USA", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "tolerance": 50000, "idle_timeout": "30m", "outbounds": ["🇺🇸 USA_Pick", "🇺🇸 USA_Auto"] },
     { "type": "urltest", "tag": "🇩🇪 DEU", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "tolerance": 50000, "idle_timeout": "30m", "outbounds": ["🇩🇪 DEU_Node", "🇩🇪 DEU_Pick", "🇩🇪 DEU_Auto"] },
     { "type": "urltest", "tag": "🌏 OTN", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "tolerance": 50000, "idle_timeout": "30m", "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Auto"] },
-    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": ["🇭🇰 HKG_Node", "🇯🇵 JPN_Node"] },
+    { "type": "selector", "tag": "🎮 Games_Node", "outbounds": [] },
     { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },    
     { "type": "selector", "tag": "🇭🇰 HKG_Pick", "outbounds": [] },
@@ -159,7 +159,7 @@
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "ipv4_only" } }
   ],
   "services": [
     {
@@ -175,7 +175,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": "dns_domain_resolver",
+    "default_domain_resolver": { "server": "dns_domain_resolver", "strategy": "ipv4_only" },
     "rules": [
       { "ip_cidr": ["172.18.0.2"], "action": "hijack-dns" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
