@@ -196,7 +196,7 @@
       "stack": "gvisor",
       "mtu": 9000,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2", , "fd00::2"],
+      "dns_address": ["172.18.0.2", "fd00::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "address_and_port_dependent",
