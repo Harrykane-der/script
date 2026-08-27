@@ -246,7 +246,7 @@
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct", "strategy": "prefer_ipv4"  }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4" }
   ],
   "services": [
     {
