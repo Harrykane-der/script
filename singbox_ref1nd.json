@@ -49,10 +49,6 @@
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
         "domain_resolver": "dns_domain_resolver",
-        "tls": {
-          "enabled": true,
-          "insecure": true
-        },
         "detour": "🇨🇳 Direct"
       },      
       {
@@ -62,10 +58,6 @@
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "tls": {
-          "enabled": true,
-          "insecure": true
-        },
         "detour": "🇨🇳 Direct"
       },      
       {
