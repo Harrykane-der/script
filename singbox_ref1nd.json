@@ -181,7 +181,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -252,7 +252,7 @@
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4" } }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "ipv4_only" } }
   ],
   "services": [
     {
@@ -268,7 +268,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": "dns_domain_resolver",
+    "default_domain_resolver": { "server": "dns_domain_resolver", "strategy": "ipv4_only" },
     "rules": [
       { "ip_cidr": ["172.18.0.2"], "action": "hijack-dns" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
