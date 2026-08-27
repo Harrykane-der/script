@@ -88,7 +88,7 @@
       },
       {
         "tag": "dns_pz",
-        "type": "tls",
+        "type": "quic",
         "server": "pz.fyi",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
@@ -125,7 +125,7 @@
       },
       {
         "tag": "dns_adguard",
-        "type": "tls",
+        "type": "quic",
         "server": "unfiltered.adguard-dns.com",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
@@ -139,12 +139,12 @@
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "198.18.0.0/15", "inet6_range": "2001:2::1/48" }
     ],
     "rules": [
-      { "query_type": "AAAA", "action": "reject", "rcode": "NOERROR" },
-      { "ip_version": 6, "action": "reject", "rcode": "NOERROR" },    
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
       { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
+      { "query_type": "AAAA", "action": "reject", "rcode": "NOERROR" },
+      { "ip_version": 6, "action": "reject", "rcode": "NOERROR" },
       {
         "type": "logical",
         "mode": "or",
