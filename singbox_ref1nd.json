@@ -162,6 +162,7 @@
         "method": "default",
         "no_drop": true
       },
+      { "query_type": ["AAAA"], "action": "route", "server": "dns_fakeip" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
