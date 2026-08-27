@@ -265,7 +265,7 @@
     { "type": "selector", "tag": "🧭 香港前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 日本前置", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 德国前置", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
+    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4" } }
   ],
   "services": [
