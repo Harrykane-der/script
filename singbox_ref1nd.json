@@ -243,7 +243,7 @@
     { "type": "selector", "tag": "🧭 HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧭 DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
+    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "ipv4_only" } }
   ],
   "services": [
