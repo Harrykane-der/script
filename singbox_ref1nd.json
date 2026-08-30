@@ -350,7 +350,7 @@
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
-      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "🎵 TikTok" },
+      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
       { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
