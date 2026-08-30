@@ -203,7 +203,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
