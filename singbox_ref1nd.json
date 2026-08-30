@@ -121,7 +121,7 @@
         "server": "dns.google",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
-        "detour": "🔗 proxy_dns"
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_adguard",
@@ -129,7 +129,7 @@
         "server": "unfiltered.adguard-dns.com",
         "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
-        "detour": "🔗 proxy_dns"
+        "detour": "🧬 proxy_dns"
       },
       { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },  
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
@@ -208,7 +208,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -244,12 +244,13 @@
     { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📽️ Media", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🎬 Emby", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] }, 
     { "type": "selector", "tag": "🐦 Twitter", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "✈️ Telegram", "default": "🇸🇬 SGP", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "♫ TikTok", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📦 Github", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📨 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📥 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "urltest", "tag": "🎮 Games", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": ["🎮 Games_Node", "🎮 Games_Pick", "🎮 Games_Auto"] },
     { "type": "urltest", "tag": "🇭🇰 HKG", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": ["🇭🇰 HKG_Node", "🇭🇰 HKG_Pick", "🇭🇰 HKG_Auto"] },
     { "type": "urltest", "tag": "🇯🇵 JPN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": ["🇯🇵 JPN_Node", "🇯🇵 JPN_Pick", "🇯🇵 JPN_Auto"] },
@@ -259,7 +260,7 @@
     { "type": "urltest", "tag": "🌏 OTN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Auto"] },
     { "type": "selector", "tag": "🎮 Games_Node", "outbounds": [] },
     { "type": "selector", "tag": "🎮 Games_Pick", "outbounds": [] },
-    { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },    
+    { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HKG_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇯🇵 JPN_Node", "outbounds": [] },
     { "type": "selector", "tag": "🇯🇵 JPN_Pick", "outbounds": [] },
@@ -275,10 +276,10 @@
     { "type": "urltest", "tag": "🇺🇸 USA_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": [] },
     { "type": "urltest", "tag": "🇩🇪 DEU_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": [] },
     { "type": "urltest", "tag": "🌏 OTN_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "outbounds": [] },   
-    { "type": "selector", "tag": "🧭 HKG_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧭 JPN_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧭 DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🔗 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
+    { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
+    { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
+    { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4" } }
   ],
   "services": [
@@ -346,15 +347,16 @@
         "method": "default",
         "no_drop": true
       },
-      { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📨 FCM" },
+      { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
-      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "♫ TikTok" },
+      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "🎵 TikTok" },
       { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
       { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
       { "rule_set": ["twitter_domain", "twitter_ip"], "action": "route", "outbound": "🐦 Twitter" },
-      { "rule_set": ["media_domain", "media_ip", "proxy_emby_domain"], "action": "route", "outbound": "📽️ Media" },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "outbound": "🎬 Emby" },
+      { "rule_set": ["media_domain", "media_ip"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
