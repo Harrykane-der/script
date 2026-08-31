@@ -275,7 +275,7 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4" } }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct"}
   ],
   "services": [
     {
@@ -291,7 +291,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4" },
+    "default_domain_resolver": "dns_alldns",
     "rules": [
       { "ip_cidr": ["172.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
       {
