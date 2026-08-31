@@ -110,9 +110,9 @@
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },          
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "speculative": true, "query_client_subnet": ["39.144.162.180", "2409:8931:5220:233:182f:66ff:fee4:a4a3"] },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "speculative": true, "query_client_subnet": ["39.144.162.180", "2409:8931:5220:233:182f:66ff:fee4:a4a3"] },
-      { "rule_set": ["bilibili_ip", "bytedance_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_proxy", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_proxy", "race": true },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_proxy", "race": true },
-      { "rule_set": ["bilibili_ip", "bytedance_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_direct", "race": true },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_direct", "race": true },
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
@@ -260,7 +260,7 @@
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
-      { "rule_set": ["bytedance_domain", "bytedance_ip"], "action": "route", "outbound": "♫ TikTok" },
+      { "rule_set": ["tiktok_domain", "tiktok_ip"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
       { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
@@ -271,8 +271,8 @@
       { "rule_set": ["cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "bytedance_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
-      { "type": "remote", "tag": ["bilibili_ip", "bytedance_ip", "cn_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "bilibili_domain", "tiktok_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["bilibili_ip", "tiktok_ip", "cn_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "auto_detect_interface": true,
     "final": "🚀 Final"
