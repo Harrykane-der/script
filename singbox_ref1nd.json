@@ -192,7 +192,7 @@
         ],
         "action": "predefined",
         "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::1"],
-        "rcode": "NOERROR"
+        "rcode": "NXDOMAIN"
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
