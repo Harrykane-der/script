@@ -277,8 +277,8 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct"},
-    {  "tag": "⛔ REJECT", "type": "block" }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" },
+    { "tag": "⛔ REJECT", "type": "block" }
   ],
   "services": [
     {
