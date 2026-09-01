@@ -94,7 +94,6 @@
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
-      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
       { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },      
       { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
