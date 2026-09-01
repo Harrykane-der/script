@@ -235,7 +235,7 @@
     }
   ],
   "outbounds": [
-    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct", "⛔ REJECT"] },
     { "type": "selector", "tag": "🎮 Game", "default": "🎮 Games", "interrupt_exist_connections": true, "outbounds": ["🎮 Games", "🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
@@ -277,7 +277,9 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct"}
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct"},
+    {  "tag": "⛔ REJECT", "type": "block"
+    },
   ],
   "services": [
     {
@@ -314,6 +316,7 @@
         "method": "default",
         "no_drop": true
       },
+      { "action": "route-options", "udp_disable_domain_unmapping": true, "udp_connect": true },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
@@ -327,10 +330,15 @@
         "outbound": "🎮 Game"
       },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
+      { "protocol": ["stun", "quic", "dtls"], "action": "route", "outbound": "⛔ REJECT" },
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["tcp"], "port": [53, 853], "port_range": ["3478:3479", "5349:5350", "10000:"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["icmp"], "action": "route", "outbound": "⛔ REJECT" },
+      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
+      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },  
       { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "route", "outbound": "⛔ REJECT" },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
@@ -343,6 +351,17 @@
         "action": "reject",
         "method": "default",
         "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "rule_set": ["ablock_domain", "adblock_domain"] },
+          { "rule_set": ["whitelist_domain"], "invert": true }
+        ],
+        "action": "route",
+        "outbound": "⛔ REJECT"
+      },
       },
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
