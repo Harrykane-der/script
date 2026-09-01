@@ -94,7 +94,7 @@
         "action": "route",
         "server": "dns_direct",
         "query_dnssec": true,
-        "query_client_subnet": ["39.144.162.180", "141.11.148.42"]
+        "query_client_subnet": ["39.144.162.180"]
       },
       {
         "type": "logical",
@@ -109,8 +109,8 @@
       },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },          
-      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "speculative": true, "query_dnssec": true, "query_client_subnet": ["39.144.162.180", "141.11.148.42"] },
-      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "speculative": true, "query_dnssec": true, "query_client_subnet": ["39.144.162.180", "141.11.148.42"] },
+      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "speculative": true, "query_dnssec": true, "query_client_subnet": ["39.144.162.180"] },
+      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "speculative": true, "query_dnssec": true, "query_client_subnet": ["39.144.162.180"] },
       { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_proxy", "race": true },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_proxy", "race": true },
       { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_direct", "race": true },
