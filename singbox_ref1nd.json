@@ -24,6 +24,38 @@
         }
       },
       {
+        "tag": "dns_bbxy_1",
+        "type": "udp",
+        "server": "dn-hk.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
+      },
+      {
+        "tag": "dns_bbxy_2",
+        "type": "udp",
+        "server": "dn-jp.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
+      },
+      {
+        "tag": "dns_bbxy_3",
+        "type": "https",
+        "server": "dn-jp.appzhuanyong.com",
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
+      },      
+      {
+        "tag": "dns_kuromi",
+        "type": "https",
+        "server": "hydrogen1693.com",
+        "server_port": 44443,
+        "domain_resolver": "dns_domain_resolver",
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🇨🇳 Direct"
+      },      
+      {
         "tag": "dns_local",
         "type": "local",
         "detour": "🇨🇳 Direct"
@@ -94,6 +126,7 @@
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
+      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
       { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },      
       { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
@@ -168,7 +201,7 @@
       "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
-      "stack": "system",
+      "stack": "mixed",
       "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
@@ -267,18 +300,18 @@
         "outbound": "🎮 Game"
       },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
-      { "protocol": ["stun", "quic", "dtls"], "action": "route", "outbound": "⛔ REJECT" },
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["icmp"], "action": "route", "outbound": "⛔ REJECT" },
-      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
-      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },  
+      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "route", "outbound": "⛔ REJECT" },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "reject", "method": "default", "no_drop": true },
+      { "protocol": ["stun", "quic", "dtls"], "action": "route", "outbound": "⛔ REJECT" },
+      { "network": ["icmp"], "action": "route", "outbound": "⛔ REJECT" },   
+      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
+      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
+      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "route", "outbound": "⛔ REJECT" },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "route", "outbound": "⛔ REJECT" },
       { "rule_set": ["google_fcm_domain", "google_fcm_ip"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
