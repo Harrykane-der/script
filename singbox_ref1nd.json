@@ -22,39 +22,7 @@
           "dl.google.com": ["180.163.151.161"],
           "dl.l.google.com": ["180.163.150.33"]
         }
-      },
-      {
-        "tag": "dns_bbxy_1",
-        "type": "udp",
-        "server": "dn-hk.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_bbxy_2",
-        "type": "udp",
-        "server": "dn-jp.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_bbxy_3",
-        "type": "https",
-        "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
-      },      
-      {
-        "tag": "dns_kuromi",
-        "type": "https",
-        "server": "hydrogen1693.com",
-        "server_port": 44443,
-        "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🇨🇳 Direct"
-      },      
+      },   
       {
         "tag": "dns_local",
         "type": "local",
@@ -126,11 +94,10 @@
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
-      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
       { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },      
       { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
-      { "tag": "dns_proxy", "type": "group", "servers": ["dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_adguard"] },
+      { "tag": "dns_proxy", "type": "group", "servers": ["dns_opendns", "dns_nextdns", "dns_quad9", "dns_google", "dns_adguard"] },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "11.0.0.0/8", "inet6_range": "2001:2::/48" }
     ],
     "rules": [
@@ -183,7 +150,6 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
