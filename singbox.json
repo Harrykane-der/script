@@ -263,7 +263,7 @@
     }
   ],
   "outbounds": [
-    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct", "⛔ REJECT"] },
     { "type": "selector", "tag": "🎮 Game", "default": "🎮 Games", "interrupt_exist_connections": true, "outbounds": ["🎮 Games", "🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Games", "🇨🇳 Direct"] },
@@ -305,7 +305,8 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_local" }
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_local" },
+    { "tag": "⛔ REJECT", "type": "block" }
   ],
   "services": [
     {
