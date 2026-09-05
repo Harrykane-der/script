@@ -51,9 +51,9 @@
       },
       {
         "tag": "dns_pz",
-        "type": "quic",
+        "type": "https",
         "server": "pz.fyi",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🇨🇳 Direct"
       },
@@ -80,25 +80,25 @@
       },
       {
         "tag": "dns_google",
-        "type": "tls",
+        "type": "https",
         "server": "dns.google",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_cloudflare",
-        "type": "quic",
+        "type": "https",
         "server": "cloudflare-dns.com",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_adguard",
-        "type": "quic",
+        "type": "https",
         "server": "unfiltered.adguard-dns.com",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
