@@ -81,7 +81,7 @@
       },
       {
         "tag": "dns_google",
-        "type": "tls",
+        "type": "https",
         "server": "dns.google",
         "server_port": 443,
         "domain_resolver": "dns_local",
