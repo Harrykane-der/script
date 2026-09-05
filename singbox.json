@@ -167,6 +167,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_local",
         "tag": "dns_evaluate_front_local",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -179,6 +180,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_alidns",
         "tag": "dns_evaluate_front_alidns",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -191,6 +193,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_dnspod",
         "tag": "dns_evaluate_front_dnspod",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -203,6 +206,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_114dns",
         "tag": "dns_evaluate_front_114dns",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -215,6 +219,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_pz",
         "tag": "dns_evaluate_front_pz",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -227,6 +232,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_open",
         "tag": "dns_evaluate_front_opendns",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -239,6 +245,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_nextdns",
         "tag": "dns_evaluate_front_nextdns",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -251,6 +258,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_quad9",
         "tag": "dns_evaluate_front_quad9",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -263,6 +271,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_google",
         "tag": "dns_evaluate_front_google",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -275,6 +284,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_cloudflare",
         "tag": "dns_evaluate_front_cloudflare",
         "speculative": true,
         "client_subnet": "223.160.169.210"
@@ -287,6 +297,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
+        "server": "dns_adguard",
         "tag": "dns_evaluate_front_adguard",
         "speculative": true,
         "client_subnet": "223.160.169.210"
