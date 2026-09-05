@@ -164,49 +164,179 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain"] }
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
-        "action": "route",
-        "server": "dns_direct",
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_local",
+        "speculative": true,
         "client_subnet": "223.160.169.210"
       },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_alidns",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_dnspod",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_114dns",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_pz",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_opendns",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_nextdns",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_quad9",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_google",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_cloudflare",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
+          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+        ],
+        "action": "evaluate",
+        "tag": "dns_evaluate_front_adguard",
+        "speculative": true,
+        "client_subnet": "223.160.169.210"
+      },
+      { "action": "respond", "match_response": "dns_evaluate_front_local", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_alidns", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_dnspod", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_114dns", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_pz", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_opendns", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_nextdns", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_quad9", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_google", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_cloudflare", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_adguard", "race": true },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "predefined", "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::1"], "rcode": "NXDOMAIN" },
-      { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct" },
-      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "rule_set": ["ai_domain", "bilibili_domain", "tiktok_domain", "gfw_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "action": "evaluate", "server": "dns_local", "tag": "dns_evaluate_local", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_alidns", "tag": "dns_evaluate_alidns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_dnspod", "tag": "dns_evaluate_dnspod", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_114dns", "tag": "dns_evaluate_114dns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_pz", "tag": "dns_evaluate_pz", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_opendns", "tag": "dns_evaluate_opendns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_nextdns", "tag": "dns_evaluate_nextdns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_quad9", "tag": "dns_evaluate_quad9", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_google", "tag": "dns_evaluate_google", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_cloudflare", "tag": "dns_evaluate_cloudflare", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_adguard", "tag": "dns_evaluate_adguard", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "rule_set": ["bilibili_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "tiktok_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_local", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_alidns", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_dnspod", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_114dns", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_pz", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_opendns", "race": true },
-       { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_nextdns", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_quad9", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_google", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_cloudflare", "race": true },
-      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_adguard", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_local", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_alidns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_dnspod", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_114dns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_pz", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_opendns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_nextdns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_quad9", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_google", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_cloudflare", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_adguard", "race": true },
+      { "action": "evaluate", "server": "dns_local", "tag": "dns_evaluate_rear_local", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_alidns", "tag": "dns_evaluate_rear_alidns", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_dnspod", "tag": "dns_evaluate_rear_dnspod", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_114dns", "tag": "dns_evaluate_rear_114dns", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_pz", "tag": "dns_evaluate_rear_pz", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_opendns", "tag": "dns_evaluate_rear_opendns", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_nextdns", "tag": "dns_evaluate_rear_nextdns", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_quad9", "tag": "dns_evaluate_rear_quad9", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_google", "tag": "dns_evaluate_rear_google", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_cloudflare", "tag": "dns_evaluate_rear_cloudflare", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_adguard", "tag": "dns_evaluate_rear_adguard", "speculative": true, "client_subnet": "223.160.169.210" },
+      { "rule_set": ["bilibili_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "tiktok_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_local", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_alidns", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_dnspod", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_114dns", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_pz", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_opendns", "race": true },
+       { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_nextdns", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_quad9", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_google", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_cloudflare", "race": true },
+      { "rule_set": ["bilibili_ip", "tiktok_ip", "google_fcm_ip", "google_ip", "media_ip", "telegram_ip", "twitter_ip"], "action": "route", "server": "dns_proxy", "match_response": "dns_evaluate_rear_adguard", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_local", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_alidns", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_dnspod", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_114dns", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_pz", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_opendns", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_nextdns", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_quad9", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_google", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_cloudflare", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_rear_adguard", "race": true },
       { "action": "route", "server": "dns_proxy", "client_subnet": "223.160.169.210" }
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
