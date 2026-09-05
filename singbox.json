@@ -52,9 +52,9 @@
       },
       {
         "tag": "dns_pz",
-        "type": "quic",
+        "type": "https",
         "server": "pz.fyi",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_local",
         "detour": "🇨🇳 Direct"
       },
@@ -83,23 +83,23 @@
         "tag": "dns_google",
         "type": "tls",
         "server": "dns.google",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_cloudflare",
-        "type": "quic",
+        "type": "https",
         "server": "cloudflare-dns.com",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_adguard",
-        "type": "quic",
+        "type": "https",
         "server": "unfiltered.adguard-dns.com",
-        "server_port": 853,
+        "server_port": 443,
         "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
       },
@@ -113,7 +113,7 @@
       {
         "tag": "dns_proxy",
         "type": "https",
-        "server": "cloudflare-dns.com",
+        "server": "unfiltered.adguard-dns.com",
         "server_port": 443,
         "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
@@ -167,7 +167,8 @@
           { "rule_set": ["game_domain"] }
         ],
         "action": "route",
-        "server": "dns_direct"
+        "server": "dns_direct",
+        "client_subnet": "223.160.169.210"
       },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "predefined", "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::1"], "rcode": "NXDOMAIN" },
       { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct" },
