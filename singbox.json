@@ -167,8 +167,7 @@
           { "rule_set": ["game_domain"] }
         ],
         "action": "route",
-        "server": "dns_direct",
-        "client_subnet": "223.160.169.210"
+        "server": "dns_direct"
       },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "predefined", "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::1"], "rcode": "NXDOMAIN" },
       { "rule_set": ["direct_emby_domain", "fakeip-filter_domain"], "action": "route", "server": "dns_direct" },
