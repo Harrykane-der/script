@@ -232,7 +232,7 @@
           { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
-        "server": "dns_open",
+        "server": "dns_opendns",
         "tag": "dns_evaluate_front_opendns",
         "speculative": true,
         "client_subnet": "223.160.169.210"
