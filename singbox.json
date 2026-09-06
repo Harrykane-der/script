@@ -26,10 +26,10 @@
       },
       {
         "tag": "dns_bbxy",
-        "type": "https",
-        "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_local",
-        "detour": "🧬 proxy_dns"
+        "type": "udp",
+        "server": "dn-hk.appzhuanyong.com",
+        "port": 1066,
+        "domain_resolver": "dns_local"
       },      
       {
         "tag": "dns_kuromi",
