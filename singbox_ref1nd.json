@@ -28,7 +28,7 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
       {
@@ -36,14 +36,14 @@
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },      
       {
@@ -51,7 +51,7 @@
         "type": "https",
         "server": "hydrogen1693.com",
         "server_port": 44443,
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
         "detour": "🧬 proxy_dns"
       },
