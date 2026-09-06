@@ -22,7 +22,39 @@
           "dl.google.com": ["180.163.151.161"],
           "dl.l.google.com": ["180.163.150.33"]
         }
-      },   
+      },
+      {
+        "tag": "dns_bbxy_1",
+        "type": "udp",
+        "server": "dn-hk.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "domain_resolver",
+        "detour": "🧬 proxy_dns"
+      },
+      {
+        "tag": "dns_bbxy_2",
+        "type": "udp",
+        "server": "dn-jp.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "domain_resolver",
+        "detour": "🧬 proxy_dns"
+      },
+      {
+        "tag": "dns_bbxy_3",
+        "type": "https",
+        "server": "dn-jp.appzhuanyong.com",
+        "domain_resolver": "domain_resolver",
+        "detour": "🧬 proxy_dns"
+      },      
+      {
+        "tag": "dns_kuromi",
+        "type": "https",
+        "server": "hydrogen1693.com",
+        "server_port": 44443,
+        "domain_resolver": "domain_resolver",
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🧬 proxy_dns"
+      },
       {
         "tag": "dns_local",
         "type": "local",
@@ -102,6 +134,7 @@
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
+      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
       { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_cloudflare", "dns_adguard"] },      
       { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
@@ -229,7 +262,7 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": "dns_direct" },
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "services": [
@@ -242,7 +275,7 @@
     }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": "dns_alldns" }
+    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "client_subnet": "223.160.169.210" } }
   ],
   "route": {
     "default_http_client": "download_remote",
