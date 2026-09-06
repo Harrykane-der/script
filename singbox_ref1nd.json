@@ -29,7 +29,7 @@
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
         "domain_resolver": "dns_domain_resolver",
-        "detour": "🧬 proxy_dns"
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_bbxy_2",
@@ -37,14 +37,14 @@
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
         "domain_resolver": "dns_domain_resolver",
-        "detour": "🧬 proxy_dns"
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
         "domain_resolver": "dns_domain_resolver",
-        "detour": "🧬 proxy_dns"
+        "detour": "🇨🇳 Direct"
       },      
       {
         "tag": "dns_kuromi",
@@ -53,7 +53,7 @@
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🧬 proxy_dns"
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_local",
@@ -261,7 +261,7 @@
     { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
+    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
