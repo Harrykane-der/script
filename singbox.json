@@ -28,7 +28,7 @@
         "tag": "dns_bbxy",
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
-        "port": 1066,
+        "server_port": 1066,
         "domain_resolver": "dns_local"
       },      
       {
