@@ -28,7 +28,7 @@
         "tag": "dns_bbxy",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
       },      
       {
@@ -36,7 +36,7 @@
         "type": "https",
         "server": "hydrogen1693.com",
         "server_port": 44443,
-        "domain_resolver": "domain_resolver",
+        "domain_resolver": "dns_local",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
         "detour": "🧬 proxy_dns"
       },
