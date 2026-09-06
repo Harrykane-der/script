@@ -28,7 +28,8 @@
         "tag": "dns_bbxy",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_local"
+        "domain_resolver": "dns_local",
+        "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_kuromi",
