@@ -46,7 +46,7 @@
         "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query",
         "detour": "🧬 proxy_dns"
-      },      
+      },
       {
         "tag": "dns_kuromi_1",
         "type": "https",
@@ -72,7 +72,7 @@
         "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
         "detour": "🧬 proxy_dns"
-      }
+      },
       {
         "tag": "dns_local",
         "type": "local"
