@@ -258,7 +258,7 @@
     { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN"] },
+    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
@@ -276,7 +276,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": "dns_alldns",
+    "default_domain_resolver": { "server": "dns_alldns", "client_subnet": "223.160.169.210" },
     "rules": [
       { "ip_cidr": ["198.18.0.2", "fd12:3456:789a::2"], "action": "hijack-dns" },
       {
@@ -346,7 +346,7 @@
       "store_fakeip": true,
       "store_dns": true,
       "buffer_size": "1MB",
-      "flush_interval": "1h"
+      "flush_interval": "30m"
     },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
