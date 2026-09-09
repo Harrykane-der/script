@@ -28,14 +28,16 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_bbxy_2",
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_bbxy_3",
