@@ -41,7 +41,8 @@
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_domain_resolver"
+        "domain_resolver": "dns_domain_resolver",
+        "path": "/dns-query"
       },      
       {
         "tag": "dns_kuromi",
@@ -79,9 +80,9 @@
       },
       {
         "tag": "dns_pz",
-        "type": "https",
+        "type": "tls",
         "server": "pz.fyi",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🇨🇳 Direct"
       },
@@ -108,25 +109,25 @@
       },
       {
         "tag": "dns_google",
-        "type": "https",
+        "type": "tls",
         "server": "dns.google",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_cloudflare",
-        "type": "https",
+        "type": "tls",
         "server": "cloudflare-dns.com",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_adguard",
-        "type": "https",
+        "type": "tls",
         "server": "unfiltered.adguard-dns.com",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_domain_resolver",
         "detour": "🧬 proxy_dns"
       },
@@ -350,7 +351,7 @@
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
-      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/download/v3.22.0/dist-no-fonts.zip",
       "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     }
