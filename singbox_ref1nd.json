@@ -171,17 +171,6 @@
         "method": "default",
         "no_drop": true
       },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "ip_version": 6 },
-          { "default_interface_address": ["2000::/3"], "invert": true }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },    
       { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
