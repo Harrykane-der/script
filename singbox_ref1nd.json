@@ -45,7 +45,7 @@
         "server": "dn-jp.appzhuanyong.com",
         "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query",
-        "detour": "🧬 proxy_dns"
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_kuromi_1",
