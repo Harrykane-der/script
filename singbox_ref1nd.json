@@ -42,7 +42,8 @@
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query"
+        "path": "/dns-query",
+        "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_kuromi",
@@ -50,12 +51,12 @@
         "server": "hydrogen1693.com",
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_local",
-        "type": "local",
-        "detour": "🇨🇳 Direct"
+        "type": "local"
       },
       {
         "tag": "dns_alidns",
