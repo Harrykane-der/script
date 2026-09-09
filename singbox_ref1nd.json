@@ -155,7 +155,7 @@
       { "tag": "dns_kuromi", "type": "group", "servers": ["dns_kuromi_1", "dns_kuromi_2", "dns_kuromi_3"] },
       { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
       { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_cloudflare", "dns_adguard"] },      
-      { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_pz", "dns_alidns", "dns_dnspod"] },
+      { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_pz"] },
       { "tag": "dns_proxy", "type": "group", "servers": ["dns_opendns", "dns_nextdns", "dns_quad9", "dns_google", "dns_cloudflare", "dns_adguard"] },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "11.0.0.0/8", "inet6_range": "2001:2::/48" }
     ],
