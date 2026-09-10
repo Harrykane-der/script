@@ -196,7 +196,7 @@
       { "ip_is_private": true, "action": "respond", "match_response": true },
       { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
     ],
-    "optimistic": { "enabled": true, "timeout": "3d" },
+    "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
     "final": "dns_proxy",
     "timeout": "5s"
