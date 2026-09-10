@@ -167,7 +167,7 @@
         "method": "default",
         "no_drop": true
       },
-      { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
+      { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
