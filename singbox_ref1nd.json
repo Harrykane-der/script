@@ -228,7 +228,7 @@
   ],
   "outbounds": [
     { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct", "⛔ REJECT"] },
-    { "type": "selector", "tag": "🎮 Game", "default": "🎮 Game", "interrupt_exist_connections": true, "outbounds": ["🎮 Game", "🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🎮 Games", "default": "🎮 Game", "interrupt_exist_connections": true, "outbounds": ["🎮 Game", "🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
