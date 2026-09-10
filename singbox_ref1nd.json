@@ -28,24 +28,21 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_2",
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query",
-        "detour": "🇨🇳 Direct"
+        "path": "/dns-query"
       },
       {
         "tag": "dns_kuromi_1",
@@ -53,8 +50,7 @@
         "server": "hydrogen1693.com",
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🇨🇳 Direct"
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
       },
       {
         "tag": "dns_kuromi_2",
@@ -196,7 +192,7 @@
       { "ip_is_private": true, "action": "respond", "match_response": true },
       { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
     ],
-    "optimistic": { "enabled": true, "timeout": "1d" },
+    "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
     "final": "dns_proxy",
     "timeout": "5s"
@@ -304,6 +300,9 @@
       { "action": "route-options", "udp_disable_domain_unmapping": true, "udp_connect": true },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
+      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
+      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
         "type": "logical",
         "mode": "or",
@@ -318,16 +317,7 @@
       { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
-      { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "rule_set": ["ablock_domain", "adblock_domain"], "action": "reject", "method": "default", "no_drop": true },
-      { "protocol": ["stun", "quic", "dtls"], "action": "route", "outbound": "⛔ REJECT" },
-      { "network": ["icmp"], "action": "route", "outbound": "⛔ REJECT" },   
-      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
-      { "network": ["tcp"], "port": [53, 853, 784, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:6900", "6990:7000", "8880:9000", "10000:"], "action": "route", "outbound": "⛔ REJECT" },
-      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "route", "outbound": "⛔ REJECT" },
-      { "rule_set": ["ablock_domain", "adblock_domain"], "action": "route", "outbound": "⛔ REJECT" },
       { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
