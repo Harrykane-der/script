@@ -356,7 +356,7 @@
       "store_fakeip": true,
       "store_dns": true,
       "buffer_size": "1MB",
-      "flush_interval": "30m"
+      "flush_interval": "1h"
     },
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
