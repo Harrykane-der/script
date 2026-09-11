@@ -301,7 +301,6 @@
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
-      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
         "type": "logical",
@@ -329,6 +328,7 @@
       { "rule_set": ["proxy_emby_domain"], "action": "route", "outbound": "🎬 Emby" },
       { "rule_set": ["media_domain"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
+      { "ip_is_private": true, "outbound": "🇨🇳 Direct" },
       { "rule_set": ["cn_lite_domain", "cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
