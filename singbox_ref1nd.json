@@ -332,15 +332,6 @@
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
-  "services": [
-    {
-      "type": "api",
-      "tag": "sing-box-api",
-      "listen": "0.0.0.0",
-      "listen_port": 8888,
-      "access_control_allow_private_network": true
-    }
-  ],
   "http_clients": [
     { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "client_subnet": "223.160.169.210" } }
   ],
@@ -451,7 +442,28 @@
     "auto_detect_interface": true,
     "final": "🚀 Final"
   },
+  "services": [
+    {
+      "type": "api",
+      "listen": "::",
+      "listen_port": 9999,
+      "secret": "singbox",
+      "dashboard": {
+        "enabled": true,
+        "path": "dashboard",
+        "http_client": "download_remote"
+      }
+    }
+  ],
   "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "secret": "singbox",
+      "external_ui": "zashboard",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_http_client": "download_remote",
+      "default_mode": "Rule"
+    },
     "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
@@ -460,13 +472,6 @@
       "store_dns": true,
       "buffer_size": "1MB",
       "flush_interval": "1h"
-    },
-    "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "external_ui": "ui",
-      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_http_client": "download_remote",
-      "default_mode": "Rule"
     }
   }
 }
