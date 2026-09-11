@@ -275,7 +275,7 @@
       "address": ["198.18.0.1/24", "fd12:3456:789a::1/64"],
       "auto_route":true,
       "strict_route": true,
-      "stack": "gvisor",
+      "stack": "go",
       "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fd12:3456:789a::2"],
