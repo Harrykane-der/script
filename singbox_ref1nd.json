@@ -255,8 +255,9 @@
       { "ip_is_private": true, "action": "respond", "match_response": true },
       { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
     ],
-    "optimistic": { "enabled": true, "timeout": "3d" },
+    "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
+    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -333,11 +334,11 @@
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "client_subnet": "223.160.169.210" } }
+    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } }
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_alldns", "client_subnet": "223.160.169.210" },
+    "default_domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" },
     "rules": [
       { "ip_cidr": ["198.18.0.2", "fd12:3456:789a::2"], "action": "hijack-dns" },
       {
