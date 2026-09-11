@@ -250,7 +250,7 @@
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns" },
       { "rule_set": ["ai_domain", "bilibili_domain", "gfw_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "tiktok_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "rule_set": ["cn_domain"], "action": "evaluate", "server": "dns_direct", "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_direct", "client_subnet": "223.160.169.210" },
       { "rule_set": ["cn_ip"], "action": "respond", "match_response": true },
       { "ip_is_private": true, "action": "respond", "match_response": true },
       { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
