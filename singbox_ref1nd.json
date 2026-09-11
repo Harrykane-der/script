@@ -330,7 +330,7 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
