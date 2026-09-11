@@ -10,6 +10,10 @@
         "tag": "dns_hosts",
         "type": "hosts",
         "predefined": {
+          "pz.fyi": ["106.54.11.55"],
+          "cloudflare-dns.com": ["104.16.249.249", "104.16.248.249", "2606:4700::6810:f9f9", "2606:4700::6810:f8f9"],
+          "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
+          "unfiltered.adguard-dns.com": ["94.140.14.140", "94.140.14.141", "2a10:50c0::1:ff", "2a10:50c0::2:ff"],
           "mtalk.google.com": ["34.92.115.250", "2404:6800:4008:c07::bc"],
           "alt1-mtalk.google.com": ["2607:f8b0:4023:1c05::bc", "74.125.200.188"],
           "alt2-mtalk.google.com": ["192.178.220.188"],
@@ -83,7 +87,7 @@
       {
         "tag": "dns_dnspod",
         "type": "udp",
-        "server": "129.29.29.29",
+        "server": "119.29.29.29",
         "server_port": 53,
         "detour": "🇨🇳 Direct"
       },
@@ -99,7 +103,7 @@
         "type": "tls",
         "server": "pz.fyi",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
+        "domain_resolver": "dns_hosts",
         "detour": "🇨🇳 Direct"
       },
       {
@@ -128,7 +132,7 @@
         "type": "tls",
         "server": "dns.google",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
+        "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
       {
@@ -136,7 +140,7 @@
         "type": "tls",
         "server": "cloudflare-dns.com",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
+        "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },      
       {
@@ -144,7 +148,7 @@
         "type": "tls",
         "server": "unfiltered.adguard-dns.com",
         "server_port": 853,
-        "domain_resolver": "dns_domain_resolver",
+        "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
       { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
@@ -182,7 +186,66 @@
         "server": "dns_alldns",
         "client_subnet": "223.160.169.210"
       },
-      { "rule_set": ["ablock_domain", "adblock_domain"], "action": "predefined", "answer": ["*. 1 IN A 192.0.2.1", "*. 1 IN AAAA fc00::1"], "rcode": "NXDOMAIN" },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["icmp"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "rcode": "NXDOMAIN",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "protocol": ["stun", "quic", "dtls"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "rcode": "NXDOMAIN",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "rcode": "NXDOMAIN",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "rcode": "NXDOMAIN",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["ablock_domain", "adblock_domain"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "rcode": "NXDOMAIN",
+        "no_drop": true
+      },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns" },
@@ -211,7 +274,7 @@
       "address": ["198.18.0.1/24", "fd12:3456:789a::1/64"],
       "auto_route":true,
       "strict_route": true,
-      "stack": "mixed",
+      "stack": "gvisor",
       "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fd12:3456:789a::2"],
@@ -300,7 +363,17 @@
       { "action": "route-options", "udp_disable_domain_unmapping": true, "udp_connect": true },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
-      { "ip_cidr": ["192.0.2.1", "fc00::1"], "action": "reject", "method": "default", "no_drop": true },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["icmp"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
         "type": "logical",
@@ -312,11 +385,50 @@
         "action": "route",
         "outbound": "🎮 Game"
       },
-      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["icmp"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"], "action": "reject", "method": "default", "no_drop": true },
-      { "rule_set": ["ablock_domain", "adblock_domain"], "action": "reject", "method": "default", "no_drop": true },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "protocol": ["stun", "quic", "dtls"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["ablock_domain", "adblock_domain"] }
+        ],
+        "action": "reject",
+        "method": "default",
+        "no_drop": true
+      },
       { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
@@ -357,4 +469,4 @@
       "default_mode": "Rule"
     }
   }
-}
+}-
