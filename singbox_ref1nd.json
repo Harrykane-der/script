@@ -211,13 +211,13 @@
       "address": ["198.18.0.1/24", "fd12:3456:789a::1/64"],
       "auto_route":true,
       "strict_route": true,
-      "stack": "system",
-      "mtu": 4046,
+      "stack": "mixed",
+      "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fd12:3456:789a::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
-      "udp_mapping": "address_dependent",
+      "udp_mapping": "endpoint_independent",
       "udp_filtering": "endpoint_independent",
       "udp_nat_max": 0
     }
