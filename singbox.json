@@ -32,7 +32,8 @@
         "tag": "dns_bbxy",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_local"
+        "domain_resolver": "dns_local",
+        "detour": "🧬 proxy_dns"
       },      
       {
         "tag": "dns_kuromi",
@@ -45,7 +46,8 @@
       },
       {
         "tag": "dns_local",
-        "type": "local"
+        "type": "local",
+        "detour": "🇨🇳 Direct"
       },
       {
         "tag": "dns_alidns",
@@ -348,7 +350,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
         "method": "default",
@@ -360,7 +362,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
         "method": "default",
@@ -435,6 +437,7 @@
       "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
+      "stack": "system",
       "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
@@ -552,7 +555,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
         "method": "default",
@@ -563,7 +566,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "10000:"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
         "method": "default",
