@@ -30,24 +30,22 @@
       },
       {
         "tag": "dns_bbxy",
-        "type": "https",
-        "server": "dn-jp.appzhuanyong.com",
-        "domain_resolver": "dns_local",
-        "detour": "🧬 proxy_dns"
-      },      
+        "type": "udp",
+        "server": "dn-hk.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "dns_local"
+      },
       {
         "tag": "dns_kuromi",
         "type": "https",
         "server": "hydrogen1693.com",
         "server_port": 44443,
         "domain_resolver": "dns_local",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🧬 proxy_dns"
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
       },
       {
         "tag": "dns_local",
-        "type": "local",
-        "detour": "🇨🇳 Direct"
+        "type": "local"
       },
       {
         "tag": "dns_alidns",
@@ -424,6 +422,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "3d" },
     "cache_capacity": 16192,
+    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
