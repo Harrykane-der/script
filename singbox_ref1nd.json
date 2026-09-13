@@ -194,6 +194,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["icmp"] }
         ],
         "action": "reject",
@@ -206,6 +207,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "protocol": ["stun", "quic", "dtls"] }
         ],
         "action": "reject",
@@ -218,6 +220,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
@@ -230,6 +233,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
@@ -363,6 +367,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["icmp"] }
         ],
         "action": "reject",
@@ -385,6 +390,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "protocol": ["stun", "quic", "dtls"] }
         ],
         "action": "reject",
@@ -396,6 +402,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
@@ -407,6 +414,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:20000"] }
         ],
         "action": "reject",
@@ -418,6 +426,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
+          { "rule_set": ["whitelist_domain"], "invert": true },
           { "rule_set": ["ablock_domain", "adblock_domain"] }
         ],
         "action": "reject",
