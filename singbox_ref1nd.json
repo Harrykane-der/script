@@ -1,8 +1,7 @@
 {
-  "$schema": "https://sing-box.sagernet.org/schema.json",
+  "$schema": "https://raw.githubusercontent.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
   "log": {
-    "disabled": true,
-    "level": "warn",
+    "level": "error",
     "timestamp": true
   },
   "dns": {
@@ -29,19 +28,53 @@
         }
       },
       {
-        "tag": "dns_bbxy",
+        "tag": "dns_bbxy_1",
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_local"
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🧬 proxy_dns"
       },
       {
-        "tag": "dns_kuromi",
+        "tag": "dns_bbxy_2",
+        "type": "udp",
+        "server": "dn-jp.appzhuanyong.com",
+        "server_port": 1066,
+        "domain_resolver": "dns_domain_resolver",
+        "detour": "🧬 proxy_dns"
+      },
+      {
+        "tag": "dns_bbxy_3",
+        "type": "https",
+        "server": "dn-jp.appzhuanyong.com",
+        "domain_resolver": "dns_domain_resolver",
+        "path": "/dns-query",
+        "detour": "🧬 proxy_dns"
+      },
+      {
+        "tag": "dns_kuromi_1",
         "type": "https",
         "server": "hydrogen1693.com",
         "server_port": 44443,
-        "domain_resolver": "dns_local",
+        "domain_resolver": "dns_domain_resolver",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
+      },
+      {
+        "tag": "dns_kuromi_2",
+        "type": "https",
+        "server": "subprime7404.com",
+        "server_port": 44443,
+        "domain_resolver": "dns_domain_resolver",
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🧬 proxy_dns"
+      },
+      {
+        "tag": "dns_kuromi_3",
+        "type": "https",
+        "server": "tribunal2944.com",
+        "domain_resolver": "dns_domain_resolver",
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_local",
@@ -70,9 +103,9 @@
       },
       {
         "tag": "dns_pz",
-        "type": "https",
+        "type": "tls",
         "server": "pz.fyi",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_hosts",
         "detour": "🇨🇳 Direct"
       },
@@ -99,43 +132,34 @@
       },
       {
         "tag": "dns_google",
-        "type": "https",
+        "type": "tls",
         "server": "dns.google",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_cloudflare",
-        "type": "https",
+        "type": "tls",
         "server": "cloudflare-dns.com",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_adguard",
-        "type": "https",
+        "type": "tls",
         "server": "unfiltered.adguard-dns.com",
-        "server_port": 443,
+        "server_port": 853,
         "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
-      {
-        "tag": "dns_direct",
-        "type": "udp",
-        "server": "223.5.5.5",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
-      },
-      {
-        "tag": "dns_proxy",
-        "type": "https",
-        "server": "cloudflare-dns.com",
-        "server_port": 443,
-        "domain_resolver": "dns_local",
-        "detour": "🧬 proxy_dns"
-      },
+      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
+      { "tag": "dns_kuromi", "type": "group", "servers": ["dns_kuromi_1", "dns_kuromi_2", "dns_kuromi_3"] },
+      { "tag": "dns_domain_resolver", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9"] },
+      { "tag": "dns_alldns", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_114dns", "dns_opendns", "dns_nextdns", "dns_quad9", "dns_pz", "dns_google", "dns_cloudflare", "dns_adguard"] },      
+      { "tag": "dns_direct", "type": "group", "servers": ["dns_local", "dns_alidns", "dns_dnspod", "dns_pz"] },
+      { "tag": "dns_proxy", "type": "group", "servers": ["dns_opendns", "dns_nextdns", "dns_quad9", "dns_google", "dns_cloudflare", "dns_adguard"] },
       { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "11.0.0.0/8", "inet6_range": "2001:2::/48" }
     ],
     "rules": [
@@ -159,155 +183,12 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["game_domain"] }
         ],
-        "action": "evaluate",
-        "server": "dns_local",
-        "tag": "dns_evaluate_front_local",
-        "speculative": true,
+        "action": "route",
+        "server": "dns_alldns",
         "client_subnet": "223.160.169.210"
       },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_alidns",
-        "tag": "dns_evaluate_front_alidns",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_dnspod",
-        "tag": "dns_evaluate_front_dnspod",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_114dns",
-        "tag": "dns_evaluate_front_114dns",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_pz",
-        "tag": "dns_evaluate_front_pz",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_opendns",
-        "tag": "dns_evaluate_front_opendns",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_nextdns",
-        "tag": "dns_evaluate_front_nextdns",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_quad9",
-        "tag": "dns_evaluate_front_quad9",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_google",
-        "tag": "dns_evaluate_front_google",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_cloudflare",
-        "tag": "dns_evaluate_front_cloudflare",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_adguard",
-        "tag": "dns_evaluate_front_adguard",
-        "speculative": true,
-        "client_subnet": "223.160.169.210"
-      },
-      { "action": "respond", "match_response": "dns_evaluate_front_local", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_alidns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_dnspod", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_114dns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_pz", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_opendns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_nextdns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_quad9", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_google", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_cloudflare", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_adguard", "race": true },
       {
         "type": "logical",
         "mode": "and",
@@ -337,7 +218,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19007"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19010"] }
         ],
         "action": "reject",
         "method": "default",
@@ -349,7 +230,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19007"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19010"] }
         ],
         "action": "reject",
         "method": "default",
@@ -369,43 +250,16 @@
         "rcode": "NXDOMAIN",
         "no_drop": true
       },
-      { "rule_set": ["ai_domain", "bilibili_domain", "tiktok_domain", "gfw_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "action": "evaluate", "server": "dns_local", "tag": "dns_evaluate_rear_local", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_alidns", "tag": "dns_evaluate_rear_alidns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_dnspod", "tag": "dns_evaluate_rear_dnspod", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_114dns", "tag": "dns_evaluate_rear_114dns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_pz", "tag": "dns_evaluate_rear_pz", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_opendns", "tag": "dns_evaluate_rear_opendns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_nextdns", "tag": "dns_evaluate_rear_nextdns", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_quad9", "tag": "dns_evaluate_rear_quad9", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_google", "tag": "dns_evaluate_rear_google", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_cloudflare", "tag": "dns_evaluate_rear_cloudflare", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "action": "evaluate", "server": "dns_adguard", "tag": "dns_evaluate_rear_adguard", "speculative": true, "client_subnet": "223.160.169.210" },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_local", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_alidns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_dnspod", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_114dns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_pz", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_opendns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_nextdns", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_quad9", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_google", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_cloudflare", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_adguard", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_local", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_alidns", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_dnspod", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_114dns", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_pz", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_opendns", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_nextdns", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_quad9", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_google", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_cloudflare", "race": true },
-      { "ip_is_private": true, "action": "respond", "match_response": "dns_evaluate_rear_adguard", "race": true },
-      { "action": "route", "server": "dns_proxy", "client_subnet": "223.160.169.210" }
+      { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct" },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
+      { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns" },
+      { "rule_set": ["ai_domain", "bilibili_domain", "gfw_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "tiktok_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
+      { "action": "evaluate", "server": "dns_direct", "client_subnet": "223.160.169.210" },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": true },
+      { "ip_is_private": true, "action": "respond", "match_response": true },
+      { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
     ],
-    "optimistic": { "enabled": true, "timeout": "3d" },
+    "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
     "strategy": "prefer_ipv4",
     "final": "dns_proxy",
@@ -415,19 +269,19 @@
     {
       "tag": "mixed-in",
       "type": "mixed",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 9999
     },
     {
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["172.18.0.1/30", "fd12:3456:789a::1/126"],
+      "address": ["198.18.0.1/24", "fd12:3456:789a::1/64"],
       "auto_route":true,
       "strict_route": true,
       "mtu": 9000,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2", "fd12:3456:789a::2"],
+      "dns_address": ["198.18.0.2", "fd12:3456:789a::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "endpoint_independent",
@@ -441,21 +295,21 @@
     { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📽️ Media", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🎬 Emby", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📽️ Media", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🎬 Emby", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🐦 Twitter", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "✈️ Telegram", "default": "🇸🇬 SGP", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "♫ TikTok", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📦 Github", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "selector", "tag": "📥 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "urltest", "tag": "🎮 Game", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🎮 Game_Node", "🎮 Game_Pick", "🎮 Game_Auto"] },
-    { "type": "urltest", "tag": "🇭🇰 HKG", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🇭🇰 HKG_Node", "🇭🇰 HKG_Pick", "🇭🇰 HKG_Auto"] },
-    { "type": "urltest", "tag": "🇯🇵 JPN", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🇯🇵 JPN_Node", "🇯🇵 JPN_Pick", "🇯🇵 JPN_Auto"] },
-    { "type": "urltest", "tag": "🇸🇬 SGP", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🇸🇬 SGP_Pick", "🇸🇬 SGP_Auto"] },
-    { "type": "urltest", "tag": "🇺🇸 USA", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🇺🇸 USA_Pick", "🇺🇸 USA_Auto"] },
-    { "type": "urltest", "tag": "🇩🇪 DEU", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🇩🇪 DEU_Node", "🇩🇪 DEU_Pick", "🇩🇪 DEU_Auto"] },
-    { "type": "urltest", "tag": "🌏 OTN", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "tolerance": 50000, "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Auto"] },
+    { "type": "urltest", "tag": "🎮 Game", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🎮 Game_Node", "🎮 Game_Pick", "🎮 Game_Balance"] },
+    { "type": "urltest", "tag": "🇭🇰 HKG", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇭🇰 HKG_Node", "🇭🇰 HKG_Pick", "🇭🇰 HKG_Balance"] },
+    { "type": "urltest", "tag": "🇯🇵 JPN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇯🇵 JPN_Node", "🇯🇵 JPN_Pick", "🇯🇵 JPN_Balance"] },
+    { "type": "urltest", "tag": "🇸🇬 SGP", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇸🇬 SGP_Pick", "🇸🇬 SGP_Balance"] },
+    { "type": "urltest", "tag": "🇺🇸 USA", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇺🇸 USA_Pick", "🇺🇸 USA_Balance"] },
+    { "type": "urltest", "tag": "🇩🇪 DEU", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇩🇪 DEU_Node", "🇩🇪 DEU_Pick", "🇩🇪 DEU_Balance"] },
+    { "type": "urltest", "tag": "🌏 OTN", "fallback": { "enabled": true }, "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🌏 OTN_Pick", "🌏 OTN_Balance"] },
     { "type": "selector", "tag": "🎮 Game_Node", "outbounds": [] },
     { "type": "selector", "tag": "🇭🇰 HKG_Node", "outbounds": [] },
     { "type": "selector", "tag": "🇯🇵 JPN_Node", "outbounds": [] },
@@ -467,27 +321,27 @@
     { "type": "selector", "tag": "🇺🇸 USA_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🇩🇪 DEU_Pick", "outbounds": [] },
     { "type": "selector", "tag": "🌏 OTN_Pick", "outbounds": [] },
-    { "type": "urltest", "tag": "🎮 Game_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🇭🇰 HKG_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🇯🇵 JPN_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🇸🇬 SGP_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🇺🇸 USA_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🇩🇪 DEU_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
-    { "type": "urltest", "tag": "🌏 OTN_Auto", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🎮 Game_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🇭🇰 HKG_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🇯🇵 JPN_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🇸🇬 SGP_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🇺🇸 USA_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🇩🇪 DEU_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
+    { "type": "loadbalance", "tag": "🌏 OTN_Balance", "strategy": "sticky-sessions", "url": "https://cp.cloudflare.com/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": [] },
     { "type": "selector", "tag": "⚓ Game_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Auto", "🇯🇵 JPN_Auto"] },
+    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Balance", "🇯🇵 JPN_Balance"] },
     { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } }
+    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } }
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" },
+    "default_domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" },
     "rules": [
       { "ip_cidr": ["198.18.0.2", "fd12:3456:789a::2"], "action": "hijack-dns" },
       {
@@ -542,7 +396,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19007"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19010"] }
         ],
         "action": "reject",
         "method": "default",
@@ -553,7 +407,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19007"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3479", "5349:5350", "6881:6889", "6890:7000", "8880:9000", "19000:19010"] }
         ],
         "action": "reject",
         "method": "default",
@@ -589,6 +443,7 @@
       { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "gfw_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
       { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.com/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
+    "default_domain_match_strategy": "prefer_fqdn",
     "auto_detect_interface": true,
     "final": "🚀 Final"
   },
@@ -611,8 +466,10 @@
       "secret": "singbox",
       "external_ui": "zashboard",
       "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     },
+    "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
       "path": "cache.db",
