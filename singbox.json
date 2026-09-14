@@ -337,7 +337,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6039, 6443, 8443, 8853, 9102, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
         ],
         "action": "reject",
         "method": "default",
@@ -349,7 +349,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6039, 6443, 8443, 8853, 9102, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
         ],
         "action": "reject",
         "method": "default",
@@ -422,12 +422,12 @@
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["172.18.0.1/30", "fd12:3456:789a::1/126"],
+      "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
       "mtu": 9000,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2", "fd12:3456:789a::2"],
+      "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
       "udp_mapping": "endpoint_independent",
@@ -489,7 +489,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": { "server": "dns_direct", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" },
     "rules": [
-      { "ip_cidr": ["198.18.0.2", "fd12:3456:789a::2"], "action": "hijack-dns" },
+      { "ip_cidr": ["198.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
       {
         "type": "logical",
         "mode": "and",
@@ -542,7 +542,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6443, 8443, 8853, 9102], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
+          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6039, 6443, 8443, 8853, 9102, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
         ],
         "action": "reject",
         "method": "default",
@@ -553,7 +553,7 @@
         "mode": "and",
         "rules": [
           { "clash_mode": "Allowads", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6443, 8443, 9102], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
+          { "network": ["tcp"], "port": [53, 853, 784, 6039, 6443, 8443, 8853, 9102, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
         ],
         "action": "reject",
         "method": "default",
