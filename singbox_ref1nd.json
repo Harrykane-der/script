@@ -277,7 +277,6 @@
       "address": ["198.18.0.1/24", "fdfe:dcba:9876::1/64"],
       "auto_route":true,
       "strict_route": true,
-      "mtu": 9000,
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
@@ -473,8 +472,7 @@
       "path": "cache.db",
       "store_fakeip": true,
       "store_dns": true,
-      "buffer_size": "1MB",
-      "flush_interval": "1h"
+      "buffer_size": "1MB"
     }
   }
 }
