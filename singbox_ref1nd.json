@@ -173,6 +173,8 @@
         "method": "default",
         "no_drop": true
       },
+      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
       { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
@@ -187,54 +189,6 @@
         "action": "route",
         "server": "dns_alldns",
         "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["icmp"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "rcode": "NXDOMAIN",
-        "no_drop": true
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "protocol": ["stun", "quic", "dtls"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "rcode": "NXDOMAIN",
-        "no_drop": true
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6039, 6443, 8443, 8853, 9102, 9681, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "rcode": "NXDOMAIN",
-        "no_drop": true
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6039, 6443, 8443, 8853, 9102, 9681, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "rcode": "NXDOMAIN",
-        "no_drop": true
       },
       {
         "type": "logical",
@@ -351,21 +305,12 @@
         "method": "default",
         "no_drop": true
       },
+      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
+      { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "action": "route-options", "udp_disable_domain_unmapping": true, "udp_connect": true },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["icmp"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
-      { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       {
         "type": "logical",
         "mode": "or",
@@ -375,39 +320,6 @@
         ],
         "action": "route",
         "outbound": "🎮 Game"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "protocol": ["stun", "quic", "dtls"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["udp"], "port": [53, 80, 443, 853, 784, 6039, 6443, 8443, 8853, 9102, 9681, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "network": ["tcp"], "port": [53, 853, 784, 6039, 6443, 8443, 8853, 9102, 9681, 13010], "port_range": ["3478:3481", "5349:5351", "6881:6889", "6890:7000", "8880:9000", "19302:19310"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
       },
       {
         "type": "logical",
