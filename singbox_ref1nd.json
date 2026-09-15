@@ -39,8 +39,7 @@
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_domain_resolver",
-        "detour": "🧬 proxy_dns"
+        "domain_resolver": "dns_domain_resolver"
       },
       {
         "tag": "dns_bbxy_3",
@@ -64,8 +63,7 @@
         "server": "subprime7404.com",
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🧬 proxy_dns"
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
       },
       {
         "tag": "dns_kuromi_3",
