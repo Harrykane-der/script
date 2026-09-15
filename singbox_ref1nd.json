@@ -250,7 +250,7 @@
         "no_drop": true
       },
       { "action": "evaluate", "server": "dns_alldns", "client_subnet": "223.160.169.210" },
-      { "rule_set": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "tiktok_ip", "Twitter_ip"], "action": "respond", "match_response": true },
+      { "rule_set": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "tiktok_ip", "twitter_ip"], "action": "respond", "match_response": true },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct", "client_subnet": "223.160.169.210" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "223.160.169.210" },
       { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" },
@@ -428,7 +428,7 @@
       { "rule_set": ["bilibili_domain", "bilibili_ip"], "action": "route", "outbound": "📺 BiliBili" },
       { "rule_set": ["github_domain"], "action": "route", "outbound": "📦 Github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "outbound": "🔞 Pixiv" },
-      { "rule_set": ["twitter_domain", "Twitter_ip"], "action": "route", "outbound": "🐦 Twitter" },
+      { "rule_set": ["twitter_domain", "twitter_ip"], "action": "route", "outbound": "🐦 Twitter" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "outbound": "🎬 Emby" },
       { "rule_set": ["media_domain", "media_ip"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_ip", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
