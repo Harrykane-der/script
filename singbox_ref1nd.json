@@ -63,7 +63,8 @@
         "server": "subprime7404.com",
         "server_port": 44443,
         "domain_resolver": "dns_domain_resolver",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
+        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_kuromi_3",
@@ -81,51 +82,44 @@
         "tag": "dns_alidns",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_dnspod",
         "type": "udp",
         "server": "119.29.29.29",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_114dns",
         "type": "udp",
         "server": "114.114.114.114",
-        "server_port": 53,
-        "detour": "🇨🇳 Direct"
+        "server_port": 53
       },
       {
         "tag": "dns_pz",
         "type": "tls",
         "server": "pz.fyi",
         "server_port": 853,
-        "domain_resolver": "dns_hosts",
-        "detour": "🇨🇳 Direct"
+        "domain_resolver": "dns_hosts"
       },
       {
         "tag": "dns_opendns",
         "type": "udp",
         "server": "208.67.220.220",
-        "server_port": 443,
-        "detour": "🇨🇳 Direct"
+        "server_port": 443
       },
       {
         "tag": "dns_nextdns",
         "type": "udp",
         "server": "45.90.28.0",
-        "server_port": 5353,
-        "detour": "🇨🇳 Direct"
+        "server_port": 5353
       },
       {
         "tag": "dns_quad9",
         "type": "udp",
         "server": "149.112.112.112",
-        "server_port": 9953,
-        "detour": "🇨🇳 Direct"
+        "server_port": 9953
       },
       {
         "tag": "dns_google",
@@ -281,7 +275,7 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Balance", "🇯🇵 JPN_Balance"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" } },
+    { "tag": "🇨🇳 Direct", "type": "direct" },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
