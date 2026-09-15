@@ -186,7 +186,7 @@
         ],
         "action": "route",
         "server": "dns_alldns",
-        "client_subnet": "223.160.169.210"
+        "client_subnet": "39.144.162.180"
       },
       {
         "type": "logical",
@@ -249,13 +249,13 @@
         "rcode": "NXDOMAIN",
         "no_drop": true
       },
-      { "action": "evaluate", "server": "dns_alldns", "client_subnet": "223.160.169.210" },
+      { "action": "evaluate", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
       { "rule_set": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "tiktok_ip", "twitter_ip"], "action": "respond", "match_response": true },
-      { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct", "client_subnet": "223.160.169.210" },
-      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "223.160.169.210" },
-      { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" },
+      { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
       { "rule_set": ["ai_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "action": "route", "server": "dns_alldns", "client_subnet": "223.160.169.210" }
+      { "action": "route", "server": "dns_alldns", "client_subnet": "39.144.162.180" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
@@ -329,15 +329,15 @@
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Balance", "🇯🇵 JPN_Balance"] },
-    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "223.160.169.210" } },
+    { "tag": "🇨🇳 Direct", "type": "direct", "domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" } },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" } }
+    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "client_subnet": "39.144.162.180" } }
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_alldns", "strategy": "prefer_ipv4", "client_subnet": "223.160.169.210" },
+    "default_domain_resolver": { "server": "dns_alldns", "client_subnet": "39.144.162.180" },
     "rules": [
       { "ip_cidr": ["198.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
       {
