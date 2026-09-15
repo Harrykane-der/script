@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
+  "$schema": "https://ghfast.top/https://github.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
   "log": {
     "level": "error",
     "timestamp": true
