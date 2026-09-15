@@ -437,7 +437,7 @@
     ],
     "rule_set": [
       { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://ghfast.top/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
-      { "type": "remote", "tag": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "telegram_ip", "tiktok_ip", "Twitter_ip"], "format": "binary", "url": "https://ghfast.top/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
+      { "type": "remote", "tag": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "telegram_ip", "tiktok_ip", "twitter_ip"], "format": "binary", "url": "https://ghfast.top/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "default_domain_match_strategy": "prefer_fqdn",
     "auto_detect_interface": true,
