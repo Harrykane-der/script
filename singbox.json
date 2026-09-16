@@ -10,6 +10,12 @@
         "tag": "dns_hosts",
         "type": "hosts",
         "predefined": {
+          "dn-hk.appzhuanyong.com": ["47.238.246.141"],
+          "dn-jp.appzhuanyong.com": ["151.244.134.84"],
+          "hydrogen1693.com": ["82.40.35.132"],
+          "subprime7404.com": ["167.179.115.58"],
+          "tribunal2944.com": ["104.21.41.19"],
+          "doh.pub": ["1.12.12.12", "120.53.53.53", "2402:4e00::", "2402:4e00:1::"],
           "pz.fyi": ["106.54.11.55"],
           "cloudflare-dns.com": ["104.16.249.249", "104.16.248.249", "2606:4700::6810:f9f9", "2606:4700::6810:f8f9"],
           "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
@@ -53,16 +59,17 @@
         "server_port": 53
       },
       {
-        "tag": "dns_dnspod",
-        "type": "udp",
-        "server": "119.29.29.29",
-        "server_port": 53
-      },
-      {
         "tag": "dns_114dns",
         "type": "udp",
         "server": "114.114.114.114",
         "server_port": 53
+      },
+      {
+        "tag": "dns_dnspod",
+        "type": "https",
+        "server": "doh.pub",
+        "server_port": 443,
+        "domain_resolver": "dns_hosts"
       },
       {
         "tag": "dns_pz",
@@ -127,7 +134,12 @@
         "domain_resolver": "dns_local",
         "detour": "🧬 proxy_dns"
       },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "11.0.0.0/8", "inet6_range": "2001:2::/48" }
+      {
+        "tag": "dns_fakeip",
+        "type": "fakeip",
+        "inet4_range": "11.0.0.0/8",
+        "inet6_range": "2001:2::/48"
+      }
     ],
     "rules": [
       {
@@ -152,12 +164,11 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_local",
         "tag": "dns_evaluate_front_local",
-        "speculative": true,
         "client_subnet": "39.144.162.180"
       },
       {
@@ -165,12 +176,11 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_alidns",
         "tag": "dns_evaluate_front_alidns",
-        "speculative": true,
         "client_subnet": "39.144.162.180"
       },
       {
@@ -178,7 +188,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_dnspod",
@@ -191,7 +201,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_114dns",
@@ -204,7 +214,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_pz",
@@ -217,7 +227,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_opendns",
@@ -230,7 +240,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_nextdns",
@@ -243,7 +253,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_quad9",
@@ -256,7 +266,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_google",
@@ -269,7 +279,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_cloudflare",
@@ -282,7 +292,7 @@
         "mode": "or",
         "rules": [
           { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain", "direct_emby_domain", "fakeip-filter_domain", "proxy_emby_domain"] }
+          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
         "server": "dns_adguard",
@@ -339,9 +349,8 @@
       { "action": "respond", "match_response": "dns_evaluate_rear_adguard", "race": true },
       { "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
     ],
-    "optimistic": { "enabled": true, "timeout": "3d" },
+    "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "5s"
   },
@@ -349,22 +358,22 @@
     {
       "tag": "mixed-in",
       "type": "mixed",
-      "listen": "::",
+      "listen": "0.0.0.0",
       "listen_port": 9999
     },
     {
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
+      "address": ["198.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
       "dns_mode": "hijack",
-      "dns_address": ["172.18.0.2", "fdfe:dcba:9876::2"],
+      "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
       "udp_timeout": "5m",
-      "udp_mapping": "endpoint_independent",
-      "udp_filtering": "endpoint_independent",
+      "udp_mapping": "address_dependent",
+      "udp_filtering": "address_dependent",
       "udp_nat_max": 0
     }
   ],
@@ -438,7 +447,6 @@
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
-      { "action": "route-options", "udp_disable_domain_unmapping": true, "udp_connect": true },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       {
@@ -502,7 +510,7 @@
       "external_controller": "0.0.0.0:9090",
       "secret": "singbox",
       "external_ui": "zashboard",
-      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "default_mode": "Rule"
     },
     "cache_file": {
