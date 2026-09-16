@@ -299,11 +299,11 @@
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_alldns", "client_subnet": "39.144.162.180" } }
+    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" } }
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_alldns", "client_subnet": "39.144.162.180" },
+    "default_domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" },
     "rules": [
       { "ip_cidr": ["198.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
       {
