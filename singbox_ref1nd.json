@@ -195,12 +195,12 @@
         "rcode": "NXDOMAIN",
         "no_drop": true
       },
-      { "action": "evaluate", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "tiktok_ip", "twitter_ip"], "action": "respond", "match_response": true },
+      { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
       { "rule_set": ["direct_emby_domain"], "action": "route", "server": "dns_direct", "client_subnet": "39.144.162.180" },
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["fakeip-filter_domain"], "action": "route", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
       { "rule_set": ["ai_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "telegram_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
+      { "action": "evaluate", "server": "dns_alldns", "client_subnet": "39.144.162.180" },
+      { "action": "respond", "match_response": true },
       { "action": "route", "server": "dns_alldns", "client_subnet": "39.144.162.180" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
