@@ -376,7 +376,7 @@
       "path": "cache.db",
       "store_fakeip": true,
       "store_dns": true,
-      "buffer_size": "1MB"
+      "buffer_size": "20MB"
     }
   }
 }
