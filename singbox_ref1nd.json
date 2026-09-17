@@ -243,10 +243,10 @@
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
-      "udp_timeout": "5m",
-      "udp_mapping": "address_dependent",
-      "udp_filtering": "address_dependent",
-      "udp_nat_max": 0
+      "udp_timeout": "1m",
+      "udp_mapping": "endpoint_independent",
+      "udp_filtering": "endpoint_independent",
+      "udp_nat_max": 4096
     }
   ],
   "outbounds": [
@@ -393,7 +393,7 @@
       "path": "cache.db",
       "store_fakeip": true,
       "store_dns": true,
-      "buffer_size": "10MB"
+      "buffer_size": "5MB"
     }
   }
 }
