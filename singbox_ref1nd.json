@@ -45,14 +45,16 @@
         "type": "udp",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_hosts"
+        "domain_resolver": "dns_hosts",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_bbxy_3",
         "type": "https",
         "server": "dn-jp.appzhuanyong.com",
         "server_port": 443,
-        "domain_resolver": "dns_hosts"
+        "domain_resolver": "dns_hosts",
+        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_kuromi_1",
