@@ -67,7 +67,7 @@
         "server_port": 784,
         "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
-      }
+      },
       {
         "tag": "dns_fakeip",
         "type": "fakeip",
