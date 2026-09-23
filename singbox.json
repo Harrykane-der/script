@@ -20,6 +20,7 @@
           "cloudflare-dns.com": ["104.16.249.249", "104.16.248.249", "2606:4700::6810:f9f9", "2606:4700::6810:f8f9"],
           "dns.google": ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"],
           "unfiltered.adguard-dns.com": ["94.140.14.140", "94.140.14.141", "2a10:50c0::1:ff", "2a10:50c0::2:ff"],
+          "dns.kimmch6.dpdns.org": ["166.88.77.198", "2400:8d60:6::303d:bb00"],
           "mtalk.google.com": ["34.92.115.250", "2404:6800:4008:c07::bc"],
           "alt1-mtalk.google.com": ["2607:f8b0:4023:1c05::bc", "74.125.200.188"],
           "alt2-mtalk.google.com": ["192.178.220.188"],
@@ -38,14 +39,14 @@
         "type": "udp",
         "server": "dn-hk.appzhuanyong.com",
         "server_port": 1066,
-        "domain_resolver": "dns_local"
+        "domain_resolver": "dns_hosts"
       },
       {
         "tag": "dns_kuromi",
         "type": "https",
         "server": "hydrogen1693.com",
         "server_port": 44443,
-        "domain_resolver": "dns_local",
+        "domain_resolver": "dns_hosts",
         "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
       },
       {
@@ -53,87 +54,20 @@
         "type": "local"
       },
       {
-        "tag": "dns_alidns",
-        "type": "udp",
-        "server": "223.5.5.5",
-        "server_port": 53
-      },
-      {
-        "tag": "dns_114dns",
-        "type": "udp",
-        "server": "114.114.114.114",
-        "server_port": 53
-      },
-      {
-        "tag": "dns_dnspod",
-        "type": "https",
-        "server": "doh.pub",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts"
-      },
-      {
-        "tag": "dns_pz",
-        "type": "https",
-        "server": "pz.fyi",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts"
-      },
-      {
-        "tag": "dns_opendns",
-        "type": "udp",
-        "server": "208.67.220.220",
-        "server_port": 443
-      },
-      {
-        "tag": "dns_nextdns",
-        "type": "udp",
-        "server": "45.90.28.0",
-        "server_port": 5353
-      },
-      {
-        "tag": "dns_quad9",
-        "type": "udp",
-        "server": "149.112.112.112",
-        "server_port": 9953
-      },
-      {
-        "tag": "dns_google",
-        "type": "https",
-        "server": "dns.google",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts",
-        "detour": "🧬 proxy_dns"
-      },
-      {
-        "tag": "dns_cloudflare",
-        "type": "https",
-        "server": "cloudflare-dns.com",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts",
-        "detour": "🧬 proxy_dns"
-      },
-      {
-        "tag": "dns_adguard",
-        "type": "https",
-        "server": "unfiltered.adguard-dns.com",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts",
-        "detour": "🧬 proxy_dns"
-      },
-      {
         "tag": "dns_direct",
-        "type": "udp",
-        "server": "223.5.5.5",
-        "server_port": 53
+        "type": "quic",
+        "server": "pz.fyi",
+        "server_port": 853,
+        "domain_resolver": "dns_hosts"
       },
       {
         "tag": "dns_proxy",
-        "type": "https",
-        "server": "cloudflare-dns.com",
-        "server_port": 443,
-        "domain_resolver": "dns_local",
+        "type": "quic",
+        "server": "dns.kimmch6.dpdns.org",
+        "server_port": 784,
+        "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
-      },
+      }
       {
         "tag": "dns_fakeip",
         "type": "fakeip",
@@ -167,8 +101,8 @@
           { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
-        "server": "dns_local",
-        "tag": "dns_evaluate_front_local",
+        "server": "dns_direct",
+        "tag": "dns_evaluate_front_direct",
         "client_subnet": "39.144.162.180"
       },
       {
@@ -179,143 +113,17 @@
           { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
         ],
         "action": "evaluate",
-        "server": "dns_alidns",
-        "tag": "dns_evaluate_front_alidns",
+        "server": "dns_proxy",
+        "tag": "dns_evaluate_front_proxy",
         "client_subnet": "39.144.162.180"
       },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_dnspod",
-        "tag": "dns_evaluate_front_dnspod",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_114dns",
-        "tag": "dns_evaluate_front_114dns",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_pz",
-        "tag": "dns_evaluate_front_pz",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_opendns",
-        "tag": "dns_evaluate_front_opendns",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_nextdns",
-        "tag": "dns_evaluate_front_nextdns",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_quad9",
-        "tag": "dns_evaluate_front_quad9",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_google",
-        "tag": "dns_evaluate_front_google",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_cloudflare",
-        "tag": "dns_evaluate_front_cloudflare",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["direct_emby_domain", "fakeip-filter_domain", "game_domain", "google_fcm_domain", "proxy_emby_domain"] }
-        ],
-        "action": "evaluate",
-        "server": "dns_adguard",
-        "tag": "dns_evaluate_front_adguard",
-        "speculative": true,
-        "client_subnet": "39.144.162.180"
-      },
-      { "action": "respond", "match_response": "dns_evaluate_front_local", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_alidns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_dnspod", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_114dns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_pz", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_opendns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_nextdns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_quad9", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_google", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_cloudflare", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_adguard", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_direct", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_front_proxy", "race": true },
       {
         "type": "logical",
         "mode": "and",
         "rules": [
-          { "clash_mode": "Allowads", "invert": true },
+          { "clash_mode": "Allow", "invert": true },
           { "rule_set": ["whitelist_domain"], "invert": true },
           { "rule_set": ["ablock_domain", "adblock_domain"] }
         ],
@@ -324,29 +132,12 @@
         "rcode": "NXDOMAIN",
         "no_drop": true
       },
-      { "rule_set": ["ai_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "action": "evaluate", "server": "dns_local", "tag": "dns_evaluate_rear_local", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_alidns", "tag": "dns_evaluate_rear_alidns", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_dnspod", "tag": "dns_evaluate_rear_dnspod", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_114dns", "tag": "dns_evaluate_rear_114dns", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_pz", "tag": "dns_evaluate_rear_pz", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_opendns", "tag": "dns_evaluate_rear_opendns", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_nextdns", "tag": "dns_evaluate_rear_nextdns", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_quad9", "tag": "dns_evaluate_rear_quad9", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_google", "tag": "dns_evaluate_rear_google", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_cloudflare", "tag": "dns_evaluate_rear_cloudflare", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_adguard", "tag": "dns_evaluate_rear_adguard", "client_subnet": "39.144.162.180" },
-      { "action": "respond", "match_response": "dns_evaluate_rear_local", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_alidns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_dnspod", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_114dns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_pz", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_opendns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_nextdns", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_quad9", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_google", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_cloudflare", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_rear_adguard", "race": true },
+      { "rule_set": ["bilibili_domain", "tiktok_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
+      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_rear_direct", "client_subnet": "39.144.162.180" },
+      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_rear_proxy", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_proxy", "race": true },
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
@@ -371,10 +162,10 @@
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
-      "udp_timeout": "5m",
-      "udp_mapping": "address_dependent",
-      "udp_filtering": "address_dependent",
-      "udp_nat_max": 0
+      "udp_timeout": "1m",
+      "udp_mapping": "endpoint_independent",
+      "udp_filtering": "endpoint_independent",
+      "udp_nat_max": 4096
     }
   ],
   "outbounds": [
@@ -486,8 +277,8 @@
       { "rule_set": ["cn_lite_domain", "cn_ip", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://ghfast.top/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
-      { "type": "remote", "tag": ["bilibili_ip", "cn_ip", "google_ip", "media_ip", "telegram_ip", "tiktok_ip", "twitter_ip"], "format": "binary", "url": "https://ghfast.top/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip-filter_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "auto_detect_interface": true,
     "final": "🚀 Final"
@@ -510,7 +301,7 @@
       "external_controller": "0.0.0.0:9090",
       "secret": "singbox",
       "external_ui": "zashboard",
-      "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "default_mode": "Rule"
     },
     "cache_file": {
@@ -518,7 +309,7 @@
       "path": "cache.db",
       "store_fakeip": true,
       "store_dns": true,
-      "buffer_size": "20MB"
+      "buffer_size": "5MB"
     }
   }
 }
