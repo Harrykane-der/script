@@ -10,11 +10,6 @@
         "tag": "dns_hosts",
         "type": "hosts",
         "predefined": {
-          "dn-hk.appzhuanyong.com": ["47.238.246.141"],
-          "dn-jp.appzhuanyong.com": ["151.244.134.84"],
-          "hydrogen1693.com": ["82.40.35.132"],
-          "subprime7404.com": ["167.179.115.58"],
-          "tribunal2944.com": ["104.21.41.19"],
           "dns.alidns.com": ["223.5.5.5", "223.6.6.6", "2400:3200::1", "2400:3200:baba::1"],
           "dns.kimmch6.dpdns.org": ["166.88.77.198", "2400:8d60:0006:0000:0000:0000:303d:bb00"],
           "mtalk.google.com": ["34.92.115.250", "2404:6800:4008:c07::bc"],
@@ -29,54 +24,6 @@
           "dl.google.com": ["180.163.151.161"],
           "dl.l.google.com": ["180.163.150.33"]
         }
-      },
-      {
-        "tag": "dns_bbxy_1",
-        "type": "udp",
-        "server": "dn-hk.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_hosts"
-      },
-      {
-        "tag": "dns_bbxy_2",
-        "type": "udp",
-        "server": "dn-jp.appzhuanyong.com",
-        "server_port": 1066,
-        "domain_resolver": "dns_hosts",
-        "detour": "🧬 proxy_dns"
-      },
-      {
-        "tag": "dns_bbxy_3",
-        "type": "https",
-        "server": "dn-jp.appzhuanyong.com",
-        "server_port": 443,
-        "domain_resolver": "dns_hosts",
-        "detour": "🧬 proxy_dns"
-      },
-      {
-        "tag": "dns_kuromi_1",
-        "type": "https",
-        "server": "hydrogen1693.com",
-        "server_port": 44443,
-        "domain_resolver": "dns_hosts",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c"
-      },
-      {
-        "tag": "dns_kuromi_2",
-        "type": "https",
-        "server": "subprime7404.com",
-        "server_port": 44443,
-        "domain_resolver": "dns_hosts",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🧬 proxy_dns"
-      },
-      {
-        "tag": "dns_kuromi_3",
-        "type": "https",
-        "server": "tribunal2944.com",
-        "domain_resolver": "dns_hosts",
-        "path": "/dns-query/f1662f4f-39b9-4464-84cf-be0be022991c",
-        "detour": "🧬 proxy_dns"
       },
       {
         "tag": "dns_local",
@@ -97,9 +44,12 @@
         "domain_resolver": "dns_hosts",
         "detour": "🧬 proxy_dns"
       },
-      { "tag": "dns_bbxy", "type": "group", "servers": ["dns_bbxy_1", "dns_bbxy_2", "dns_bbxy_3"] },
-      { "tag": "dns_kuromi", "type": "group", "servers": ["dns_kuromi_1", "dns_kuromi_2", "dns_kuromi_3"] },
-      { "tag": "dns_fakeip", "type": "fakeip", "inet4_range": "11.0.0.0/8", "inet6_range": "2001:2::/48" }
+      {
+        "tag": "dns_fakeip",
+        "type": "fakeip",
+        "inet4_range": "11.0.0.0/8",
+        "inet6_range": "2001:2::/48"
+      }
     ],
     "rules": [
       {
@@ -143,8 +93,8 @@
         "tag": "dns_evaluate_front_proxy",
         "client_subnet": "39.144.162.180"
       },
-      { "action": "respond", "match_response": "dns_evaluate_front_direct", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_proxy", "race": true },
+      { "ip_accept_any": true, "action": "respond", "match_response": "dns_evaluate_front_direct", "race": true },
+      { "ip_accept_any": true, "action": "respond", "match_response": "dns_evaluate_front_proxy", "race": true },
       {
         "type": "logical",
         "mode": "and",
@@ -160,8 +110,8 @@
       },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_rear_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_rear_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_direct", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_proxy", "race": true },
+      { "ip_accept_any": true, "action": "respond", "match_response": "dns_evaluate_rear_direct", "race": true },
+      { "ip_accept_any": true, "action": "respond", "match_response": "dns_evaluate_rear_proxy", "race": true },
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
     ],
