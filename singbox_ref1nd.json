@@ -111,8 +111,8 @@
       { "rule_set": ["ai_domain", "bilibili_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "tiktok_domain", "twitter_domain"], "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_rear_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_rear_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_direct", "race": true },
-      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_rear_proxy", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_rear_direct", "race": true },
+      { "action": "respond", "match_response": "dns_evaluate_rear_proxy", "race": true },
       { "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
