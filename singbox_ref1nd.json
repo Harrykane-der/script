@@ -117,7 +117,7 @@
     "cache_capacity": 16192,
     "reverse_mapping": true,
     "final": "dns_proxy",
-    "timeout": "5s"
+    "timeout": "2s"
   },
   "inbounds": [
     {
@@ -140,7 +140,7 @@
       "udp_timeout": "1m",
       "udp_mapping": "endpoint_independent",
       "udp_filtering": "endpoint_independent",
-      "udp_nat_max": 0
+      "udp_nat_max": 0,
       "platform": {
         "http_proxy": {
           "enabled": true,
