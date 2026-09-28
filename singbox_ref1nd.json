@@ -117,7 +117,7 @@
     "cache_capacity": 16192,
     "reverse_mapping": true,
     "final": "dns_proxy",
-    "timeout": "2s"
+    "timeout": "5s"
   },
   "inbounds": [
     {
