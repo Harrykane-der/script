@@ -78,8 +78,7 @@
         ],
         "action": "evaluate",
         "server": "dns_direct",
-        "tag": "dns_evaluate_front_direct",
-        "client_subnet": "39.144.162.180"
+        "tag": "dns_evaluate_front_direct"
       },
       {
         "type": "logical",
@@ -90,11 +89,10 @@
         ],
         "action": "evaluate",
         "server": "dns_proxy",
-        "tag": "dns_evaluate_front_proxy",
-        "client_subnet": "39.144.162.180"
+        "tag": "dns_evaluate_front_proxy"
       },
-      { "action": "respond", "match_response": "dns_evaluate_front_direct", "race": true },
-      { "action": "respond", "match_response": "dns_evaluate_front_proxy", "race": true },
+      { "query_type": ["A", "AAAA"], "action": "respond", "match_response": "dns_evaluate_front_direct", "race": true },
+      { "query_type": ["A", "AAAA"], "action": "respond", "match_response": "dns_evaluate_front_proxy", "race": true },
       {
         "type": "logical",
         "mode": "and",
@@ -288,7 +286,7 @@
       "path": "cache.db",
       "store_fakeip": true,
       "store_dns": true,
-      "buffer_size": "5MB"
+      "buffer_size": "1MB"
     }
   }
 }
