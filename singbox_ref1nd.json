@@ -137,7 +137,7 @@
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
-      "udp_timeout": "2m",
+      "udp_timeout": "1m",
       "udp_mapping": "endpoint_independent",
       "udp_filtering": "endpoint_independent",
       "udp_nat_max": 0,
@@ -223,6 +223,8 @@
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
+      { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
+      { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       {
         "type": "logical",
         "mode": "or",
@@ -245,8 +247,6 @@
         "method": "default",
         "no_drop": true
       },
-      { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
-      { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
       { "rule_set": ["tiktok_domain"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain"], "action": "route", "outbound": "📺 BiliBili" },
