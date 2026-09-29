@@ -31,9 +31,10 @@
       },
       {
         "tag": "dns_direct",
-        "type": "quic",
-        "server": "dns.alidns.com",
-        "server_port": 853,
+        "type": "https",
+        "server": "9999.alidns.com",
+        "server_port": 443,
+        "path": "/resolve",
         "domain_resolver": "dns_hosts"
       },
       {
@@ -133,6 +134,7 @@
       "address": ["198.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
+      "multi_queue": true,
       "dns_mode": "hijack",
       "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
