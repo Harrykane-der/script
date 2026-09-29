@@ -244,7 +244,7 @@
       { "rule_set": ["media_domain"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_lite_domain", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" },
-      { "inbound": ["mixed-in"], "action": "resolve", "match_only": true },
+      { "inbound": ["mixed-in"], "action": "resolve" },
       { "rule_set": ["cn_ip"], "action": "route", "outbound": "🇨🇳 Direct" },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" }
     ],
