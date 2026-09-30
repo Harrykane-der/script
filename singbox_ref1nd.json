@@ -27,7 +27,8 @@
       },
       {
         "tag": "dns_local",
-        "type": "local"
+        "type": "local",
+        "prefer_go": true
       },
       {
         "tag": "dns_direct",
@@ -52,46 +53,15 @@
       }
     ],
     "rules": [
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "query_type": "AAAA" },
-          { "default_interface_address": "2000::/3", "invert": true }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
-      { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
-      { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
-      { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject", "rcode": "NOERROR" },
+      { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
+      { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
+      { "protocol": ["stun", "quic", "dtls"], "action": "reject" },
+      { "network": ["udp"], "port": [443], "action": "reject" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain"] }
-        ],
-        "action": "route",
-        "server": "dns_proxy"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "rule_set": ["whitelist_domain"], "invert": true },
-          { "rule_set": ["ablock_domain", "adblock_domain"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "rcode": "NXDOMAIN",
-        "no_drop": true
-      },
+      { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "server": "dns_proxy" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "rcode": "NXDOMAIN" },
       { "rule_set": ["direct_emby_domain", "fakeip_filter_cn_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["fakeip_filter_!cn_domain", "proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
       { "rule_set": ["ai_domain", "bilibili_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "tiktok_domain", "twitter_domain"], "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
@@ -105,7 +75,7 @@
     "cache_capacity": 16192,
     "reverse_mapping": true,
     "final": "dns_proxy",
-    "timeout": "5s"
+    "timeout": "2s"
   },
   "inbounds": [
     {
@@ -122,9 +92,7 @@
       "auto_route":true,
       "strict_route": true,
       "dns_mode": "hijack",
-      "dns_address": ["198.18.0.2", "fdfe:dcba:9876::2"],
       "endpoint_independent_nat": true,
-      "udp_timeout": "1m",
       "udp_mapping": "endpoint_independent",
       "udp_filtering": "endpoint_independent",
       "udp_nat_max": 0,
@@ -193,18 +161,8 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" },
     "rules": [
-      { "ip_cidr": ["198.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "ip_version": 6 },
-          { "default_interface_address": ["2000::/3"], "invert": true }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
+      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
+      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject", "method": "default", "no_drop": true },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
@@ -212,28 +170,8 @@
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
-      {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] },
-          { "rule_set": ["game_domain"] }
-        ],
-        "action": "route",
-        "outbound": "🎮 Game"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          { "clash_mode": "Allow", "invert": true },
-          { "rule_set": ["whitelist_domain"], "invert": true },
-          { "rule_set": ["ablock_domain", "adblock_domain"] }
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": true
-      },
+      { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "outbound": "🎮 Game" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
       { "rule_set": ["tiktok_domain"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain"], "action": "route", "outbound": "📺 BiliBili" },
