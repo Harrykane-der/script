@@ -161,7 +161,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" },
     "rules": [
-      {"type": "logical", "mode": "or", "rules": [{"port": 53}, {"protocol": "dns"}], "action": "hijack-dns"},
+      { "type": "logical", "mode": "or", "rules": [ { "port": 53 }, { "protocol": "dns" } ], "action": "hijack-dns" },
       { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject", "method": "default", "no_drop": true },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
