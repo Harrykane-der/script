@@ -42,7 +42,8 @@
         "type": "quic",
         "server": "dns.kimmch6.dpdns.org",
         "server_port": 784,
-        "domain_resolver": "dns_hosts"
+        "domain_resolver": "dns_hosts",
+        "detour": "🚀 Final"
       },
       {
         "tag": "dns_fakeip",
