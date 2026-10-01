@@ -73,7 +73,6 @@
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
-    "reverse_mapping": true,
     "final": "dns_proxy",
     "timeout": "2s"
   },
