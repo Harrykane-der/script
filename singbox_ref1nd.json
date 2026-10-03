@@ -150,7 +150,6 @@
     { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Balance", "🇯🇵 JPN_Balance"] },
     { "tag": "🇨🇳 Direct", "type": "direct" },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
