@@ -243,7 +243,6 @@
       "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "default_mode": "Rule"
     },
-    "urltest_unified_delay": true,
     "cache_file": {
       "enabled": true,
       "path": "cache.db",
