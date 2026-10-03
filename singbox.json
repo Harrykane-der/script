@@ -211,7 +211,7 @@
       { "rule_set": ["media_domain"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_lite_domain", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" },
-      { "inbound": ["mixed-in"], "action": "resolve", "match_only": true },
+      { "inbound": ["mixed-in"], "action": "resolve" },
       { "rule_set": ["cn_ip"], "action": "route", "outbound": "🇨🇳 Direct" },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" }
     ],
@@ -241,7 +241,6 @@
       "secret": "singbox",
       "external_ui": "zashboard",
       "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     },
     "urltest_unified_delay": true,
