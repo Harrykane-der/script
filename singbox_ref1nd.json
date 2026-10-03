@@ -53,9 +53,9 @@
       }
     ],
     "rules": [
+      { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
       { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
-      { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject" },
       { "network": ["udp"], "port": [443], "action": "reject" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
@@ -67,8 +67,8 @@
       { "rule_set": ["ai_domain", "bilibili_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "pixiv_domain", "tiktok_domain", "twitter_domain"], "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_direct", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_direct", "match_response": "dns_evaluate_proxy", "race": true },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_proxy", "race": true },
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "route", "server": "dns_proxy" }
     ],
@@ -150,6 +150,7 @@
     { "type": "selector", "tag": "⚓ HKG_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ JPN_Front", "outbounds": ["🇨🇳 Direct"] },
     { "type": "selector", "tag": "⚓ DEU_Front", "outbounds": ["🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🧬 proxy_dns", "outbounds": ["🇭🇰 HKG_Balance", "🇯🇵 JPN_Balance"] },
     { "tag": "🇨🇳 Direct", "type": "direct" },
     { "tag": "⛔ REJECT", "type": "block" }
   ],
@@ -161,7 +162,7 @@
     "default_domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" },
     "rules": [
       { "type": "logical", "mode": "or", "rules": [ { "port": 53 }, { "protocol": "dns" } ], "action": "hijack-dns" },
-      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject", "method": "default", "no_drop": true },
+      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject" },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject", "method": "default", "no_drop": true },
       { "network": ["udp"], "port": [443], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
