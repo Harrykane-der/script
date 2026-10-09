@@ -26,9 +26,40 @@
         }
       },
       {
-        "tag": "dns_local",
-        "type": "local",
-        "prefer_go": true
+        "tag": "dns_local_1",
+        "type": "udp",
+        "server": "211.138.180.2",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_local_2",
+        "type": "udp",
+        "server": "211.138.180.3",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_local_3",
+        "type": "udp",
+        "server": "61.132.163.68",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_local_4",
+        "type": "udp",
+        "server": "202.102.213.68",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_local_5",
+        "type": "udp",
+        "server": "218.104.78.2",
+        "server_port": 53
+      },
+      {
+        "tag": "dns_local_6",
+        "type": "udp",
+        "server": "218.104.78.3",
+        "server_port": 53
       },
       {
         "tag": "dns_direct",
@@ -44,6 +75,11 @@
         "server_port": 784,
         "domain_resolver": "dns_hosts",
         "detour": "🚀 Final"
+      },
+      {
+        "type": "group",
+        "tag": "dns-group",
+        "servers": ["dns_local_1", "dns_local_2", "dns_local_3", "dns_local_4", "dns_local_5", "dns_local_6"]
       },
       {
         "tag": "dns_fakeip",
@@ -71,8 +107,8 @@
       { "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
-    "strategy": "prefer_ipv6",
     "cache_capacity": 16192,
+    "strategy": "prefer_ipv6",
     "final": "dns_proxy",
     "timeout": "2s"
   },
