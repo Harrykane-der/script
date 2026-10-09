@@ -77,8 +77,8 @@
         "detour": "🚀 Final"
       },
       {
+        "tag": "dns_local",
         "type": "group",
-        "tag": "dns-group",
         "servers": ["dns_local_1", "dns_local_2", "dns_local_3", "dns_local_4", "dns_local_5", "dns_local_6"]
       },
       {
@@ -233,7 +233,7 @@
   "services": [
     {
       "type": "api",
-      "listen": "::",
+      "listen": "127.0.0.1",
       "listen_port": 9091,
       "secret": "singbox",
       "dashboard": {
