@@ -98,7 +98,6 @@
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "rcode": "NXDOMAIN" },
       { "rule_set": ["direct_emby_domain", "fakeip_filter_cn_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["fakeip_filter_!cn_domain", "proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
-      { "rule_set": ["bilibili_domain", "tiktok_domain"], "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "race": true },
@@ -108,7 +107,7 @@
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 16192,
-    "strategy": "prefer_ipv6",
+    "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "2s"
   },
@@ -123,14 +122,11 @@
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["198.18.0.1/30", "fdfe:dcba:9876::1/126"],
+      "address": ["198.18.0.1/24", "fdfe:dcba:9876::1/64"],
       "auto_route":true,
       "strict_route": true,
       "dns_mode": "hijack",
       "endpoint_independent_nat": true,
-      "udp_mapping": "endpoint_independent",
-      "udp_filtering": "endpoint_independent",
-      "udp_nat_max": 0,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -189,11 +185,11 @@
     { "tag": "⛔ REJECT", "type": "block" }
   ],
   "http_clients": [
-    { "tag": "download_remote", "version": 2, "domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" } }
+    { "tag": "download_remote", "version": 2, "domain_resolver": "dns_direct" }
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": { "server": "dns_direct", "client_subnet": "39.144.162.180" },
+    "default_domain_resolver": "dns_direct",
     "rules": [
       { "port": 53, "action": "hijack-dns" },
       { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject" },
