@@ -106,7 +106,7 @@
       { "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
-    "cache_capacity": 16192,
+    "cache_capacity": 4096,
     "strategy": "prefer_ipv4",
     "final": "dns_proxy",
     "timeout": "2s"
