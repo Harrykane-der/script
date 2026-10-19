@@ -163,7 +163,6 @@
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy_emby" },
       { "rule_set": ["media_domain"], "action": "route", "server": "dns_proxy_media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "server": "dns_proxy_google" },
-      { "rule_set": ["fakeip_filter_!cn_domain"], "action": "route", "server": "dns_proxy" },
       { "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
