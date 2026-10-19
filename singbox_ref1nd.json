@@ -1,5 +1,5 @@
 {
-  "$schema": "https://gh-proxy.org/https://github.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
+  "$schema": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
   "log": {
     "level": "error",
     "timestamp": true
@@ -220,8 +220,8 @@
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip_filter_!cn_domain", "fakeip_filter_cn_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
-      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip_filter_!cn_domain", "fakeip_filter_cn_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "auto_detect_interface": true,
     "final": "🚀 Final"
@@ -244,7 +244,7 @@
       "external_controller": "127.0.0.1:9090",
       "secret": "singbox",
       "external_ui": "zashboard",
-      "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     },
