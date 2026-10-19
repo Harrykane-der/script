@@ -166,7 +166,6 @@
       { "action": "route", "server": "dns_proxy" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
-    "reverse_mapping": true,
     "cache_capacity": 4096,
     "final": "dns_proxy"
   },
