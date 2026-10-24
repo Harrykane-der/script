@@ -285,7 +285,7 @@
     "rules": [
       { "port": 53, "action": "hijack-dns" },
       { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject" },
-      { "network": "icmp", "action": "resolve" },
+      { "network": "icmp", "action": "resolve", "match_only": true },
       { "network": "icmp", "action": "route", "outbound": "direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "protocol": "dns", "action": "hijack-dns" },
