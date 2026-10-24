@@ -141,7 +141,7 @@
         "inet6_range": "2001:2::/48"
       }
     ],
-    "rules": [
+"rules": [
       { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
       { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "predefined", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
@@ -152,10 +152,6 @@
       { "rule_set": ["tiktok_domain"], "action": "route", "server": "dns_proxy_tiktok" },
       { "rule_set": ["bilibili_domain"], "action": "route", "server": "dns_proxy_bilibili" },
       { "rule_set": ["direct_emby_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
-      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
-      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "race": true },
       { "rule_set": ["ai_domain"], "action": "route", "server": "dns_proxy_ai" },
       { "rule_set": ["github_domain"], "action": "route", "server": "dns_proxy_github" },
       { "rule_set": ["pixiv_domain"], "action": "route", "server": "dns_proxy_pixiv" },
@@ -163,7 +159,11 @@
       { "rule_set": ["proxy_emby_domain"], "action": "route", "server": "dns_proxy_emby" },
       { "rule_set": ["media_domain"], "action": "route", "server": "dns_proxy_media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "server": "dns_proxy_google" },
-      { "action": "route", "server": "dns_proxy" }
+      { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
+      { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "race": true },
+      { "action": "route", "server": "dns_proxy", "client_subnet": "39.144.162.180" }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
     "cache_capacity": 4096,
@@ -249,8 +249,12 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_direct",
     "rules": [
+      { "port": 53, "action": "hijack-dns" },
       { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject" },
+      { "network": "icmp", "action": "resolve" },
+      { "network": "icmp", "action": "route", "outbound": "direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
+      { "protocol": "dns", "action": "hijack-dns" },
       { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
@@ -258,7 +262,7 @@
       { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "outbound": "🎮 Game" },
       { "protocol": ["stun", "quic", "dtls"], "action": "reject" },
       { "network": ["udp"], "port": [443], "action": "reject" },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "method": "default", "no_drop": true },
       { "rule_set": ["ai_domain"], "action": "route", "outbound": "🤖 AI" },
       { "rule_set": ["tiktok_domain"], "action": "route", "outbound": "♫ TikTok" },
       { "rule_set": ["bilibili_domain"], "action": "route", "outbound": "📺 BiliBili" },
@@ -269,13 +273,13 @@
       { "rule_set": ["media_domain"], "action": "route", "outbound": "📽️ Media" },
       { "rule_set": ["google_domain", "google_cn_domain"], "action": "route", "outbound": "🌐 Google" },
       { "rule_set": ["cn_lite_domain", "direct_emby_domain"], "action": "route", "outbound": "🇨🇳 Direct" },
-      { "inbound": ["mixed-in"], "action": "resolve" },
+      { "inbound": ["mixed-in"], "action": "resolve", "match_only": true },
       { "rule_set": ["cn_ip"], "action": "route", "outbound": "🇨🇳 Direct" },
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" },
-      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" },
+      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "1h" }
     ],
     "auto_detect_interface": true,
     "final": "🚀 Final"
