@@ -66,7 +66,6 @@
       { "type": "logical", "mode": "and", "rules": [ { "query_type": "AAAA" }, { "default_interface_address": "2000::/3", "invert": true } ], "action": "reject" },
       { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "predefined", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
-      { "preferred_by": "dns_local", "action": "route", "server": "dns_local" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
       { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "server": "dns_proxy_game" },
