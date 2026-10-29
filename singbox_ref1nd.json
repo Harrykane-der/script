@@ -94,7 +94,7 @@
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
-      { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "server": "dns_proxy" },
+      { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "server": "dns_fakeip" },
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "predefined", "rcode": "NOERROR" },
       { "rule_set": ["direct_emby_domain", "fakeip_filter_cn_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["fakeip_filter_!cn_domain", "proxy_emby_domain"], "action": "route", "server": "dns_proxy" },
