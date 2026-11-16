@@ -642,12 +642,12 @@ rule-providers:
     <<: *domainmrs
     url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ablock_domain.mrs
     path: ./ruleset/ablock_domain.mrs
-    path-in-bundle: geo/geosite/category-ads.mrs
+    path-in-bundle: geo/​geosite/​category-ads.mrs
   adblock_domain:
     <<: *domainmrs
     url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/adblock_domain.mrs
     path: ./ruleset/adblock_domain.mrs
-    path-in-bundle: geo/geosite/category-ads-all.mrs
+    path-in-bundle: geo/​geosite/​category-ads-all.mrs
   ai_domain:
     <<: *domainmrs
     url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ai_domain.mrs
