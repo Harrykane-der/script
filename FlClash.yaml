@@ -1,0 +1,816 @@
+# ==================== 基础与扩展配置 ====================
+allow-lan: true
+ipv6: true
+unified-delay: true
+tcp-concurrent: true
+keep-alive-idle: 600
+keep-alive-interval: 60
+disable-keep-alive: false
+find-process-mode: always
+external-controller: 127.0.0.1:9090
+external-ui: /data/user/0/com.appshub.bettbox/files/ui
+external-ui-url: https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+secret: bettbox
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# ==================== TUN 配置 ====================
+tun:
+  enable: true
+  stack: mips
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - any:853
+  device: Bettbox
+  mtu: 9000
+  strict-route: true
+  inet6-address:
+    - fdfe:dcba:9876::1/126
+  iproute2-table-index: 2022
+  iproute2-rule-index: 9000
+  endpoint-independent-nat: true
+
+# ==================== 全局 Hosts ====================
+hosts:
+  dns.kimmch6.dpdns.org:
+    - 166.88.77.198
+    - 2400:8d60:6::303d:bb00
+  dns.alidns.com:
+    - 223.5.5.5
+    - 223.6.6.6
+    - 2400:3200::1
+    - 2400:3200:baba::1
+  dns.google:
+    - 8.8.8.8
+    - 8.8.4.4
+    - 2001:4860:4860::8888
+    - 2001:4860:4860::8844
+  service.googleapis.cn:
+    - service.googleapis.com
+  services.googleapis.cn:
+    - services.googleapis.com
+  google.cn:
+    - google.com
+  cn.bing.com:
+    - global.bing.com
+  mtalk.google.com:
+    - 34.92.115.250
+    - 173.194.206.188
+    - 2607:f8b0:4023:1004::bc
+    - 2404:6800:4008:c07::bc
+  alt1-mtalk.google.com:
+    - 2607:f8b0:4023:1c05::bc
+    - 74.125.200.188
+  alt2-mtalk.google.com:
+    - 192.178.220.188
+  alt3-mtalk.google.com:
+    - 2607:f8b0:4023:2009::bc
+    - 74.125.131.188
+  alt4-mtalk.google.com:
+    - 209.85.144.188
+  alt5-mtalk.google.com:
+    - 74.125.126.188
+    - 2607:f8b0:4003:c0a::bc
+  alt6-mtalk.google.com:
+    - 142.250.115.188
+  alt7-mtalk.google.com:
+    - 2607:f8b0:4024:c0d::bc
+    - 192.178.131.188
+  alt8-mtalk.google.com:
+    - 172.253.132.188
+  dl.google.com:
+    - 180.163.151.161
+  dl.l.google.com:
+    - 180.163.150.33
+
+# ==================== Sniffer 配置 ====================
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      override-destination: true
+    TLS:
+      override-destination: false
+    QUIC:
+      override-destination: false
+  skip-domain:
+    - rule-set:telegram_domain
+  skip-dst-address:
+    - rule-set:telegram_ip
+  skip-src-address:
+    - rule-set:telegram_ip
+
+# ==================== DNS 配置 ====================
+dns:
+  enable: true
+  ipv6: true
+  ipv6-timeout: 500
+  use-hosts: true
+  use-system-hosts: false
+  prefer-h3: false
+  respect-rules: false
+  listen: 127.0.0.1:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/15
+  fake-ip-range6: 2001:2::/48
+  fake-ip-ttl: 1
+  fake-ip-filter-mode: rule
+  fake-ip-filter:
+    - RULE-SET,game_domain,real-ip
+    - RULE-SET,fakeip-filter_cn_domain,real-ip
+    - RULE-SET,fakeip-filter_!cn_domain,real-ip
+    - RULE-SET,bilibili_domain,fake-ip
+    - RULE-SET,tiktok_domain,fake-ip
+    - RULE-SET,cn_lite_domain,real-ip
+    - RULE-SET,direct_emby_domain,real-ip
+    - MATCH,fake-ip
+  default-nameserver:
+    - quic://106.54.11.55:853
+    - tls://120.53.53.53:853
+    - quic://223.5.5.5:853
+  nameserver:
+    - quic://dns.kimmch6.dpdns.org:784#Proxy
+    - https://dns.google/dns-query#Proxy
+  nameserver-policy:
+    "rule-set:game_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Games
+      - https://dns.google/dns-query#Games
+
+    "rule-set:google_fcm_domain":
+      - quic://dns.kimmch6.dpdns.org:784#FCM
+      - https://dns.google/dns-query#FCM
+
+    "rule-set:telegram_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Telegram
+      - https://dns.google/dns-query#Telegram
+
+    "rule-set:adblock_domain":
+      - rcode://success
+
+    "rule-set:bilibili_domain":
+      - quic://dns.alidns.com:853#BiliBili
+      - system
+
+    "rule-set:tiktok_domain":
+      - quic://dns.kimmch6.dpdns.org:784#TikTok
+      - https://dns.google/dns-query#TikTok
+
+    "rule-set:ai_domain":
+      - quic://dns.kimmch6.dpdns.org:784#AI
+      - https://dns.google/dns-query#AI
+
+    "rule-set:pixiv_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Pixiv
+      - https://dns.google/dns-query#Pixiv
+
+    "rule-set:media_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Media
+      - https://dns.google/dns-query#Media
+
+    "rule-set:proxy_emby_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Emby
+      - https://dns.google/dns-query#Emby
+
+    "rule-set:direct_emby_domain":
+      - quic://dns.alidns.com:853#Direct
+      - system
+
+    "rule-set:github_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Github
+      - https://dns.google/dns-query#Github
+
+    "rule-set:google_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Google
+      - https://dns.google/dns-query#Google
+
+    "rule-set:google_cn_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Google
+      - https://dns.google/dns-query#Google
+
+    "rule-set:cn_domain":
+      - quic://dns.alidns.com:853#Direct
+      - system
+
+    "rule-set:cn_lite_domain":
+      - quic://dns.alidns.com:853#Direct
+      - system
+
+    "rule-set:fakeip-filter_cn_domain":
+      - quic://dns.alidns.com:853#Direct
+      - system
+
+    "rule-set:fakeip-filter_!cn_domain":
+      - quic://dns.kimmch6.dpdns.org:784#Proxy
+      - https://dns.google/dns-query#Proxy
+
+  direct-nameserver-follow-policy: true
+  direct-nameserver:
+    - quic://dns.alidns.com:853#Direct
+    - system
+  proxy-server-nameserver:
+    - quic://dns.alidns.com:853#Direct
+    - system
+
+# ==================== 基础节点 ====================
+proxies:
+  - name: 🇨🇳 直连 | 双栈
+    type: direct
+    udp: true
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+  - name: 🇨🇳 直连 | IPv4优先
+    type: direct
+    udp: true
+    ip-version: ipv4-prefer
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+  - name: 🇨🇳 直连 | IPv6优先
+    type: direct
+    udp: true
+    ip-version: ipv6-prefer
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+  - name: dns_hijack
+    type: dns
+
+# ==================== 策略组 ====================
+fallback: &fallback {type: url-test, url: 'https://g.cn/generate_204', interval: 180, lazy: true}
+select: &select {type: select, url: 'https://g.cn/generate_204', interval: 360, lazy: true}
+url-test: &urltest {type: url-test, url: 'https://g.cn/generate_204', interval: 360, lazy: true}
+proxy-groups:
+  - name: Proxy
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Proxy.svg
+
+  - name: Games
+    type: select
+    default-selected: Game
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+
+  - name: Telegram
+    type: select
+    default-selected: SGP
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Telegram.svg
+
+  - name: Google
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/Google.svg
+
+  - name: BiliBili
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Bilibili.svg
+
+  - name: AI
+    type: select
+    default-selected: JPN
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/ChatGPT.svg
+
+  - name: Pixiv
+    type: select
+    default-selected: JPN
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Pixiv.svg
+
+  - name: TikTok
+    type: select
+    default-selected: DEU
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/TikTok.svg
+
+  - name: Twitter
+    type: select
+    default-selected: DEU
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Twitter.svg
+
+  - name: FCM
+    type: select
+    default-selected: Direct
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/FCM.svg
+
+  - name: Github
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/GitHub.svg
+
+  - name: Emby
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Emby.svg
+
+  - name: Media
+    type: select
+    default-selected: HKG
+    proxies: 
+      - HKG
+      - JPN
+      - SGP
+      - USA
+      - DEU
+      - OTN
+      - Game
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Media.svg
+
+  - name: BANAD
+    type: select
+    default-selected: REJECT
+    proxies: 
+      - REJECT
+      - REJECT-DROP
+      - PASS
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/AdBlock.svg
+
+# ==================== 地区策略组 ====================
+  - name: Game
+    <<: *fallback
+    proxies: 
+      - Game_Node
+      - Game_Pick
+      - Game_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+
+  - name: HKG
+    <<: *fallback
+    proxies: 
+      - HKG_Node
+      - HKG_Pick
+      - HKG_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+
+  - name: JPN
+    <<: *fallback
+    proxies: 
+      - JPN_Node
+      - JPN_Pick
+      - JPN_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+
+  - name: SGP
+    <<: *fallback
+    proxies: 
+      - SGP_Pick
+      - SGP_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+
+  - name: USA
+    <<: *fallback
+    proxies: 
+      - USA_Pick
+      - USA_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+
+  - name: DEU
+    <<: *fallback
+    proxies: 
+      - DEU_Node
+      - DEU_Pick
+      - DEU_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+
+  - name: OTN
+    <<: *fallback
+    proxies: 
+      - OTN_Pick
+      - OTN_Auto
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+
+
+  # ==================== 地区节点筛选组 ====================
+  - name: Game_Node
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+
+  - name: HKG_Node
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+
+  - name: JPN_Node
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+
+  - name: DEU_Node
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+ 
+  # ==================== 手动选择组 ====================
+  - name: Game_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+
+  - name: HKG_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+
+  - name: JPN_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+
+  - name: SGP_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+
+  - name: USA_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+
+  - name: DEU_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+
+  - name: OTN_Pick
+    <<: *select
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+
+
+  # ==================== 自动测速组 ====================
+  - name: Game_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+
+  - name: HKG_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+
+  - name: JPN_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+
+  - name: SGP_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+
+  - name: USA_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+
+  - name: DEU_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+
+  - name: OTN_Auto
+    <<: *urltest
+    hidden: true
+    proxies:
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+
+
+  # ==================== 前置策略组 ====================
+  - name: Game_HKG_Front
+    <<: *select
+    proxies:
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+
+  - name: Game_JPN_Front
+    <<: *select
+    proxies:
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+
+  - name: HKG_Front
+    <<: *select
+    proxies:
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+
+  - name: JPN_Front
+    <<: *select
+    proxies:
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+
+  - name: DEU_Front
+    <<: *select
+    proxies:
+      - Direct
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+
+
+  # ==================== 直连组 ====================
+  - name: Direct
+    type: select
+    default-selected: 直连 | 双栈
+    proxies:
+      - 🇨🇳 直连 | 双栈
+      - 🇨🇳 直连 | IPv4优先
+      - 🇨🇳 直连 | IPv6优先
+    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+
+
+# ==================== Rule Providers ====================
+rule-anchor:
+  ipmrs: &ipmrs {type: http, interval: 21600, behavior: ipcidr, format: mrs, proxy: Direct}
+  domainmrs: &domainmrs {type: http, interval: 21600, behavior: domain, format: mrs, proxy: Direct}
+rule-providers:
+  ablock_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ablock_domain.mrs
+    path: ./ruleset/ablock_domain.mrs
+  adblock_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/adblock_domain.mrs
+    path: ./ruleset/adblock_domain.mrs
+  ai_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ai_domain.mrs
+    path: ./ruleset/ai_domain.mrs
+
+  bilibili_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_domain.mrs
+    path: ./ruleset/bilibili_domain.mrs
+
+  bilibili_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_ip.mrs
+    path: ./ruleset/bilibili_ip.mrs
+
+  cn_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_domain.mrs
+    path: ./ruleset/cn_domain.mrs
+
+  cn_lite_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_lite_domain.mrs
+    path: ./ruleset/cn_lite_domain.mrs
+
+  cn_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_ip.mrs
+    path: ./ruleset/cn_ip.mrs
+
+  direct_emby_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/direct_emby_domain.mrs
+    path: ./ruleset/direct_emby_domain.mrs
+
+  fakeip-filter_cn_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_cn_domain.mrs
+    path: ./ruleset/fakeip_filter_cn_domain.mrs
+
+  fakeip-filter_!cn_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_!cn_domain.mrs
+    path: ./ruleset/fakeip_filter_!cn_domain.mrs
+
+  game_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/game_domain.mrs
+    path: ./ruleset/game_domain.mrs
+
+  github_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/github_domain.mrs
+    path: ./ruleset/github_domain.mrs
+
+  google_cn_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_cn_domain.mrs
+    path: ./ruleset/google_cn_domain.mrs
+
+  google_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_domain.mrs
+    path: ./ruleset/google_domain.mrs
+
+  google_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_ip.mrs
+    path: ./ruleset/google_ip.mrs
+
+  google_fcm_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_fcm_domain.mrs
+    path: ./ruleset/google_fcm_domain.mrs
+
+  media_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_domain.mrs
+    path: ./ruleset/media_domain.mrs
+
+  media_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_ip.mrs
+    path: ./ruleset/media_ip.mrs
+
+  pixiv_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/pixiv_domain.mrs
+    path: ./ruleset/pixiv_domain.mrs
+
+  proxy_emby_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/proxy_emby_domain.mrs
+    path: ./ruleset/proxy_emby_domain.mrs
+
+  tiktok_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_domain.mrs
+    path: ./ruleset/tiktok_domain.mrs
+
+  tiktok_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_ip.mrs
+    path: ./ruleset/tiktok_ip.mrs
+
+  telegram_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs
+    path: ./ruleset/telegram_domain.mrs
+
+  telegram_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs
+    path: ./ruleset/telegram_ip.mrs
+
+  twitter_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/twitter.mrs
+    path: ./ruleset/twitter_domain.mrs
+
+  twitter_ip:
+    <<: *ipmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/twitter_ip.mrs
+    path: ./ruleset/twitter_ip.mrs
+
+  whitelist_domain:
+    <<: *domainmrs
+    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/whitelist_domain.mrs
+    path: ./ruleset/whitelist_domain.mrs
+
+# ==================== 路由规则 ====================
+rules:
+  - DST-PORT,53/853,dns_hijack
+  - PROCESS-NAME,jp.konami.pesam,Games
+  - RULE-SET,game_domain,Games
+  - SUB-RULE,(AND,((NETWORK,UDP),(DST-PORT,443))),QUIC
+  - DST-PORT,3478-3481/5349/10000/19302-19309,BANAD
+  - RULE-SET,google_fcm_domain,FCM
+  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,telegram_ip,Telegram,no-resolve
+  - SUB-RULE,(OR,((RULE-SET,adblock_domain),(RULE-SET,ablock_domain))),ADS
+  - RULE-SET,bilibili_ip,BiliBili
+  - RULE-SET,bilibili_domain,BiliBili
+  - RULE-SET,tiktok_ip,TikTok
+  - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,twitter_ip,Google
+  - RULE-SET,twitter_domain,Twitter
+  - RULE-SET,media_ip,Media
+  - RULE-SET,media_domain,Media
+  - RULE-SET,ai_domain,AI
+  - RULE-SET,pixiv_domain,Pixiv
+  - RULE-SET,proxy_emby_domain,Emby
+  - RULE-SET,direct_emby_domain,Direct
+  - RULE-SET,github_domain,Github
+  - RULE-SET,google_ip,Google
+  - RULE-SET,google_domain,Google
+  - RULE-SET,google_cn_domain,Google
+  - RULE-SET,cn_ip,Direct
+  - RULE-SET,cn_lite_domain,Direct
+  - MATCH,Proxy
+sub-rules:
+  QUIC:
+    - RULE-SET,cn_lite_domain,PASS
+    - RULE-SET,cn_ip,PASS
+    - MATCH,BANAD
+  ADS:
+    - RULE-SET,whitelist_domain,PASS
+    - MATCH,BANAD
