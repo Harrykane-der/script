@@ -9,7 +9,7 @@ disable-keep-alive: false
 find-process-mode: always
 external-controller: 127.0.0.1:9090
 external-ui: /data/user/0/com.appshub.bettbox/files/ui
-external-ui-url: https://cdn.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-url: https://v6.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 secret: bettbox
 profile:
   store-selected: true
@@ -231,17 +231,17 @@ proxies:
   - name: 🇨🇳 直连 | 双栈
     type: direct
     udp: true
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
   - name: 🇨🇳 直连 | IPv4优先
     type: direct
     udp: true
     ip-version: ipv4-prefer
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
   - name: 🇨🇳 直连 | IPv6优先
     type: direct
     udp: true
     ip-version: ipv6-prefer
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
   - name: dns_hijack
     type: dns
 
@@ -262,7 +262,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Proxy.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Proxy.svg
 
   - name: Games
     type: select
@@ -276,7 +276,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
 
   - name: Telegram
     type: select
@@ -290,7 +290,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Telegram.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Telegram.svg
 
   - name: Google
     type: select
@@ -304,7 +304,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/Google.svg
+    icon: https://v6.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/Google.svg
 
   - name: BiliBili
     type: select
@@ -318,7 +318,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Bilibili.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Bilibili.svg
 
   - name: AI
     type: select
@@ -332,7 +332,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/ChatGPT.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/ChatGPT.svg
 
   - name: Pixiv
     type: select
@@ -346,7 +346,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Pixiv.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Pixiv.svg
 
   - name: TikTok
     type: select
@@ -360,7 +360,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/TikTok.svg
+    icon: https://v6.gh-proxy.org/https://github.com/AIsouler/MyClash/raw/refs/heads/main/Icons/svg/TikTok.svg
 
   - name: Twitter
     type: select
@@ -374,7 +374,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Twitter.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Twitter.svg
 
   - name: FCM
     type: select
@@ -388,7 +388,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/FCM.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/FCM.svg
 
   - name: Github
     type: select
@@ -402,7 +402,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/GitHub.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/GitHub.svg
 
   - name: Emby
     type: select
@@ -416,7 +416,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Emby.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Emby.svg
 
   - name: Media
     type: select
@@ -430,7 +430,7 @@ proxy-groups:
       - OTN
       - Game
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Media.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Media.svg
 
   - name: BANAD
     type: select
@@ -439,7 +439,7 @@ proxy-groups:
       - REJECT
       - REJECT-DROP
       - PASS
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/AdBlock.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/AdBlock.svg
 
 # ==================== 地区策略组 ====================
   - name: Game
@@ -448,7 +448,7 @@ proxy-groups:
       - Game_Node
       - Game_Pick
       - Game_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
 
   - name: HKG
     <<: *fallback
@@ -456,7 +456,7 @@ proxy-groups:
       - HKG_Node
       - HKG_Pick
       - HKG_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
 
   - name: JPN
     <<: *fallback
@@ -464,21 +464,21 @@ proxy-groups:
       - JPN_Node
       - JPN_Pick
       - JPN_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
 
   - name: SGP
     <<: *fallback
     proxies: 
       - SGP_Pick
       - SGP_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
 
   - name: USA
     <<: *fallback
     proxies: 
       - USA_Pick
       - USA_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
 
   - name: DEU
     <<: *fallback
@@ -486,72 +486,72 @@ proxy-groups:
       - DEU_Node
       - DEU_Pick
       - DEU_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
 
   - name: OTN
     <<: *fallback
     proxies: 
       - OTN_Pick
       - OTN_Auto
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
 
 
   # ==================== 地区节点筛选组 ====================
   - name: Game_Node
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
 
   - name: HKG_Node
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
 
   - name: JPN_Node
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
 
   - name: DEU_Node
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
  
   # ==================== 手动选择组 ====================
   - name: Game_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
 
   - name: HKG_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
 
   - name: JPN_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
 
   - name: SGP_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
 
   - name: USA_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
 
   - name: DEU_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
 
   - name: OTN_Pick
     <<: *select
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
 
 
   # ==================== 自动测速组 ====================
@@ -559,43 +559,43 @@ proxy-groups:
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/Game.svg
 
   - name: HKG_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Hong_Kong.svg
 
   - name: JPN_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Japan.svg
 
   - name: SGP_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Singapore.svg
 
   - name: USA_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_States.svg
 
   - name: DEU_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/Germany.svg
 
   - name: OTN_Auto
     <<: *urltest
     hidden: true
     proxies:
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/United_Nations.svg
 
 
   # ==================== 前置策略组 ====================
@@ -603,31 +603,31 @@ proxy-groups:
     <<: *select
     proxies:
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
 
   - name: Game_JPN_Front
     <<: *select
     proxies:
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
 
   - name: HKG_Front
     <<: *select
     proxies:
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
 
   - name: JPN_Front
     <<: *select
     proxies:
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
 
   - name: DEU_Front
     <<: *select
     proxies:
       - Direct
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/common/WebRTC.svg
 
 
   # ==================== 直连组 ====================
@@ -638,7 +638,7 @@ proxy-groups:
       - 🇨🇳 直连 | 双栈
       - 🇨🇳 直连 | IPv4优先
       - 🇨🇳 直连 | IPv6优先
-    icon: https://cdn.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
+    icon: https://v6.gh-proxy.org/https://github.com/aaANDkk/Qure_Style_SVG/raw/refs/heads/main/icon/svg/flag/China.svg
 
 
 # ==================== Rule Providers ====================
@@ -648,167 +648,167 @@ rule-anchor:
 rule-providers:
   ablock_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ablock_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ablock_domain.mrs
     path: ./ruleset/ablock_domain.mrs
     path-in-bundle: geo/​geosite/​category-ads.mrs
   adblock_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/adblock_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/adblock_domain.mrs
     path: ./ruleset/adblock_domain.mrs
     path-in-bundle: geo/​geosite/​category-ads-all.mrs
   ai_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ai_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/ai_domain.mrs
     path: ./ruleset/ai_domain.mrs
     path-in-bundle: geo/geosite/category-ai-!cn.mrs
 
   bilibili_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_domain.mrs
     path: ./ruleset/bilibili_domain.mrs
     path-in-bundle: geo/geosite/bilibili.mrs
 
   bilibili_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/bilibili_ip.mrs
     path: ./ruleset/bilibili_ip.mrs
     path-in-bundle: geo/geoip/bilibili.mrs
 
   cn_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_domain.mrs
     path: ./ruleset/cn_domain.mrs
     path-in-bundle: geo/geosite/cn.mrs
 
   cn_lite_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_lite_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_lite_domain.mrs
     path: ./ruleset/cn_lite_domain.mrs
     path-in-bundle: geo/geosite/geolocation-cn.mrs
 
   cn_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/cn_ip.mrs
     path: ./ruleset/cn_ip.mrs
     path-in-bundle: geo/geoip/cn.mrs
 
   direct_emby_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/direct_emby_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/direct_emby_domain.mrs
     path: ./ruleset/direct_emby_domain.mrs
     path-in-bundle: geo/geosite/geolocation-cn.mrs
 
   fakeip-filter_cn_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_cn_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_cn_domain.mrs
     path: ./ruleset/fakeip_filter_cn_domain.mrs
     path-in-bundle: geo/geosite/fakeip-filter.mrs
 
   fakeip-filter_!cn_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_!cn_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/fakeip_filter_!cn_domain.mrs
     path: ./ruleset/fakeip_filter_!cn_domain.mrs
     path-in-bundle: geo/geosite/fakeip-filter.mrs
 
   game_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/game_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/game_domain.mrs
     path: ./ruleset/game_domain.mrs
     path-in-bundle: geo/geosite/category-games@cn.mrs
 
   github_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/github_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/github_domain.mrs
     path: ./ruleset/github_domain.mrs
     path-in-bundle: geo/geosite/github.mrs
 
   google_cn_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_cn_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_cn_domain.mrs
     path: ./ruleset/google_cn_domain.mrs
     path-in-bundle: geo/geosite/google@cn.mrs
 
   google_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_domain.mrs
     path: ./ruleset/google_domain.mrs
     path-in-bundle: geo/geosite/google.mrs
 
   google_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_ip.mrs
     path: ./ruleset/google_ip.mrs
     path-in-bundle: geo/geoip/google.mrs
 
   google_fcm_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_fcm_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/google_fcm_domain.mrs
     path: ./ruleset/google_fcm_domain.mrs
     path-in-bundle: geo/geosite/google-cn.mrs
 
   media_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_domain.mrs
     path: ./ruleset/media_domain.mrs
     path-in-bundle: geo/geosite/proxymedia.mrs
 
   media_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/media_ip.mrs
     path: ./ruleset/media_ip.mrs
     path-in-bundle: geo/geoip/netflix.mrs
 
   pixiv_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/pixiv_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/pixiv_domain.mrs
     path: ./ruleset/pixiv_domain.mrs
     path-in-bundle: geo/geosite/pixiv.mrs
 
   proxy_emby_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/proxy_emby_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/proxy_emby_domain.mrs
     path: ./ruleset/proxy_emby_domain.mrs
     path-in-bundle: geo/geosite/proxymedia.mrs
 
   tiktok_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_domain.mrs
     path: ./ruleset/tiktok_domain.mrs
     path-in-bundle: geo/geosite/tiktok.mrs
 
   tiktok_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/tiktok_ip.mrs
     path: ./ruleset/tiktok_ip.mrs
     path-in-bundle: geo/geoip/tiktok.mrs
 
   telegram_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs
+    url: https://v6.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/telegram.mrs
     path: ./ruleset/telegram_domain.mrs
     path-in-bundle: geo/geosite/telegram.mrs
 
   telegram_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs
+    url: https://v6.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geoip/telegram.mrs
     path: ./ruleset/telegram_ip.mrs
     path-in-bundle: geo/geoip/telegram.mrs
 
   twitter_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/twitter.mrs
+    url: https://v6.gh-proxy.org/https://github.com/MetaCubeX//meta-rules-dat/raw/refs/heads/meta/geo-lite/geosite/twitter.mrs
     path: ./ruleset/twitter_domain.mrs
     path-in-bundle: geo/geosite/twitter.mrs
 
   twitter_ip:
     <<: *ipmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/twitter_ip.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/twitter_ip.mrs
     path: ./ruleset/twitter_ip.mrs
     path-in-bundle: geo/geoip/twitter.mrs
 
   whitelist_domain:
     <<: *domainmrs
-    url: https://cdn.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/whitelist_domain.mrs
+    url: https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/whitelist_domain.mrs
     path: ./ruleset/whitelist_domain.mrs
     path-in-bundle: geo/geosite/2kgames.mrs
 
