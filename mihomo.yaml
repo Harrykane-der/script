@@ -126,12 +126,20 @@ dns:
     - RULE-SET,game_domain,real-ip
     - RULE-SET,fakeip-filter_cn_domain,real-ip
     - RULE-SET,fakeip-filter_!cn_domain,real-ip
+    - RULE-SET,ai_domain,fake-ip
     - RULE-SET,bilibili_domain,fake-ip
+    - RULE-SET,direct_emby_domain,fake-ip
+    - RULE-SET,github_domain,fake-ip
+    - RULE-SET,google_cn_domain,fake-ip
+    - RULE-SET,google_domain,fake-ip
+    - RULE-SET,media_domain,fake-ip
+    - RULE-SET,proxy_emby_domain,fake-ip
+    - RULE-SET,pixiv_domain,fake-ip
     - RULE-SET,tiktok_domain,fake-ip
-    - RULE-SET,cn_lite_domain,real-ip
-    - RULE-SET,direct_emby_domain,real-ip
-    - MATCH,fake-ip
+    - RULE-SET,twitter_domain,fake-ip
+    - MATCH,real-ip
   default-nameserver:
+    - udp://211.138.180.2:53
     - quic://106.54.11.55:853
     - tls://120.53.53.53:853
     - quic://223.5.5.5:853
@@ -155,8 +163,8 @@ dns:
       - rcode://success
 
     "rule-set:bilibili_domain":
-      - quic://dns.alidns.com:853#BiliBili
-      - system
+      - quic://dns.kimmch6.dpdns.org:784#BiliBili
+      - https://dns.google/dns-query#BiliBili
 
     "rule-set:tiktok_domain":
       - quic://dns.kimmch6.dpdns.org:784#TikTok
@@ -180,7 +188,7 @@ dns:
 
     "rule-set:direct_emby_domain":
       - quic://dns.alidns.com:853#Direct
-      - system
+      - udp://211.138.180.2:53
 
     "rule-set:github_domain":
       - quic://dns.kimmch6.dpdns.org:784#Github
@@ -196,15 +204,15 @@ dns:
 
     "rule-set:cn_domain":
       - quic://dns.alidns.com:853#Direct
-      - system
+      - udp://211.138.180.2:53
 
     "rule-set:cn_lite_domain":
       - quic://dns.alidns.com:853#Direct
-      - system
+      - udp://211.138.180.2:53
 
     "rule-set:fakeip-filter_cn_domain":
       - quic://dns.alidns.com:853#Direct
-      - system
+      - udp://211.138.180.2:53
 
     "rule-set:fakeip-filter_!cn_domain":
       - quic://dns.kimmch6.dpdns.org:784#Proxy
@@ -213,10 +221,10 @@ dns:
   direct-nameserver-follow-policy: true
   direct-nameserver:
     - quic://dns.alidns.com:853#Direct
-    - system
+    - udp://211.138.180.2:53
   proxy-server-nameserver:
     - quic://dns.alidns.com:853#Direct
-    - system
+    - udp://211.138.180.2:53
 
 # ==================== 基础节点 ====================
 proxies:
