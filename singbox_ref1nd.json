@@ -1,5 +1,5 @@
 {
-  "$schema": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
+  "$schema": "https://v6.gh-proxy.org/https://github.com/reF1nd/sing-box/reF1nd-testing/docs/schema.json",
   "log": {
     "level": "error",
     "timestamp": true
@@ -59,7 +59,7 @@
       {
         "tag": "dns_fakeip",
         "type": "fakeip",
-        "inet4_range": "11.0.0.0/8",
+        "inet4_range": "198.18.0.1/15",
         "inet6_range": "2001:2::/48"
       }
     ],
@@ -95,7 +95,7 @@
       "tag": "tun-in",
       "type": "tun",
       "interface_name": "singbox",
-      "address": ["198.18.0.1/24", "fdfe:dcba:9876::1/64"],
+      "address": ["172.18.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route":true,
       "strict_route": true,
       "dns_mode": "hijack",
@@ -164,7 +164,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_direct",
     "rules": [
-      { "port": [53, 784, 853], "action": "hijack-dns" },
+      { "port": [53, 853], "action": "hijack-dns" },
       { "network": "icmp", "action": "resolve" },
       { "network": "icmp", "action": "route", "outbound": "direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
@@ -192,8 +192,8 @@
       { "ip_is_private": true, "outbound": "🇨🇳 Direct" }
     ],
     "rule_set": [
-      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip_filter_cn_domain", "fakeip_filter_!cn_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" },
-      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
+      { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip_filter_cn_domain", "fakeip_filter_!cn_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" },
+      { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
     ],
     "auto_detect_interface": true,
     "final": "🚀 Final"
@@ -216,7 +216,7 @@
       "external_controller": "127.0.0.1:9090",
       "secret": "singbox",
       "external_ui": "zashboard",
-      "external_ui_download_url": "https://gh-proxy.kimmch6.dpdns.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_url": "https://v6.gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
       "external_ui_http_client": "download_remote",
       "default_mode": "Rule"
     },
