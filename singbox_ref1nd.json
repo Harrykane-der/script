@@ -53,7 +53,7 @@
         "server": "dns.kimmch6.dpdns.org",
         "server_port": 7884,
         "domain_resolver": "dns_hosts",
-        "detour": "🚀 Final"
+        "detour": "🚀 Proxy"
       },
       {
         "tag": "dns_fakeip",
@@ -81,7 +81,7 @@
     "optimistic": { "enabled": true, "timeout": "1d" },
     "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
-    "final": "dns_proxy"
+    "fina": "dns_proxy"
   },
   "inbounds": [
     {
@@ -110,19 +110,19 @@
     }
   ],
   "outbounds": [
-    { "type": "selector", "tag": "🚀 Final", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct", "⛔ REJECT"] },
-    { "type": "selector", "tag": "🎮 Games", "default": "🎮 Game", "interrupt_exist_connections": true, "outbounds": ["🎮 Game", "🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📽️ Media", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🎬 Emby", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🐦 Twitter", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "✈️ Telegram", "default": "🇸🇬 SGP", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "♫ TikTok", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📦 Github", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
-    { "type": "selector", "tag": "📥 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Final", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🚀 Proxy", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct", "⛔ REJECT"] },
+    { "type": "selector", "tag": "🎮 Games", "default": "🎮 Game", "interrupt_exist_connections": true, "outbounds": ["🎮 Game", "🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📺 BiliBili", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🤖 AI", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🌐 Google", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📽️ Media", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🎬 Emby", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🐦 Twitter", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "✈️ Telegram", "default": "🇸🇬 SGP", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "♫ TikTok", "default": "🇩🇪 DEU", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "🔞 Pixiv", "default": "🇯🇵 JPN", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📦 Github", "default": "🇭🇰 HKG", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
+    { "type": "selector", "tag": "📥 FCM", "default": "🇨🇳 Direct", "interrupt_exist_connections": true, "outbounds": ["🚀 Proxy", "🇭🇰 HKG", "🇯🇵 JPN", "🇸🇬 SGP", "🇺🇸 USA", "🇩🇪 DEU", "🌏 OTN", "🎮 Game", "🇨🇳 Direct"] },
     { "type": "urltest", "tag": "🎮 Game", "fallback": { "enabled": true }, "url": "https://g.cn/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🎮 Game_Node", "🎮 Game_Pick", "🎮 Game_Balance"] },
     { "type": "urltest", "tag": "🇭🇰 HKG", "fallback": { "enabled": true }, "url": "https://g.cn/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇭🇰 HKG_Node", "🇭🇰 HKG_Pick", "🇭🇰 HKG_Balance"] },
     { "type": "urltest", "tag": "🇯🇵 JPN", "fallback": { "enabled": true }, "url": "https://g.cn/generate_204", "interval": "3m", "idle_timeout": "1h", "outbounds": ["🇯🇵 JPN_Node", "🇯🇵 JPN_Pick", "🇯🇵 JPN_Balance"] },
@@ -163,12 +163,12 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_direct",
     "rules": [
-      { "port": [53, 853], "action": "hijack-dns" },
+      { "port": 53, "action": "hijack-dns" },
       { "network": "icmp", "action": "resolve" },
       { "network": "icmp", "action": "route", "outbound": "direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
       { "protocol": "dns", "action": "hijack-dns" },
-      { "clash_mode": "Global", "action": "route", "outbound": "🚀 Final" },
+      { "clash_mode": "Global", "action": "route", "outbound": "🚀 Proxy" },
       { "clash_mode": "Direct", "action": "route", "outbound": "🇨🇳 Direct" },
       { "rule_set": ["google_fcm_domain"], "action": "route", "outbound": "📥 FCM" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "action": "route", "outbound": "✈️ Telegram" },
@@ -195,7 +195,7 @@
       { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
     ],
     "auto_detect_interface": true,
-    "final": "🚀 Final"
+    "fina": "🚀 Proxy"
   },
   "services": [
     {
