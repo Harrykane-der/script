@@ -72,14 +72,15 @@
       { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "rcode": "NOERROR" },
       { "rule_set": ["fakeip_filter_cn_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["fakeip_filter_!cn_domain"], "action": "route", "server": "dns_proxy" },
-      { "rule_set": ["ai_domain", "bilibili_domain", "direct_emby_domain", "github_domain", "google_cn_domain", "google_domain", "media_domain", "proxy_emby_domain", "pixiv_domain", "tiktok_domain", "twitter_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
+      { "rule_set": ["bilibili_domain", "tiktok_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "speculative": true },
       { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "speculative": true },
-      { "action": "route", "server": "dns_proxy" }
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
+    "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
     "final": "dns_proxy"
   },
@@ -164,7 +165,6 @@
     "default_domain_resolver": "dns_direct",
     "rules": [
       { "port": [53, 784, 853], "action": "hijack-dns" },
-      { "type": "logical", "mode": "and", "rules": [ { "ip_version": 6 }, { "default_interface_address": ["2000::/3"], "invert": true } ], "action": "reject" },
       { "network": "icmp", "action": "resolve" },
       { "network": "icmp", "action": "route", "outbound": "direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
