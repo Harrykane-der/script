@@ -51,7 +51,7 @@
         "tag": "dns_proxy",
         "type": "quic",
         "server": "dns.kimmch6.dpdns.org",
-        "server_port": 784,
+        "server_port": 853,
         "domain_resolver": "dns_hosts",
         "detour": "🚀 Final"
       },
