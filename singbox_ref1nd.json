@@ -45,7 +45,6 @@
         "server": "dns.google",
         "server_port": 443,
         "domain_resolver": "dns_hosts",
-        "tls": { "enabled": true, "server_name": "dns.google" },
         "detour": "🎮 Games"
       },
       {
@@ -59,12 +58,12 @@
       {
         "tag": "dns_fakeip",
         "type": "fakeip",
-        "inet4_range": "198.18.0.1/15",
+        "inet4_range": "198.18.0.0/15",
         "inet6_range": "2001:2::/48"
       }
     ],
     "rules": [
-      { "query_type": ["SVCB", "HTTPS", "PTR"], "action": "reject", "rcode": "NOERROR" },
+      { "query_type": ["SVCB", "TXT", "HTTPS", "PTR"], "action": "reject", "rcode": "NOERROR" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
@@ -75,11 +74,12 @@
       { "rule_set": ["bilibili_domain", "tiktok_domain"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "speculative": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "speculative": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "race": true },
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
+    "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
     "final": "dns_proxy"
   },
