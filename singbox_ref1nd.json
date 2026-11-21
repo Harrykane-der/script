@@ -80,7 +80,6 @@
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
-    "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
     "final": "dns_proxy"
   },
