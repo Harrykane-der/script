@@ -80,7 +80,7 @@
     "optimistic": { "enabled": true, "timeout": "1d" },
     "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
-    "fina": "dns_proxy"
+    "final": "dns_proxy"
   },
   "inbounds": [
     {
@@ -194,7 +194,7 @@
       { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
     ],
     "auto_detect_interface": true,
-    "fina": "🚀 Proxy"
+    "final": "🚀 Proxy"
   },
   "services": [
     {
