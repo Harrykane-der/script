@@ -51,9 +51,8 @@
         "tag": "dns_proxy",
         "type": "quic",
         "server": "dns.kimmch6.dpdns.org",
-        "server_port": 7884,
-        "domain_resolver": "dns_hosts",
-        "detour": "🚀 Proxy"
+        "server_port": 784,
+        "domain_resolver": "dns_hosts"
       },
       {
         "tag": "dns_fakeip",
