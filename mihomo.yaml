@@ -36,9 +36,9 @@ tun:
 
 # ==================== 全局 Hosts ====================
 hosts:
-  dns.kimmch6.dpdns.org:
-    - 166.88.77.198
-    - 2400:8d60:6::303d:bb00
+  unfiltered.adguard-dns.com:
+    - 94.140.14.140
+    - 94.140.14.141
   dns.alidns.com:
     - 223.5.5.5
     - 223.6.6.6
@@ -144,46 +144,46 @@ dns:
     - tls://120.53.53.53:853
     - quic://223.5.5.5:853
   nameserver:
-    - quic://dns.kimmch6.dpdns.org:784#Proxy
+    - quic://unfiltered.adguard-dns.com:8853#Proxy
     - https://dns.google/dns-query#Proxy
   nameserver-policy:
     "rule-set:game_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Games
+      - quic://unfiltered.adguard-dns.com:8853#Games
       - https://dns.google/dns-query#Games
 
     "rule-set:google_fcm_domain":
-      - quic://dns.kimmch6.dpdns.org:784#FCM
+      - quic://unfiltered.adguard-dns.com:8853#FCM
       - https://dns.google/dns-query#FCM
 
     "rule-set:telegram_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Telegram
+      - quic://unfiltered.adguard-dns.com:8853#Telegram
       - https://dns.google/dns-query#Telegram
 
     "rule-set:adblock_domain":
       - rcode://success
 
     "rule-set:bilibili_domain":
-      - quic://dns.kimmch6.dpdns.org:784#BiliBili
+      - quic://unfiltered.adguard-dns.com:8853#BiliBili
       - https://dns.google/dns-query#BiliBili
 
     "rule-set:tiktok_domain":
-      - quic://dns.kimmch6.dpdns.org:784#TikTok
+      - quic://unfiltered.adguard-dns.com:8853#TikTok
       - https://dns.google/dns-query#TikTok
 
     "rule-set:ai_domain":
-      - quic://dns.kimmch6.dpdns.org:784#AI
+      - quic://unfiltered.adguard-dns.com:8853#AI
       - https://dns.google/dns-query#AI
 
     "rule-set:pixiv_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Pixiv
+      - quic://unfiltered.adguard-dns.com:8853#Pixiv
       - https://dns.google/dns-query#Pixiv
 
     "rule-set:media_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Media
+      - quic://unfiltered.adguard-dns.com:8853#Media
       - https://dns.google/dns-query#Media
 
     "rule-set:proxy_emby_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Emby
+      - quic://unfiltered.adguard-dns.com:8853#Emby
       - https://dns.google/dns-query#Emby
 
     "rule-set:direct_emby_domain":
@@ -191,15 +191,15 @@ dns:
       - udp://211.138.180.2:53
 
     "rule-set:github_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Github
+      - quic://unfiltered.adguard-dns.com:8853#Github
       - https://dns.google/dns-query#Github
 
     "rule-set:google_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Google
+      - quic://unfiltered.adguard-dns.com:8853#Google
       - https://dns.google/dns-query#Google
 
     "rule-set:google_cn_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Google
+      - quic://unfiltered.adguard-dns.com:8853#Google
       - https://dns.google/dns-query#Google
 
     "rule-set:cn_domain":
@@ -215,7 +215,7 @@ dns:
       - udp://211.138.180.2:53
 
     "rule-set:fakeip-filter_!cn_domain":
-      - quic://dns.kimmch6.dpdns.org:784#Proxy
+      - quic://unfiltered.adguard-dns.com:8853#Proxy
       - https://dns.google/dns-query#Proxy
 
   direct-nameserver-follow-policy: true
