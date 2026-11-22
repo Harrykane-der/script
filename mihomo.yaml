@@ -144,46 +144,46 @@ dns:
     - tls://120.53.53.53:853
     - quic://223.5.5.5:853
   nameserver:
-    - quic://dns.kimmch6.dpdns.org:7884#Proxy
+    - quic://dns.kimmch6.dpdns.org:784#Proxy
     - https://dns.google/dns-query#Proxy
   nameserver-policy:
     "rule-set:game_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Games
+      - quic://dns.kimmch6.dpdns.org:784#Games
       - https://dns.google/dns-query#Games
 
     "rule-set:google_fcm_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#FCM
+      - quic://dns.kimmch6.dpdns.org:784#FCM
       - https://dns.google/dns-query#FCM
 
     "rule-set:telegram_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Telegram
+      - quic://dns.kimmch6.dpdns.org:784#Telegram
       - https://dns.google/dns-query#Telegram
 
     "rule-set:adblock_domain":
       - rcode://success
 
     "rule-set:bilibili_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#BiliBili
+      - quic://dns.kimmch6.dpdns.org:784#BiliBili
       - https://dns.google/dns-query#BiliBili
 
     "rule-set:tiktok_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#TikTok
+      - quic://dns.kimmch6.dpdns.org:784#TikTok
       - https://dns.google/dns-query#TikTok
 
     "rule-set:ai_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#AI
+      - quic://dns.kimmch6.dpdns.org:784#AI
       - https://dns.google/dns-query#AI
 
     "rule-set:pixiv_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Pixiv
+      - quic://dns.kimmch6.dpdns.org:784#Pixiv
       - https://dns.google/dns-query#Pixiv
 
     "rule-set:media_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Media
+      - quic://dns.kimmch6.dpdns.org:784#Media
       - https://dns.google/dns-query#Media
 
     "rule-set:proxy_emby_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Emby
+      - quic://dns.kimmch6.dpdns.org:784#Emby
       - https://dns.google/dns-query#Emby
 
     "rule-set:direct_emby_domain":
@@ -191,15 +191,15 @@ dns:
       - udp://211.138.180.2:53
 
     "rule-set:github_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Github
+      - quic://dns.kimmch6.dpdns.org:784#Github
       - https://dns.google/dns-query#Github
 
     "rule-set:google_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Google
+      - quic://dns.kimmch6.dpdns.org:784#Google
       - https://dns.google/dns-query#Google
 
     "rule-set:google_cn_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Google
+      - quic://dns.kimmch6.dpdns.org:784#Google
       - https://dns.google/dns-query#Google
 
     "rule-set:cn_domain":
@@ -215,7 +215,7 @@ dns:
       - udp://211.138.180.2:53
 
     "rule-set:fakeip-filter_!cn_domain":
-      - quic://dns.kimmch6.dpdns.org:7884#Proxy
+      - quic://dns.kimmch6.dpdns.org:784#Proxy
       - https://dns.google/dns-query#Proxy
 
   direct-nameserver-follow-policy: true
