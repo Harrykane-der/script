@@ -52,7 +52,8 @@
         "type": "quic",
         "server": "dns.kimmch6.dpdns.org",
         "server_port": 784,
-        "domain_resolver": "dns_hosts"
+        "domain_resolver": "dns_hosts",
+        "detour": "🚀 Proxy"
       },
       {
         "tag": "dns_fakeip",
@@ -160,7 +161,7 @@
   ],
   "route": {
     "default_http_client": "download_remote",
-    "default_domain_resolver": "dns_direct",
+    "default_domain_resolver": "dns_local",
     "rules": [
       { "port": 53, "action": "hijack-dns" },
       { "network": "icmp", "action": "resolve" },
