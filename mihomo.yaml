@@ -827,7 +827,7 @@ rules:
   - RULE-SET,bilibili_domain,BiliBili
   - RULE-SET,tiktok_ip,TikTok
   - RULE-SET,tiktok_domain,TikTok
-  - RULE-SET,twitter_ip,Google
+  - RULE-SET,twitter_ip,Twitter
   - RULE-SET,twitter_domain,Twitter
   - RULE-SET,media_ip,Media
   - RULE-SET,media_domain,Media
