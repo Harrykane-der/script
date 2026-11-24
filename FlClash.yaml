@@ -30,9 +30,6 @@ tun:
   strict-route: true
   inet6-address:
     - fdfe:dcba:9876::1/126
-  iproute2-table-index: 2022
-  iproute2-rule-index: 9000
-  endpoint-independent-nat: true
 
 # ==================== 全局 Hosts ====================
 hosts:
