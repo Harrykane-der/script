@@ -165,10 +165,14 @@ dns:
     "rule-set:bilibili_domain":
       - quic://unfiltered.adguard-dns.com:8853#BiliBili
       - https://dns.google/dns-query#BiliBili
+      - quic://dns.alidns.com:853#Direct
+      - udp://211.138.180.2:53
 
     "rule-set:tiktok_domain":
       - quic://unfiltered.adguard-dns.com:8853#TikTok
       - https://dns.google/dns-query#TikTok
+      - quic://dns.alidns.com:853#Direct
+      - udp://211.138.180.2:53
 
     "rule-set:ai_domain":
       - quic://unfiltered.adguard-dns.com:8853#AI
