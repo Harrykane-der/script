@@ -33,14 +33,14 @@
         "server_port": 53
       },
       {
-        "tag": "dns_direct",
+        "tag": "dns_alidns",
         "type": "quic",
         "server": "dns.alidns.com",
         "server_port": 853,
         "domain_resolver": "dns_hosts"
       },
       {
-        "tag": "dns_proxy_1",
+        "tag": "dns_google",
         "type": "https",
         "server": "dns.google",
         "server_port": 443,
@@ -48,7 +48,7 @@
         "detour": "🚀 Proxy"
       },
       {
-        "tag": "dns_proxy_2",
+        "tag": "dns_adguard",
         "type": "quic",
         "server": "unfiltered.adguard-dns.com",
         "server_port": 8853,
@@ -56,11 +56,19 @@
         "detour": "🚀 Proxy"
       },
       {
+        "tag": "dns_direct",
+        "type": "group",
+        "servers": [
+          "dns_local",
+          "dns_alidns"
+        ]
+      },
+      {
         "tag": "dns_proxy",
         "type": "group",
         "servers": [
-          "dns_proxy_1",
-          "dns_proxy_2"
+          "dns_google",
+          "dns_adguard"
         ]
       },
       {
@@ -81,9 +89,9 @@
       { "rule_set": ["fakeip_filter_!cn_domain"], "action": "route", "server": "dns_proxy" },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
       { "action": "evaluate", "server": "dns_proxy", "tag": "dns_evaluate_proxy", "client_subnet": "39.144.162.180" },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_direct", "race": true },
-      { "rule_set": ["cn_ip"], "action": "route", "server": "dns_local", "match_response": "dns_evaluate_proxy", "race": true },
-      { "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_direct", "race": true },
+      { "rule_set": ["cn_ip"], "action": "respond", "match_response": "dns_evaluate_proxy", "race": true },
+      { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
     "strategy": "prefer_ipv6",
