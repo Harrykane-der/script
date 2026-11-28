@@ -180,8 +180,7 @@
     "default_http_client": "download_remote",
     "default_domain_resolver": "dns_local",
     "rules": [
-      { "ip_cidr": ["172.18.0.2", "fdfe:dcba:9876::2"], "action": "hijack-dns" },
-      { "port": 53, "action": "hijack-dns" },
+      { "port": [53, 853], "action": "hijack-dns" },
       { "network": "icmp", "action": "resolve" },
       { "network": "icmp", "action": "route", "outbound": "🇨🇳 Direct" },
       { "rule_set": ["telegram_domain", "telegram_ip"], "invert": true, "action": "sniff" },
