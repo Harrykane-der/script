@@ -41,7 +41,7 @@
       },
       {
         "tag": "dns_google",
-        "type": "tlss",
+        "type": "tls",
         "server": "dns.google",
         "server_port": 853,
         "domain_resolver": "dns_hosts",
