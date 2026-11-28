@@ -79,12 +79,15 @@
       }
     ],
     "rules": [
-      { "query_type": ["A", "AAAA"], "invert": true, "action": "reject", "rcode": "NOERROR" },
+      { "query_type": ["A", "AAAA"], "invert": true, "action": "reject" },
       { "preferred_by": "dns_hosts", "action": "route", "server": "dns_hosts" },
       { "clash_mode": "Global", "action": "route", "server": "dns_proxy" },
       { "clash_mode": "Direct", "action": "route", "server": "dns_direct" },
       { "type": "logical", "mode": "or", "rules": [ { "package_name": ["jp.konami.pesam", "com.mojang.minecraft"] }, { "rule_set": ["game_domain"] } ], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 },
-      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject", "rcode": "NOERROR" },
+      { "protocol": ["stun", "dtls"], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "rule_set": ["cn_lite_domain", "cn_ip"], "invert": true }, { "protocol": "quic" } ], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "rule_set": ["cn_lite_domain", "cn_ip"], "invert": true }, { "network": "udp", "port": 443 } ], "action": "reject" },
+      { "type": "logical", "mode": "and", "rules": [ { "clash_mode": "Allow", "invert": true }, { "rule_set": ["whitelist_domain"], "invert": true }, { "rule_set": ["ablock_domain", "adblock_domain"] } ], "action": "reject" },
       { "rule_set": ["fakeip_filter_cn_domain", "google_fcm_domain"], "action": "route", "server": "dns_direct" },
       { "rule_set": ["fakeip_filter_!cn_domain"], "action": "route", "server": "dns_proxy" },
       { "action": "evaluate", "server": "dns_direct", "tag": "dns_evaluate_direct", "client_subnet": "39.144.162.180" },
@@ -94,6 +97,7 @@
       { "query_type": ["A", "AAAA"], "action": "route", "server": "dns_fakeip", "rewrite_ttl": 1 }
     ],
     "optimistic": { "enabled": true, "timeout": "1d" },
+    "default_reject_rcode": "REFUSED",
     "strategy": "prefer_ipv6",
     "cache_capacity": 4096,
     "final": "dns_proxy"
@@ -212,6 +216,7 @@
       { "type": "remote", "tag": ["ablock_domain", "adblock_domain", "ai_domain", "cn_lite_domain", "bilibili_domain", "direct_emby_domain", "fakeip_filter_cn_domain", "fakeip_filter_!cn_domain", "game_domain", "github_domain", "google_cn_domain", "google_domain", "google_fcm_domain", "media_domain", "pixiv_domain", "proxy_emby_domain", "telegram_domain", "tiktok_domain", "twitter_domain", "whitelist_domain"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" },
       { "type": "remote", "tag": ["cn_ip", "telegram_ip"], "format": "binary", "url": "https://v6.gh-proxy.org/https://github.com/Harrykane-der/ruleset-for-singbox-and-mihomo/raw/refs/heads/rule_set/{tag}.srs", "update_interval": "6h" }
     ],
+    "default_domain_match_strategy": "prefer_fqdn",
     "auto_detect_interface": true,
     "final": "🚀 Proxy"
   },
